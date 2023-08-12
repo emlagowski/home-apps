@@ -6,6 +6,23 @@ spec:
   rules:
   - http:
       paths:
+      - path: /whoami
+        pathType: Prefix
+        backend:
+          service:
+            name: whoami
+            port:
+              name: web
+----
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami-ingress-2
+spec:
+  rules:
+  - host: whoami.raspberrypi.local
+    http:
+      paths:
       - path: /
         pathType: Prefix
         backend:
