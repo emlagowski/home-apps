@@ -28,8 +28,6 @@ spec:
       containers:
         - name: homebridge
           volumeMounts:
-          #   - mountPath: "/homebridge"
-          #     name: homebridge
             - name: homebridge-config
               mountPath: /homebridge/config.json.template
               subPath: config.json
