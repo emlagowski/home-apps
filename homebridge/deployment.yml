@@ -19,8 +19,8 @@ spec:
         persistentVolumeClaim:
           claimName: homebridge
       - name: homebridge-config
-          configMap:
-            name: homebridge-configmap
+        configMap:
+          name: homebridge-configmap
       hostNetwork: true
       containers:
         - name: homebridge
