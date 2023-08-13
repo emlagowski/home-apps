@@ -24,12 +24,12 @@ spec:
       hostNetwork: true
       containers:
         - name: homebridge
-          volumeMounts:
-            - mountPath: "/homebridge"
-              name: homebridge
-            # - name: homebridge-config
-            #   mountPath: /homebridge/config.json
-            #   subPath: config.json
+          # volumeMounts:
+          #   - mountPath: "/homebridge"
+          #     name: homebridge
+          #   - name: homebridge-config
+          #     mountPath: /homebridge/config.json
+          #     subPath: config.json
           image: oznu/homebridge:2023-01-08
           securityContext:
             readOnlyRootFilesystem: false
