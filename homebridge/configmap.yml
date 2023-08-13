@@ -11,5 +11,15 @@ data:
             "username": "0E:CC:AD:BD:D6:A4",
             "name": "Homebridge D6A4",
             "port": 51132
-        }
+        },
+        "platforms": [
+            {
+                "platform": "config",
+                "port": 8090,
+                "name": "Config"
+            }
+        ],
+        "accessories": [
+           
+        ]
     }
