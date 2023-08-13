@@ -22,7 +22,7 @@ spec:
         configMap:
           name: homebridge-configmap
           defaultMode: 0711
-      hostNetwork: true
+      # hostNetwork: true
       containers:
         - name: homebridge
           volumeMounts:
