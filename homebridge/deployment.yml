@@ -23,7 +23,6 @@ spec:
       - name: homebridge-config
         configMap:
           name: homebridge-configmap
-      strategy:
       hostNetwork: true
       containers:
         - name: homebridge
