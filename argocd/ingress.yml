@@ -6,7 +6,7 @@ metadata:
   name: argocd-ingress
 spec:
   rules:
-  - host: argocd.raspberrypi.local
+  - host: argocd.raspberrypi
     http:
       paths:
       - path: /

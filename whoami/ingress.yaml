@@ -6,7 +6,7 @@ metadata:
   name: whoami-ingress
 spec:
   rules:
-  - host: whoami.raspberrypi.local
+  - host: whoami.raspberrypi
     http:
       paths:
       - path: /
