@@ -6,7 +6,8 @@ metadata:
   name: homebridge-ingress
 spec:
   rules:
-  - http:
+  - host: homebridge.raspberrypi
+    http:
       paths:
       - path: /
         pathType: Prefix
