@@ -18,9 +18,6 @@ spec:
         app: homebridge
     spec:
       volumes:
-      - name: homebridge
-        persistentVolumeClaim:
-          claimName: homebridge-pv-claim
       - name: homebridge-config
         configMap:
           name: homebridge-configmap
