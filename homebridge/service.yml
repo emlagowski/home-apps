@@ -6,7 +6,11 @@ spec:
   selector:
     app: homebridge
   ports:
-    - name: http
+    - name: ui
       port: 8090
       targetPort: 8090
+      protocol: TCP
+    - name: homebridge
+      port: 51132
+      targetPort: 51132
       protocol: TCP

@@ -97,8 +97,11 @@ spec:
                   name: homebridge-secrets
                   key: HOMEBRIDGE_PIN
           ports:
-            - name: http
+            - name: ui
               containerPort: 8090
+              protocol: TCP
+            - name: homebridge
+              containerPort: 51132
               protocol: TCP
           livenessProbe:
             httpGet:
