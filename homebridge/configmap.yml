@@ -21,13 +21,13 @@ data:
             {
                 "interval": 30,
                 "platform": "midea-air",
-                "password": "todo_add_correct_password",
+                "password": "$HOMEBRIDGE_MIDEA_PASSWORD",
                 "user": "marcinlagowski92@gmail.com",
                 "devices": [
                     {
                         "OutdoorTemperature": true,
                         "supportedSwingMode": "Both",
-                        "deviceId": "todo_add_correct_id",
+                        "deviceId": "$HOMEBRIDGE_MIDEA_DEVIE_ID",
                         "fanOnlyMode": true
                     }
                 ]
@@ -65,7 +65,7 @@ data:
             {
                 "name": "Roborock S5",
                 "ip": "192.168.1.202",
-                "token": "todo_add_correct_token",
+                "token": "$HOMEBRIDGE_XIAOMI_TOKEN",
                 "waterBox": false,
                 "silent": false,
                 "pause": true,
@@ -96,3 +96,7 @@ data:
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-midea-air 1.7.3 /var/lib/homebridge/node_modules
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-xiaomi-roborock-vacuum 0.29.0 /var/lib/homebridge/node_modules
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-samsung-tizen 5.2.6 /var/lib/homebridge/node_modules
+
+    apt-get update
+    apt-get install gettext-base
+    envsubst < /homebridge/config.json.template > /homebridge/config.json

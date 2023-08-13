@@ -55,8 +55,21 @@ spec:
               value: "1000"
             - name: PUID
               value: "1000"
-            # - name: PACKAGES
-            #   value: "1"
+            - name: HOMEBRIDGE_MIDEA_DEVIE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_MIDEA_DEVIE_ID
+            - name: HOMEBRIDGE_MIDEA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_MIDEA_PASSWORD
+            - name: HOMEBRIDGE_XIAOMI_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_XIAOMI_TOKEN
           ports:
             - name: http
               containerPort: 8090
