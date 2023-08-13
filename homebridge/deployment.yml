@@ -14,6 +14,8 @@ spec:
       labels:
         app: homebridge
     spec:
+      strategy:                                                                                                                                                                                              │
+        type: Recreate
       volumes:
       - name: homebridge
         persistentVolumeClaim:
@@ -21,6 +23,7 @@ spec:
       - name: homebridge-config
         configMap:
           name: homebridge-configmap
+      strategy:
       hostNetwork: true
       containers:
         - name: homebridge
