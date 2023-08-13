@@ -31,7 +31,7 @@ spec:
           #   - mountPath: "/homebridge"
           #     name: homebridge
             - name: homebridge-config
-              mountPath: /homebridge/config.json
+              mountPath: /homebridge/config.json.template
               subPath: config.json
             - name: homebridge-config
               mountPath: /homebridge/auth.json
