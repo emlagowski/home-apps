@@ -1,17 +1,18 @@
-kind: Ingress
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
   name: homebridge
-  namespace: homebridge
 spec:
   rules:
-    - host: homebridge.raspberrypi
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: homebridge
-                port:
-                  name: http
+  - host: homebridge.raspberrypi
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: homebridge
+            port:
+              name: http
