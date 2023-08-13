@@ -23,3 +23,19 @@ data:
            
         ]
     }
+  auth.json: |
+    [
+      {
+          "id": 1,
+          "username": "marcinlagowski",
+          "name": "marcinlagowski",
+          "hashedPassword": "a77fdfcacb94d36d59c1eb421cbbb6cd42727fbb26aa4601d393f84a5313e8a4754a41bf4dfc56afad4039bb76d05a7d0d2a610f3194a0a83b2f1e1a2f814345",
+          "salt": "eedb063faf1e20802c806a30bf6923885766a8f43c79e51586314d8d585cc20b",
+          "admin": true
+      }
+    ]
+  startup.sh: |
+    #!/bin/bash
+    /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-midea-air 1.7.3 /var/lib/homebridge/node_modules
+    /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-xiaomi-roborock-vacuum 0.29.0 /var/lib/homebridge/node_modules
+    /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-samsung-tizen 5.2.6 /var/lib/homebridge/node_modules
