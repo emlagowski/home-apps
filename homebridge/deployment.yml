@@ -34,7 +34,7 @@ spec:
               mountPath: /homebridge/config.json.template
               subPath: config.json
             - name: homebridge-config
-              mountPath: /homebridge/auth.json
+              mountPath: /homebridge/auth.json.template
               subPath: auth.json
             - name: homebridge-config
               mountPath: /homebridge/startup.sh
@@ -55,11 +55,11 @@ spec:
               value: "1000"
             - name: PUID
               value: "1000"
-            - name: HOMEBRIDGE_MIDEA_DEVIE_ID
+            - name: HOMEBRIDGE_MIDEA_DEVICE_ID
               valueFrom:
                 secretKeyRef:
                   name: homebridge-secrets
-                  key: HOMEBRIDGE_MIDEA_DEVIE_ID
+                  key: HOMEBRIDGE_MIDEA_DEVICE_ID
             - name: HOMEBRIDGE_MIDEA_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -70,6 +70,21 @@ spec:
                 secretKeyRef:
                   name: homebridge-secrets
                   key: HOMEBRIDGE_XIAOMI_TOKEN
+            - name: HOMEBRIDGE_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_ADMIN_USER
+            - name: HOMEBRIDGE_ADMIN_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_ADMIN_SALT
+            - name: HOMEBRIDGE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_ADMIN_PASSWORD
           ports:
             - name: http
               containerPort: 8090

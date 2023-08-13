@@ -27,7 +27,7 @@ data:
                     {
                         "OutdoorTemperature": true,
                         "supportedSwingMode": "Both",
-                        "deviceId": "$HOMEBRIDGE_MIDEA_DEVIE_ID",
+                        "deviceId": "$HOMEBRIDGE_MIDEA_DEVICE_ID",
                         "fanOnlyMode": true
                     }
                 ]
@@ -84,10 +84,10 @@ data:
     [
       {
           "id": 1,
-          "username": "marcinlagowski",
-          "name": "marcinlagowski",
-          "hashedPassword": "a77fdfcacb94d36d59c1eb421cbbb6cd42727fbb26aa4601d393f84a5313e8a4754a41bf4dfc56afad4039bb76d05a7d0d2a610f3194a0a83b2f1e1a2f814345",
-          "salt": "eedb063faf1e20802c806a30bf6923885766a8f43c79e51586314d8d585cc20b",
+          "username": "$HOMEBRIDGE_ADMIN_USER",
+          "name": "$HOMEBRIDGE_ADMIN_USER",
+          "hashedPassword": "$HOMEBRIDGE_ADMIN_PASSWORD",
+          "salt": "$HOMEBRIDGE_ADMIN_SALT",
           "admin": true
       }
     ]
@@ -100,3 +100,4 @@ data:
     apt-get update
     apt-get install gettext-base
     envsubst < /homebridge/config.json.template > /homebridge/config.json
+    envsubst < /homebridge/auth.json.template > /homebridge/auth.json
