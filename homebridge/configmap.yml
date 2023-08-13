@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homebridge-configmap
+  namespace: homebridge
+data:
+  config.json: |
+    {
+        "bridge": {
+            "pin": "719-11-  047",
+            "username": "0E:CC:AD:BD:D6:A4",
+            "name": "Homebridge D6A4",
+            "port": 51132
+        }
+    }

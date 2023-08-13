@@ -1,0 +1,58 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: homebridge
+  labels:
+    app: homebridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homebridge
+  template:
+    metadata:
+      labels:
+        app: homebridge
+    spec:
+      volumes:
+      - name: homebridge
+        persistentVolumeClaim:
+          claimName: homebridge
+      - name: homebridge-config
+          configMap:
+            name: homebridge-configmap
+      hostNetwork: true
+      containers:
+        - name: homebridge
+          volumeMounts:
+            - mountPath: "/homebridge"
+              name: homebridge
+            - name: homebridge-config
+              mountPath: /homebridge/config.json
+              subPath: config.json
+          image: oznu/homebridge:2023-01-08
+          securityContext:
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+            allowPrivilegeEscalation: true
+          env:
+            - name: TERMINATE_ON_ERROR
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 8090
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8090
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8090
+          startupProbe:
+            httpGet:
+              path: /
+              port: 8090
+            failureThreshold: 30
+            periodSeconds: 10
