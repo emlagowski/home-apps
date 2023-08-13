@@ -31,7 +31,7 @@ spec:
           #   - mountPath: "/homebridge"
           #     name: homebridge
             - name: homebridge-config
-              mountPath: /var/lib/homebridge/config.json
+              mountPath: /homebridge/config.json
               subPath: config.json
           image: oznu/homebridge:2023-01-08
           securityContext:
@@ -41,6 +41,16 @@ spec:
           env:
             - name: TERMINATE_ON_ERROR
               value: "1"
+            - name: HOMEBRIDGE_CONFIG_UI
+              value: "1"
+            - name: HOMEBRIDGE_CONFIG_UI_PORT
+              value: "8090"
+            - name: PUID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            # - name: PACKAGES
+            #   value: "1"
           ports:
             - name: http
               containerPort: 8090
