@@ -4,15 +4,6 @@ metadata:
   name: whoami-ingress
 spec:
   rules:
-  - http:
-      paths:
-      - path: /whoami
-        pathType: Prefix
-        backend:
-          service:
-            name: whoami
-            port:
-              name: web
   - host: whoami.raspberrypi.local
     http:
       paths:
