@@ -17,10 +17,67 @@ data:
                 "platform": "config",
                 "port": 8090,
                 "name": "Config"
+            },
+            {
+                "interval": 30,
+                "platform": "midea-air",
+                "password": "todo_add_correct_password",
+                "user": "marcinlagowski92@gmail.com",
+                "devices": [
+                    {
+                        "OutdoorTemperature": true,
+                        "supportedSwingMode": "Both",
+                        "deviceId": "todo_add_correct_id",
+                        "fanOnlyMode": true
+                    }
+                ]
+            },
+            {
+                "app_list": true,
+                "devices": [
+                    {
+                        "name": "Samsung TV 65",
+                        "ip": "192.168.1.140",
+                        "mac": "54:bd:79:e2:28:87",
+                        "inputs": [
+                            {
+                                "type": "app",
+                                "name": "Netflix",
+                                "value": "11101200001"
+                            },
+                            {
+                                "type": "app",
+                                "name": "YouTube",
+                                "value": "111299001912"
+                            },
+                            {
+                                "type": "app",
+                                "name": "Spotify",
+                                "value": "3201606009684"
+                            }
+                        ]
+                    }
+                ],
+                "platform": "SamsungTizen"
             }
         ],
         "accessories": [
-           
+            {
+                "name": "Roborock S5",
+                "ip": "192.168.1.202",
+                "token": "todo_add_correct_token",
+                "waterBox": false,
+                "silent": false,
+                "pause": true,
+                "pauseWord": "pause",
+                "findMe": true,
+                "findMeWord": "where are you",
+                "dock": true,
+                "cleanword": "cleaning",
+                "roomTimeout": 0,
+                "autoroom": false,
+                "accessory": "XiaomiRoborockVacuum"
+            }
         ]
     }
   auth.json: |

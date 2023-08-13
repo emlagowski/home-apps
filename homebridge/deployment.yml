@@ -23,7 +23,7 @@ spec:
       - name: homebridge-config
         configMap:
           name: homebridge-configmap
-          defaultMode: 0777
+          defaultMode: 0711
       hostNetwork: true
       containers:
         - name: homebridge
