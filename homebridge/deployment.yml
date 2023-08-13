@@ -14,7 +14,7 @@ spec:
       labels:
         app: homebridge
     spec:
-      strategy:                                                                                                                                                                                              │
+      strategy:
         type: Recreate
       volumes:
       - name: homebridge
