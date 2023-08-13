@@ -7,7 +7,7 @@ data:
   config.json: |
     {
         "bridge": {
-            "pin": "719-11-047",
+            "pin": "$HOMEBRIDGE_PIN",
             "username": "0E:CC:AD:BD:D6:A4",
             "name": "Homebridge D6A4",
             "port": 51132
@@ -22,7 +22,7 @@ data:
                 "interval": 30,
                 "platform": "midea-air",
                 "password": "$HOMEBRIDGE_MIDEA_PASSWORD",
-                "user": "marcinlagowski92@gmail.com",
+                "user": "$HOMEBRIDGE_MIDEA_USER",
                 "devices": [
                     {
                         "OutdoorTemperature": true,
@@ -38,7 +38,7 @@ data:
                     {
                         "name": "Samsung TV 65",
                         "ip": "192.168.1.140",
-                        "mac": "54:bd:79:e2:28:87",
+                        "mac": "$HOMEBRIDGE_TV_MAC",
                         "inputs": [
                             {
                                 "type": "app",

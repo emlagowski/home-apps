@@ -60,6 +60,11 @@ spec:
                 secretKeyRef:
                   name: homebridge-secrets
                   key: HOMEBRIDGE_MIDEA_DEVICE_ID
+            - name: HOMEBRIDGE_MIDEA_USER
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_MIDEA_USER
             - name: HOMEBRIDGE_MIDEA_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -85,6 +90,16 @@ spec:
                 secretKeyRef:
                   name: homebridge-secrets
                   key: HOMEBRIDGE_ADMIN_PASSWORD
+            - name: HOMEBRIDGE_TV_MAC
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_TV_MAC
+            - name: HOMEBRIDGE_PIN
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_PIN
           ports:
             - name: http
               containerPort: 8090
