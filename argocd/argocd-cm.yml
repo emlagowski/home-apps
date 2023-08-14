@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://argocd.raspberrypi
+  # admin.enabled: "false"
+  dex.config: |
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: fb2261e6fccb80138ec9
+          clientSecret: $argocd-custom-secret:dex.github.clientSecret
+          orgs:
+          - name: m12i-home-apps
