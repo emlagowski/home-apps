@@ -10,16 +10,3 @@ spec:
       port: 8090
       targetPort: 8090
       protocol: TCP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: homebridge-api
-spec:
-  selector:
-    app: homebridge
-  ports:
-    - name: api
-      port: 51221
-      targetPort: 51221
-      protocol: TCP
