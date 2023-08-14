@@ -16,12 +16,11 @@ kind: Service
 metadata:
   name: homebridge-api
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: homebridge
   ports:
     - name: api
       port: 51221
       targetPort: 51221
-      nodePort: 51221
       protocol: TCP
