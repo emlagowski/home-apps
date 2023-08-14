@@ -16,7 +16,6 @@ kind: Service
 metadata:
   name: homebridge-api
 spec:
-  type: LoadBalancer
   selector:
     app: homebridge
   ports:
