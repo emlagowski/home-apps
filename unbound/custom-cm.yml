@@ -5,7 +5,8 @@ data:
         # Custom zone
         local-zone: "raspberrypi" redirect
         local-data: "raspberrypi IN A 192.168.1.39"
-        local-data: "homebridge IN A 192.168.1.39"
+        local-data: "homebridge A 192.168.1.39"
+        local-data: "router A 192.168.1.1"
 kind: ConfigMap
 metadata:
   name: custom-configmap
