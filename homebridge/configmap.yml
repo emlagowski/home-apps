@@ -11,7 +11,8 @@ data:
             "username": "$HOMEBRIDGE_USERNAME",
             "port": 51221,
             "pin": "$HOMEBRIDGE_PIN",
-            "advertiser": "bonjour-hap"
+            "advertiser": "bonjour-hap",
+            "bind": "192.168.1.39"
         },
         "platforms": [
             {
