@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: homebridge
+            name: homebridge-ui
             port:
-              name: ui
+              name: http

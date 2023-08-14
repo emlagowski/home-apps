@@ -8,9 +8,9 @@ data:
     {
         "bridge": {
             "name": "Homebridge 534A",
-            "username": "0E:74:81:4D:53:4A",
+            "username": "$HOMEBRIDGE_USERNAME",
             "port": 51221,
-            "pin": "523-14-925",
+            "pin": "$HOMEBRIDGE_PIN",
             "advertiser": "bonjour-hap"
         },
         "platforms": [

@@ -22,7 +22,7 @@ spec:
         configMap:
           name: homebridge-configmap
           defaultMode: 0711
-      hostNetwork: true
+      # hostNetwork: true
       containers:
         - name: homebridge
           volumeMounts:
@@ -96,8 +96,13 @@ spec:
                 secretKeyRef:
                   name: homebridge-secrets
                   key: HOMEBRIDGE_PIN
+            - name: HOMEBRIDGE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: homebridge-secrets
+                  key: HOMEBRIDGE_USERNAME
           ports:
-            - name: ui
+            - name: http
               containerPort: 8090
               protocol: TCP
             - name: homebridge
