@@ -104,5 +104,5 @@ data:
     apt-get install gettext-base
 
     # pass secrets to config files from env variables
-    # envsubst < /homebridge/config.json.template > /homebridge/config.json
+    envsubst < /homebridge/config.json.template > /homebridge/config.json
     envsubst < /homebridge/auth.json.template > /homebridge/auth.json
