@@ -108,6 +108,7 @@ spec:
             - name: homebridge
               containerPort: 51221
               hostPort: 51221
+              hostIp: 192.168.1.39
               protocol: TCP
           livenessProbe:
             httpGet:
