@@ -29,8 +29,11 @@ spec:
             - containerPort: 53
           volumeMounts:
             - name: unbound-config
-              mountPath: /etc/unbound/custom.conf.d/custom.conf
-              subPath: custom.conf
+              mountPath: /etc/unbound/custom.conf.d/raspberrypi.conf
+              subPath: raspberrypi.conf
+            - name: unbound-config
+              mountPath: /etc/unbound/custom.conf.d/homebridge.conf
+              subPath: homebridge.conf
       volumes:
         - name: unbound-config
           configMap:
