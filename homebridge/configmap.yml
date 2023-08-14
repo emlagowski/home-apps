@@ -7,10 +7,11 @@ data:
   config.json: |
     {
         "bridge": {
-            "pin": "$HOMEBRIDGE_PIN",
-            "username": "0E:CC:AD:BD:D6:A4",
-            "name": "Homebridge D6A4",
-            "port": 51132
+            "name": "Homebridge 534A",
+            "username": "0E:74:81:4D:53:4A",
+            "port": 51221,
+            "pin": "523-14-925",
+            "advertiser": "bonjour-hap"
         },
         "platforms": [
             {

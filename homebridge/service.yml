@@ -11,6 +11,6 @@ spec:
       targetPort: 8090
       protocol: TCP
     - name: homebridge
-      port: 51132
-      targetPort: 51132
+      port: 51221
+      targetPort: 51221
       protocol: TCP

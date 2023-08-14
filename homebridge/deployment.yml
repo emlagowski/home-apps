@@ -101,7 +101,7 @@ spec:
               containerPort: 8090
               protocol: TCP
             - name: homebridge
-              containerPort: 51132
+              containerPort: 51221
               protocol: TCP
           livenessProbe:
             httpGet:
