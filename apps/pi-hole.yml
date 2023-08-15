@@ -22,6 +22,9 @@ spec:
 
         hostNetwork: true
 
+        webHttp: "8080"
+        webHttps: "8443"
+
         # dnsHostPort:
         #   enabled: true
 
