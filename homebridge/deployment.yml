@@ -22,10 +22,15 @@ spec:
         configMap:
           name: homebridge-configmap
           defaultMode: 0711
+      - name: homebridge-volume
+        persistentVolumeClaim:
+          claimName: homebridge-pvc
       hostNetwork: true
       containers:
         - name: homebridge
           volumeMounts:
+            - name: homebridge-volume
+              mountPath: /homebridge
             - name: homebridge-config
               mountPath: /homebridge/config.json.template
               subPath: config.json
