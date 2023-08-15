@@ -7,12 +7,11 @@ data:
   config.json: |
     {
         "bridge": {
-            "name": "Homebridge A8AE",
+            "name": "Homebridge E7C8",
             "username": "$HOMEBRIDGE_USERNAME",
             "port": 51221,
             "pin": "$HOMEBRIDGE_PIN",
-            "advertiser": "ciao",
-            "bind": ["eth0"]
+            "advertiser": "bonjour-hap"
         },
         "platforms": [
             {
@@ -106,5 +105,5 @@ data:
     apt-get install gettext-base
 
     # pass secrets to config files from env variables
-    # envsubst < /homebridge/config.json.template > /homebridge/config.json
+    envsubst < /homebridge/config.json.template > /homebridge/config.json
     envsubst < /homebridge/auth.json.template > /homebridge/auth.json
