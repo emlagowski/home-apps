@@ -9,55 +9,61 @@ spec:
   destination:
     namespace: pi-hole
     server: 'https://kubernetes.default.svc'
-  source:
-    path: ''
-    repoURL: 'https://mojo2600.github.io/pihole-kubernetes/'
-    targetRevision: 2.18.0
-    chart: pihole
-    helm:
-      valueFiles:
-        - values.yaml
-      values: |
-        virtualHost: pi-hole.raspberrypi
+  sources:
+    - path: pi-hole
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
+    - path: ''
+      repoURL: 'https://mojo2600.github.io/pihole-kubernetes/'
+      targetRevision: 2.18.0
+      chart: pihole
+      helm:
+        valueFiles:
+          - values.yaml
+        values: |
+          virtualHost: pi-hole.raspberrypi
 
-        hostNetwork: true
+          hostNetwork: true
 
-        webHttp: "8080"
-        webHttps: "8443"
+          webHttp: "8080"
+          webHttps: "8443"
 
-        dnsmasq:
-          customDnsEntries: 
-          - address=/raspberrypi/192.168.1.39
-          - address=/argocd.raspberrypi/192.168.1.39
+          admin:
+            existingSecret: "pi-hole-pihole-custom-password"
+            passwordKey: "password"
 
-        ingress:
-          enabled: true
-          hosts:
-          - pi-hole.raspberrypi
+          dnsmasq:
+            customDnsEntries: 
+            - address=/raspberrypi/192.168.1.39
+            - address=/argocd.raspberrypi/192.168.1.39
 
-        persistentVolumeClaim:
-          enabled: true
+          ingress:
+            enabled: true
+            hosts:
+            - pi-hole.raspberrypi
 
-        podDnsConfig:
-          enabled: true
-          policy: "None"
-          nameservers:
-          - 127.0.0.1
-          - 1.1.1.1
-          - 8.8.8.8
+          persistentVolumeClaim:
+            enabled: true
 
-        resources:
-          limits:
-            cpu: 200m
-            memory: 256Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
+          podDnsConfig:
+            enabled: true
+            policy: "None"
+            nameservers:
+            - 127.0.0.1
+            - 1.1.1.1
+            - 8.8.8.8
 
-        extraEnvVars: {
-          DNSMASQ_USER: "root"
-        }
-  sources: []
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+
+          extraEnvVars: {
+            DNSMASQ_USER: "root"
+          }
   project: default
   syncPolicy:
     automated:
