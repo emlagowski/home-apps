@@ -25,12 +25,10 @@ spec:
         webHttp: "8080"
         webHttps: "8443"
 
-        # dnsHostPort:
-        #   enabled: true
-
-        customDnsEntries: 
-        - address=/raspberrypi/192.168.1.39
-        - address=/argocd.raspberrypi/192.168.1.39
+        dnsmasq:
+          customDnsEntries: 
+          - address=/raspberrypi/192.168.1.39
+          - address=/argocd.raspberrypi/192.168.1.39
 
         ingress:
           enabled: true
