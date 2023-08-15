@@ -41,16 +41,14 @@ spec:
             hosts:
             - pi-hole.raspberrypi
 
+          DNS1: "1.1.1.1"
+          DNS2: "8.8.8.8"
+
           persistentVolumeClaim:
             enabled: true
 
           podDnsConfig:
             enabled: false
-            # policy: "None"
-            # nameservers:
-            # - 127.0.0.1
-            # - 1.1.1.1
-            # - 8.8.8.8
 
           resources:
             limits:
