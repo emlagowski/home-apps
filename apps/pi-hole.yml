@@ -3,9 +3,10 @@ kind: Application
 metadata:
   name: pi-hole
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    name: ''
     namespace: pi-hole
     server: 'https://kubernetes.default.svc'
   source:
@@ -19,6 +20,8 @@ spec:
       values: |
         ingress:
           enabled: true
+          hosts:
+            pi-hole.raspberrypi
 
         persistentVolumeClaim:
           enabled: true
