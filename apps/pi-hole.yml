@@ -35,7 +35,6 @@ spec:
           dnsmasq:
             customDnsEntries: 
             - address=/raspberrypi/192.168.1.39
-            - address=/argocd.raspberrypi/192.168.1.39
 
           ingress:
             enabled: true
@@ -46,12 +45,12 @@ spec:
             enabled: true
 
           podDnsConfig:
-            enabled: true
-            policy: "None"
-            nameservers:
-            - 127.0.0.1
-            - 1.1.1.1
-            - 8.8.8.8
+            enabled: false
+            # policy: "None"
+            # nameservers:
+            # - 127.0.0.1
+            # - 1.1.1.1
+            # - 8.8.8.8
 
           resources:
             limits:
