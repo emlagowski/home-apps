@@ -21,7 +21,7 @@ spec:
         ingress:
           enabled: true
           hosts:
-            pi-hole.raspberrypi
+          - pi-hole.raspberrypi
 
         persistentVolumeClaim:
           enabled: true
