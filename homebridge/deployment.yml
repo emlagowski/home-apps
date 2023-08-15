@@ -18,13 +18,13 @@ spec:
         app: homebridge
     spec:
       volumes:
-      # - name: homebridge-config
-      #   configMap:
-      #     name: homebridge-configmap
-      #     defaultMode: 0711
-      - name: homebridge-volume
-        persistentVolumeClaim:
-          claimName: homebridge-pvc
+      - name: homebridge-config
+        configMap:
+          name: homebridge-configmap
+          defaultMode: 0711
+      # - name: homebridge-volume
+      #   persistentVolumeClaim:
+      #     claimName: homebridge-pvc
       hostNetwork: true
       containers:
         - name: homebridge
