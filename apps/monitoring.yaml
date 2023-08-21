@@ -19,9 +19,15 @@ spec:
       chart: kube-prometheus-stack
       helm:
         valueFiles:
-          - kube-prometheus-stack-values.yaml
-        # values: |
-        #   virtualHost: pi-hole.raspberrypi
+          - values.yaml
+        values: |
+          nameOverride: monitoring
+          namespaceOverride: monitoring
+          kubeTargetVersionOverride: 1.22.3
+          grafana:
+            ingress:
+              enabled: true
+
   project: default
   syncPolicy:
     automated:
