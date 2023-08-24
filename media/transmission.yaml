@@ -63,9 +63,9 @@ spec:
             - name: "media-pvc"
               persistentVolumeClaim:
                 claimName: "media-pvc" # PersistentVolumeClaim created earlier
-            - name: "dev-tun" # Needed for VPN
-              hostPath:
-                path: "/dev/net/tun"
+            # - name: "dev-tun" # Needed for VPN
+            #   hostPath:
+            #     path: "/dev/net/tun"
 
           volumeMounts:
             - name: "media-pvc"
@@ -74,8 +74,8 @@ spec:
             - name: "media-pvc"
               mountPath: "/downloads/transmission"
               subPath: "downloads/transmission" # Path /mnt/ssd/media/downloads/transmission where transmission downloads Torrents
-            - name: "dev-tun"
-              mountPath: "/dev/net/tun" # Needed for VPN
+            # - name: "dev-tun"
+            #   mountPath: "/dev/net/tun" # Needed for VPN
 
           securityContext:
             capabilities: # Needed for VPN
