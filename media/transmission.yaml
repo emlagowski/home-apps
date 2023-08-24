@@ -1,0 +1,91 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: transmission
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: media
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - path: ''
+      repoURL: 'https://bananaspliff.github.io/geek-charts'
+      targetRevision: 0.1.0
+      chart: bananaspliff/transmission-openvpn
+      helm:
+        valueFiles:
+          - values.yaml
+        values: |
+          replicaCount: 1
+
+          image:
+            repository: "haugene/transmission-openvpn"
+            tag: "latest-armhf" # Suffixed by -armhf to pull the ARM image
+            pullPolicy: "IfNotPresent"
+
+          env:
+            - name: OPENVPN_PROVIDER
+              value: "NORDVPN" # VPN provider. List of supported providers: https://haugene.github.io/docker-transmission-openvpn/supported-providers/
+            - name: OPENVPN_USERNAME
+              valueFrom: # Reference to the secret | openvpn.username
+                secretKeyRef:
+                  name: "media-secrets"
+                  key: "vpn_username"
+            - name: OPENVPN_PASSWORD
+              valueFrom: # Reference to the secret | openvpn.password
+                secretKeyRef:
+                  name: "media-secrets"
+                  key: "vpn_password"
+            - name: NORDVPN_PROTOCOL
+              value: "TCP"
+            - name: NORDVPN_COUNTRY
+              value: "CH" # Country where we want to download over VPN
+            - name: NORDVPN_CATEGORY
+              value: "P2P" # VPN Type
+            - name: LOCAL_NETWORK
+              value: "192.168.0.0/24"
+            - name: TRANSMISSION_PEER_PORT
+              value: "47444"
+            - name: TRANSMISSION_DOWNLOAD_DIR
+              value: "/downloads/transmission"
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+
+          service:
+            type: ClusterIP
+            port: 80
+
+          volumes:
+            - name: "media-pvc"
+              persistentVolumeClaim:
+                claimName: "media-pvc" # PersistentVolumeClaim created earlier
+            - name: "dev-tun" # Needed for VPN
+              hostPath:
+                path: "/dev/net/tun"
+
+          volumeMounts:
+            - name: "media-pvc"
+              mountPath: "/data"
+              subPath: "configs/transmission-data" # Path /mnt/ssd/media/configs/transmission-data where transmission writes the configuration
+            - name: "media-pvc"
+              mountPath: "/downloads/transmission"
+              subPath: "downloads/transmission" # Path /mnt/ssd/media/downloads/transmission where transmission downloads Torrents
+            - name: "dev-tun"
+              mountPath: "/dev/net/tun" # Needed for VPN
+
+          securityContext:
+            capabilities: # Needed for VPN
+              add:
+                - NET_ADMIN
+
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
