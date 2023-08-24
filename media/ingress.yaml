@@ -1,17 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: "media"
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
   name: "media-ingress"
 spec:
   rules:
-  - host: "media.raspberrypi"
+  - host: media.raspberrypi
     http:
       paths:
-        - backend:
-            serviceName: "transmission-transmission-openvpn"
-            servicePort: 80
-          path: "/transmission"
+        - path: "/transmission"
+          pathType: Prefix
+          backend:
+            service:
+              name: "transmission-transmission-openvpn"
+              port: 
+                name: http
         # - backend:
         #     serviceName: "sonarr"
         #     servicePort: 80
