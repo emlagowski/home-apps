@@ -13,7 +13,7 @@ spec:
     - path: ''
       repoURL: 'https://bananaspliff.github.io/geek-charts'
       targetRevision: 0.1.0
-      chart: bananaspliff/transmission-openvpn
+      chart: transmission-openvpn
       helm:
         valueFiles:
           - values.yaml
