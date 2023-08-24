@@ -22,7 +22,7 @@ spec:
 
           image:
             repository: "haugene/transmission-openvpn"
-            tag: "latest-armhf" # Suffixed by -armhf to pull the ARM image
+            tag: "latest" # Suffixed by -armhf to pull the ARM image
             pullPolicy: "IfNotPresent"
 
           env:
