@@ -66,11 +66,9 @@ spec:
             - name: "media-pvc"
               mountPath: "/downloads"
               subPath: "downloads/jackett" # Path /mnt/ssd/media/downloads/jackett ???
-            - name: openvpn-config
-              mountPath: /configs/jackett/openvpn/ar54.nordvpn.com.tcp443.ovpn
-              subPath: ar54.nordvpn.com.tcp443.ovpn
-            - mountPath: "/configs/jackett/openvpn/credentials.conf"
-              subPath: credentials.conf
+            - mountPath: /configs/jackett/openvpn
+              name: openvpn-config
+            - mountPath: "/configs/jackett/openvpn"
               name: openvpn-credentials
               readOnly: true
 
