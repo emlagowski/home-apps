@@ -5,8 +5,10 @@ metadata:
   namespace: media
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: local-path
+  volumeMode: Filesystem
+  volumeName: media-pv
   resources:
     requests:
       storage: 10Gi
