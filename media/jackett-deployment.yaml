@@ -46,6 +46,8 @@ spec:
               value: '1000'
             - name: PGID
               value: '1000'
+            - name: 'WEBUI_PORT'
+              value: 9117
           image: 'gjeanmart/jackettvpn:latest'
           imagePullPolicy: IfNotPresent
           name: jackett
