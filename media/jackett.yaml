@@ -58,7 +58,7 @@ spec:
             - name: openvpn-credentials
               secret:
                 secretName: openvpn-credentials
-                defaultMode: 775
+                defaultMode: 0775
 
           volumeMounts:
             - name: "media-pvc"
