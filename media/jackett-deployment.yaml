@@ -18,7 +18,7 @@ spec:
       initContainers:
        - name: copy
          image: busybox:1.28
-         command: ["/bin/sh", "-c", "cp -a /tmp/openvpn/ /config/openvpn/"]
+         command: ["/bin/sh", "-c", "cp -a /tmp/openvpn/. /config/openvpn/"]
          volumeMounts:
           - mountPath: /config/openvpn
             name: openvpn-credentials
