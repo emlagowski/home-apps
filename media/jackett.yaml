@@ -52,20 +52,26 @@ spec:
             port: 80
 
           volumes:
+            - name: openvpn-config
+              configMap:
+                name: openvpn-config
             - name: "media-pvc"
               persistentVolumeClaim:
                 claimName: "media-pvc" # PersistentVolumeClaim created earlier
-            # - name: "dev-tun"  # Needed for VPN
-            #   hostPath:
-            #     path: "/dev/net/tun"
+            - mountPath: "/mnt/ssd/media/configs/jackett/openvpn/credentials.conf"
+              name: credentials.conf
+              readOnly: true
 
           volumeMounts:
-            # - name: "media-ssd"
-            #   mountPath: "/config"
-            #   subPath: "configs/jackett" # Path /mnt/ssd/media/configs/jackett where jackett writes the configuration
             - name: "media-pvc"
               mountPath: "/downloads"
               subPath: "downloads/jackett" # Path /mnt/ssd/media/downloads/jackett ???
+            - name: openvpn-config
+              mountPath: /configs/jackett/openvpn/ar54.nordvpn.com.tcp443.ovpn
+              subPath: ar54.nordvpn.com.tcp443.ovpn
+            - name: credentials.conf
+              secret:
+                secretName: credentials.conf
 
           securityContext:
             capabilities: # Needed for VPN
