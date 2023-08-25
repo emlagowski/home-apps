@@ -69,7 +69,8 @@ spec:
             - name: openvpn-config
               mountPath: /configs/jackett/openvpn/ar54.nordvpn.com.tcp443.ovpn
               subPath: ar54.nordvpn.com.tcp443.ovpn
-            - mountPath: "/mnt/ssd/media/configs/jackett/openvpn/credentials.conf"
+            - mountPath: "/configs/jackett/openvpn/credentials.conf"
+              subPath: credentials.conf
               name: openvpn-credentials
               readOnly: true
 
