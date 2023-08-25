@@ -58,9 +58,9 @@ spec:
             - name: "media-pvc"
               persistentVolumeClaim:
                 claimName: "media-pvc" # PersistentVolumeClaim created earlier
-            - mountPath: "/mnt/ssd/media/configs/jackett/openvpn/credentials.conf"
-              name: credentials.conf
-              readOnly: true
+            - name: credentials.conf
+              secret:
+                secretName: credentials.conf
 
           volumeMounts:
             - name: "media-pvc"
@@ -69,9 +69,9 @@ spec:
             - name: openvpn-config
               mountPath: /configs/jackett/openvpn/ar54.nordvpn.com.tcp443.ovpn
               subPath: ar54.nordvpn.com.tcp443.ovpn
-            - name: credentials.conf
-              secret:
-                secretName: credentials.conf
+            - mountPath: "/mnt/ssd/media/configs/jackett/openvpn/credentials.conf"
+              name: credentials.conf
+              readOnly: true
 
           securityContext:
             capabilities: # Needed for VPN
