@@ -18,10 +18,12 @@ spec:
       initContainers:
        - name: copy
          image: busybox:1.28
-         command: ["/bin/sh", "-c", "cp /config/openvpn/config.ovpn.template /config/openvpn/config.ovpn"]
+         command: ["/bin/sh", "-c", "cp /tmp/openvpn/ /config/openvpn/"]
          volumeMounts:
-         - name: openvpn-credentials
-           mountPath: /config/openvpn
+          - mountPath: /config/openvpn
+            name: openvpn-credentials
+          - mountPath: /tmp/openvpn
+            name: openvpn-credentials-tmp
       containers:
         - env:
             - name: VPN_ENABLED
@@ -68,11 +70,14 @@ spec:
               subPath: downloads/jackett
             - mountPath: /config/openvpn
               name: openvpn-credentials
+            - mountPath: /tmp/openvpn
+              name: openvpn-credentials-tmp
       restartPolicy: Always
       volumes:
         - name: media-pvc
           persistentVolumeClaim:
             claimName: media-pvc
         - name: openvpn-credentials
+        - name: openvpn-credentials-tmp
           secret:
             secretName: openvpn-credentials
