@@ -27,7 +27,7 @@ spec:
 
           env:
             - name: VPN_ENABLED
-              value: "yes" # Enable Jackett over VPN
+              value: "false" # Enable Jackett over VPN
             - name: VPN_USERNAME
               valueFrom:
                 secretKeyRef: # Reference to the secret | openvpn.username
