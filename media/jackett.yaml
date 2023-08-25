@@ -52,9 +52,6 @@ spec:
             port: 80
 
           volumes:
-            - name: openvpn-config
-              configMap:
-                name: openvpn-config
             - name: "media-pvc"
               persistentVolumeClaim:
                 claimName: "media-pvc" # PersistentVolumeClaim created earlier
@@ -66,8 +63,6 @@ spec:
             - name: "media-pvc"
               mountPath: "/downloads"
               subPath: "downloads/jackett" # Path /mnt/ssd/media/downloads/jackett ???
-            - mountPath: /configs/jackett/openvpn
-              name: openvpn-config
             - mountPath: "/configs/jackett/openvpn"
               name: openvpn-credentials
               readOnly: true
