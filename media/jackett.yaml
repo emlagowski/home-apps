@@ -65,7 +65,6 @@ spec:
               subPath: "downloads/jackett" # Path /mnt/ssd/media/downloads/jackett ???
             - mountPath: "/config/openvpn"
               name: openvpn-credentials
-              readOnly: true
 
           securityContext:
             capabilities: # Needed for VPN
