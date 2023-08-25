@@ -63,7 +63,7 @@ spec:
             - name: "media-pvc"
               mountPath: "/downloads"
               subPath: "downloads/jackett" # Path /mnt/ssd/media/downloads/jackett ???
-            - mountPath: "/configs/jackett/openvpn"
+            - mountPath: "/config/openvpn"
               name: openvpn-credentials
               readOnly: true
 
