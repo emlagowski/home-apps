@@ -28,15 +28,12 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
-            chown -R ${PUID}:${PGID} /movies;
+            cp /tmp/config/*.ini /config/config/;
         volumeMounts:
           - mountPath: /config/
             name: bazarr-config
           - mountPath: /tmp/config
             name: bazarr-configmap
-          - mountPath: /movies
-            name: media-pvc
-            subPath: library/movies
       containers:
         - image: 'linuxserver/bazarr:latest'
           imagePullPolicy: IfNotPresent
@@ -70,6 +67,9 @@ spec:
             - mountPath: /config/config.xml
               name: bazarr-config
               subPath: config.xml
+            - mountPath: /config/config/config.ini
+              name: bazarr-config
+              subPath: config.ini
       volumes:
         - name: media-pvc
           persistentVolumeClaim:

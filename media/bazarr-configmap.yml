@@ -7,3 +7,42 @@ data:
     <Config>
       <UrlBase>/bazarr</UrlBase>
     </Config>
+  config.ini: | -
+    [general]
+    ip = 0.0.0.0
+    port = 6767
+    base_url = /bazarr
+    use_sonarr = False
+    use_radarr = False
+    
+    [sonarr]
+    ip = sonarr
+    port = 8989
+    base_url = /sonarr
+    ssl = False
+    apikey =
+
+    [radarr]
+    ip = radarr
+    port = 7878
+    base_url = /radarr
+    ssl = False
+    apikey =
+
+    [opensubtitles]
+    username =
+    password =
+    use_tag_search = False
+    vip = False
+    ssl = False
+    timeout = 15
+    skip_wrong_fps = False
+
+    [opensubtitlescom]
+    username =
+    password =
+    use_hash = True
+
+    [napisy24]
+    username =
+    password =
