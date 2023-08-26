@@ -39,6 +39,9 @@ spec:
             - name: "media-pvc"
               persistentVolumeClaim:
                 claimName: "media-pvc" # PersistentVolumeClaim created earlier
+            - name: sonarr-configmap
+              configMap:
+                name: sonarr-configmap
 
           volumeMounts:
             - name: media-pvc
@@ -50,6 +53,9 @@ spec:
             - name: media-pvc
               mountPath: "/tv"
               subPath: "library/tv" # Path /mnt/ssd/media/library/tv where sonarr moves and renames the episodes
+            - mountPath: /config/config.xml
+              subPath: config.xml
+              name: sonarr-configmap
   project: default
   syncPolicy:
     automated:
