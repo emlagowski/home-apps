@@ -23,6 +23,13 @@ spec:
               name: "sonarr"
               port: 
                 name: http
+        - path: "/radarr"
+          pathType: Prefix
+          backend:
+            service:
+              name: "radarr"
+              port: 
+                name: http
         - path: "/jackett"
           pathType: Prefix
           backend:
@@ -30,10 +37,6 @@ spec:
               name: "jackett"
               port: 
                 name: http
-        # - backend:
-        #     serviceName: "radarr"
-        #     servicePort: 80
-        #   path: "/radarr"
         # - backend:
         #     serviceName: "plex-kube-plex"
         #     servicePort: 32400

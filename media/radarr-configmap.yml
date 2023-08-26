@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: radarr-configmap
+data:
+  config.xml: |-
+    <Config>
+      <UrlBase>/radarr</UrlBase>
+    </Config>
