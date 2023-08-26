@@ -21,10 +21,10 @@ spec:
          command: ["/bin/sh", "-c"]
          args: 
           - ls /tmp/secrets/;
-            cp -a /tmp/secrets/*.conf /config/openvpn/;
+            cp /tmp/secrets/*.conf /config/openvpn/;
             ls /tmp/configs/;
-            cp -a /tmp/configs/*.ovpn /config/openvpn/;
-            cp -a /tmp/configs/ServerConfig.json /config/Jackett/;
+            cp /tmp/configs/*.ovpn /config/openvpn/;
+            cp /tmp/configs/ServerConfig.json /config/Jackett/;
          volumeMounts:
           - mountPath: /config/openvpn
             name: openvpn-config
