@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bazarr
+  name: bazarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: bazarr
+  template:
+    metadata:
+      labels:
+        app: bazarr
+        release: bazarr
+    spec:
+      initContainers:
+      - name: copy
+        image: busybox:1.28
+        env:
+          - name: PUID
+            value: '1000'
+          - name: PGID
+            value: '1000'
+        command: ["/bin/sh", "-c"]
+        args: 
+          - ls /tmp/config/;
+            cp /tmp/config/*.xml /config/;
+            chown -R ${PUID}:${PGID} /movies;
+        volumeMounts:
+          - mountPath: /config/
+            name: bazarr-config
+          - mountPath: /tmp/config
+            name: bazarr-configmap
+          - mountPath: /movies
+            name: media-pvc
+            subPath: library/movies
+      containers:
+        - image: 'linuxserver/bazarr:latest'
+          imagePullPolicy: IfNotPresent
+          name: bazarr
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+          ports:
+            - containerPort: 6767
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /config
+              name: media-pvc
+              subPath: configs/bazarr
+            - mountPath: /tv
+              name: media-pvc
+              subPath: library/tv
+            - mountPath: /movies
+              name: media-pvc
+              subPath: library/movies
+            - mountPath: /config/config.xml
+              name: bazarr-config
+              subPath: config.xml
+      volumes:
+        - name: media-pvc
+          persistentVolumeClaim:
+            claimName: media-pvc
+        - configMap:
+            name: bazarr-configmap
+          name: bazarr-configmap
+        - name: bazarr-config

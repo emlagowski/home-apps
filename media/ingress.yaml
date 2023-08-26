@@ -37,6 +37,13 @@ spec:
               name: "jackett"
               port: 
                 name: http
+        - path: "/bazarr"
+          pathType: Prefix
+          backend:
+            service:
+              name: "bazarr"
+              port: 
+                name: http
         # - backend:
         #     serviceName: "plex-kube-plex"
         #     servicePort: 32400
