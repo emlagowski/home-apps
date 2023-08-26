@@ -40,7 +40,7 @@ spec:
           name: jackett
           env:
             - name: VPN_ENABLED
-              value: 'no'
+              value: 'yes'
             - name: VPN_USERNAME
               valueFrom:
                 secretKeyRef:
