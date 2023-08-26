@@ -89,7 +89,7 @@ spec:
               subPath: downloads/jackett
             - mountPath: /config/openvpn
               name: openvpn-config
-            - mountPath: /config/Jackett/ServerConfig.json2
+            - mountPath: /config/Jackett/ServerConfig.json
               subPath: ServerConfig.json
               name: jackett-config
       restartPolicy: Always
