@@ -28,7 +28,7 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
-            cp /tmp/config/*.ini /config/config/;
+            cp /tmp/config/*.ini /config/;
         volumeMounts:
           - mountPath: /config/
             name: bazarr-config
