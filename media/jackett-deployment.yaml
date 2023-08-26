@@ -96,5 +96,5 @@ spec:
             secretName: openvpn-credentials
         - name: jackett-config
         - name: jackett-configmap
-          secret:
-            secretName: jackett-configmap
+          configMap:
+            name: jackett-configmap
