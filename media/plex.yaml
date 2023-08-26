@@ -41,12 +41,11 @@ spec:
             kubernetes.io/arch: arm64 
 
           persistence:
-            # transcode:
-            #   claimName: "media-pvc"
             data:
               claimName: "media-pvc"
-            # config:
-            #   claimName: "media-pvc-config"
+            config:
+              size: 10Gi
+              accessMode: ReadWriteOnce
 
           extraEnv:
           - name: PLEX_CLAIM
