@@ -41,12 +41,12 @@ spec:
             kubernetes.io/arch: arm64 
 
           persistence:
-            transcode:
-              claimName: "media-pvc"
+            # transcode:
+            #   claimName: "media-pvc"
             data:
               claimName: "media-pvc"
-            config:
-              claimName: "media-pvc-config"
+            # config:
+            #   claimName: "media-pvc-config"
 
           extraEnv:
           - name: PLEX_CLAIM
