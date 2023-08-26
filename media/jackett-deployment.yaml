@@ -19,6 +19,11 @@ spec:
        - name: copy
          image: busybox:1.28
          command: ["/bin/sh", "-c"]
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
          args: 
           - ls /tmp/secrets/;
             cp /tmp/secrets/*.conf /config/openvpn/;
@@ -26,6 +31,7 @@ spec:
             cp /tmp/configs/*.ovpn /config/openvpn/;
             cp /tmp/configs/ServerConfig.json /config/Jackett/;
             cat /config/Jackett/*;
+            chown -R ${PUID}:${PGID} /config/Jackett;
          volumeMounts:
           - mountPath: /config/openvpn
             name: openvpn-config
