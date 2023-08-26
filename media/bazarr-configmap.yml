@@ -3,31 +3,27 @@ kind: ConfigMap
 metadata:
   name: bazarr-configmap
 data:
-  config.xml: |-
-    <Config>
-      <UrlBase>/bazarr</UrlBase>
-    </Config>
   config.ini: |-
     [general]
     ip = 0.0.0.0
     port = 6767
     base_url = /bazarr
-    use_sonarr = False
-    use_radarr = False
+    use_sonarr = True
+    use_radarr = True
     
     [sonarr]
     ip = sonarr
-    port = 8989
+    port = 80
     base_url = /sonarr
     ssl = False
-    apikey =
+    apikey = cf29ec20d9e846b6a819d87472d4c0ae
 
     [radarr]
     ip = radarr
-    port = 7878
+    port = 80
     base_url = /radarr
     ssl = False
-    apikey =
+    apikey = fc4232ff8bc648c0a8b34667240b6be5
 
     [opensubtitles]
     username =

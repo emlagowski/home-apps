@@ -27,7 +27,6 @@ spec:
         command: ["/bin/sh", "-c"]
         args: 
           - ls /tmp/config/;
-            cp /tmp/config/*.xml /config/;
             cp /tmp/config/*.ini /config/;
         volumeMounts:
           - mountPath: /config/
@@ -64,9 +63,6 @@ spec:
             - mountPath: /movies
               name: media-pvc
               subPath: library/movies
-            - mountPath: /config/config.xml
-              name: bazarr-config
-              subPath: config.xml
             - mountPath: /config/config/config.ini
               name: bazarr-config
               subPath: config.ini
