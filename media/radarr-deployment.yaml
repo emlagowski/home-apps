@@ -28,15 +28,15 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
-            chown -R ${PUID}:${PGID} /tv;
+            chown -R ${PUID}:${PGID} /movies;
         volumeMounts:
           - mountPath: /config/
             name: radarr-config
           - mountPath: /tmp/config
             name: radarr-configmap
-          - mountPath: /tv
+          - mountPath: /movies
             name: media-pvc
-            subPath: library/tv
+            subPath: library/movies
       containers:
         - image: 'linuxserver/radarr:latest'
           imagePullPolicy: IfNotPresent
