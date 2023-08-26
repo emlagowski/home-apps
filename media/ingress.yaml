@@ -44,7 +44,10 @@ spec:
               name: "bazarr"
               port: 
                 name: http
-        # - backend:
-        #     serviceName: "plex-kube-plex"
-        #     servicePort: 32400
-        #   path: "/"
+        - path: "/"
+          pathType: Prefix
+          backend:
+            service:
+              name: "plex-kube-plex"
+              port: 
+                name: pms

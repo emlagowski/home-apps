@@ -37,7 +37,8 @@ spec:
           rbac:
             create: true
 
-          nodeSelector: {}
+          nodeSelector: 
+            kubernetes.io/arch: arm64 
 
           persistence:
             transcode:
