@@ -42,7 +42,7 @@ spec:
         - mountPath: /tmp/configs
           name: jackett-configmap
       containers:
-      - image: 'gjeanmart/jackettvpn:latest'
+      - image: 'dyonr/jackettvpn:latest'
         imagePullPolicy: IfNotPresent
         name: jackett
         env:
