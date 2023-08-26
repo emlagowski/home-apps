@@ -19,15 +19,24 @@ spec:
       initContainers:
       - name: copy
         image: busybox:1.28
+        env:
+          - name: PUID
+            value: '1000'
+          - name: PGID
+            value: '1000'
         command: ["/bin/sh", "-c"]
         args: 
-        - ls /tmp/config/;
-          cp /tmp/config/*.xml /config/;
+          - ls /tmp/config/;
+            cp /tmp/config/*.xml /config/;
+            chown -R ${PUID}:${PGID} /tv;
         volumeMounts:
-        - mountPath: /config/
-          name: sonarr-config
-        - mountPath: /tmp/config
-          name: sonarr-configmap
+          - mountPath: /config/
+            name: sonarr-config
+          - mountPath: /tmp/config
+            name: sonarr-configmap
+          - mountPath: /tv
+            name: media-pvc
+            subPath: library/tv
       containers:
         - image: 'linuxserver/sonarr:latest'
           imagePullPolicy: IfNotPresent
