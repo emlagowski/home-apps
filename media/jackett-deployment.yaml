@@ -83,7 +83,7 @@ spec:
               subPath: downloads/jackett
             - mountPath: /config/openvpn
               name: openvpn-config
-            - mountPath: /configs/Jackett
+            - mountPath: /config/Jackett/
               name: jackett-config
       restartPolicy: Always
       volumes:
