@@ -16,74 +16,74 @@ spec:
         app: jackett
     spec:
       initContainers:
-       - name: copy
-         image: busybox:1.28
-         command: ["/bin/sh", "-c"]
-          env:
-            - name: PUID
-              value: '1000'
-            - name: PGID
-              value: '1000'
-         args: 
-          - ls /tmp/secrets/;
-            cp /tmp/secrets/*.conf /config/openvpn/;
-            ls /tmp/configs/;
-            cp /tmp/configs/*.ovpn /config/openvpn/;
-            cp /tmp/configs/ServerConfig.json /config/Jackett/;
-            cat /config/Jackett/*;
-            chown -R ${PUID}:${PGID} /config/Jackett;
-         volumeMounts:
-          - mountPath: /config/openvpn
-            name: openvpn-config
-          - mountPath: /config/Jackett
-            name: jackett-config
-          - mountPath: /tmp/secrets
-            name: openvpn-credentials
-          - mountPath: /tmp/configs
-            name: jackett-configmap
+      - name: copy
+        image: busybox:1.28
+        command: ["/bin/sh", "-c"]
+        env:
+          - name: PUID
+            value: '1000'
+          - name: PGID
+            value: '1000'
+        args: 
+        - ls /tmp/secrets/;
+          cp /tmp/secrets/*.conf /config/openvpn/;
+          ls /tmp/configs/;
+          cp /tmp/configs/*.ovpn /config/openvpn/;
+          cp /tmp/configs/ServerConfig.json /config/Jackett/;
+          cat /config/Jackett/*;
+          chown -R ${PUID}:${PGID} /config/Jackett;
+        volumeMounts:
+        - mountPath: /config/openvpn
+          name: openvpn-config
+        - mountPath: /config/Jackett
+          name: jackett-config
+        - mountPath: /tmp/secrets
+          name: openvpn-credentials
+        - mountPath: /tmp/configs
+          name: jackett-configmap
       containers:
-        - image: 'gjeanmart/jackettvpn:latest'
-          imagePullPolicy: IfNotPresent
-          name: jackett
-          env:
-            - name: VPN_ENABLED
-              value: 'yes'
-            - name: VPN_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  key: vpn_username
-                  name: media-secrets
-            - name: VPN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: vpn_password
-                  name: media-secrets
-            - name: LAN_NETWORK
-              value: 192.168.0.0/24
-            - name: CREATE_TUN_DEVICE
-              value: 'true'
-            - name: PUID
-              value: '1000'
-            - name: PGID
-              value: '1000'
-            - name: 'WEBUI_PORT'
-              value: '9117'
-          ports:
-            - containerPort: 9117
-              name: http
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
-          volumeMounts:
+      - image: 'gjeanmart/jackettvpn:latest'
+        imagePullPolicy: IfNotPresent
+        name: jackett
+        env:
+          - name: VPN_ENABLED
+            value: 'yes'
+          - name: VPN_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: vpn_username
+                name: media-secrets
+          - name: VPN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: vpn_password
+                name: media-secrets
+          - name: LAN_NETWORK
+            value: 192.168.0.0/24
+          - name: CREATE_TUN_DEVICE
+            value: 'true'
+          - name: PUID
+            value: '1000'
+          - name: PGID
+            value: '1000'
+          - name: 'WEBUI_PORT'
+            value: '9117'
+        ports:
+          - containerPort: 9117
+            name: http
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        volumeMounts:
             - mountPath: /downloads
               name: media-pvc
               subPath: downloads/jackett
