@@ -25,7 +25,7 @@ spec:
             ls /tmp/configs/;
             cp /tmp/configs/*.ovpn /config/openvpn/;
             cp /tmp/configs/ServerConfig.json /config/Jackett/;
-            cat /config/Jackett/*
+            cat /config/Jackett/*;
          volumeMounts:
           - mountPath: /config/openvpn
             name: openvpn-config
@@ -83,7 +83,8 @@ spec:
               subPath: downloads/jackett
             - mountPath: /config/openvpn
               name: openvpn-config
-            - mountPath: /config/Jackett/
+            - mountPath: /config/Jackett/ServerConfig.json
+              subPath: ServerConfig.json
               name: jackett-config
       restartPolicy: Always
       volumes:
