@@ -1,2 +1,2 @@
 secrets.yml
-openvpn-credentials-secret.yml
+jackett-openvpn-secrets.yml

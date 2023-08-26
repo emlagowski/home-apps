@@ -18,14 +18,27 @@ spec:
       initContainers:
        - name: copy
          image: busybox:1.28
-         command: ["/bin/sh", "-c", "cp -a /tmp/openvpn/. /config/openvpn/"]
+         command: ["/bin/sh", "-c"]
+         args: 
+          - ls /tmp/secrets/;
+            cp -a /tmp/secrets/*.conf /config/openvpn/;
+            ls /tmp/configs/;
+            cp -a /tmp/configs/*.ovpn /config/openvpn/;
+            cp -a /tmp/configs/ServerConfig.json /config/Jackett/;
          volumeMounts:
           - mountPath: /config/openvpn
+            name: openvpn-config
+          - mountPath: /config/Jackett
+            name: jackett-config
+          - mountPath: /tmp/secrets
             name: openvpn-credentials
-          - mountPath: /tmp/openvpn
-            name: openvpn-credentials-tmp
+          - mountPath: /tmp/configs
+            name: jackett-configmap
       containers:
-        - env:
+        - image: 'gjeanmart/jackettvpn:latest'
+          imagePullPolicy: IfNotPresent
+          name: jackett
+          env:
             - name: VPN_ENABLED
               value: 'yes'
             - name: VPN_USERNAME
@@ -48,9 +61,6 @@ spec:
               value: '1000'
             - name: 'WEBUI_PORT'
               value: '9117'
-          image: 'gjeanmart/jackettvpn:latest'
-          imagePullPolicy: IfNotPresent
-          name: jackett
           ports:
             - containerPort: 9117
               name: http
@@ -71,15 +81,20 @@ spec:
               name: media-pvc
               subPath: downloads/jackett
             - mountPath: /config/openvpn
-              name: openvpn-credentials
-            - mountPath: /tmp/openvpn
-              name: openvpn-credentials-tmp
+              name: openvpn-config
+            - mountPath: /config/Jackett/ServerConfig.json
+              subPath: ServerConfig.json
+              name: jackett-config
       restartPolicy: Always
       volumes:
         - name: media-pvc
           persistentVolumeClaim:
             claimName: media-pvc
+        - name: openvpn-config
         - name: openvpn-credentials
-        - name: openvpn-credentials-tmp
           secret:
             secretName: openvpn-credentials
+        - name: jackett-config
+        - name: jackett-configmap
+          secret:
+            secretName: jackett-configmap
