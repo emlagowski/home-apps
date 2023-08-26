@@ -43,13 +43,10 @@ spec:
           persistence:
             transcode:
               claimName: "media-pvc"
-              size: 10Gi
             data:
               claimName: "media-pvc"
-              size: 10Gi
             config:
-              claimName: "media-pvc"
-              size: 10Gi
+              claimName: "media-pvc-config"
 
           extraEnv:
           - name: PLEX_CLAIM
