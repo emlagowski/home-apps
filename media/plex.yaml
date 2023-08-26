@@ -57,7 +57,9 @@ spec:
           resources: {}
           podAnnotations: {}
           proxy:
-            enable: false
+            enable: true
+            http: 'http://media.raspberrypi:32400'
+            https: 'https://media.raspberrypi:32400'
 
   project: default
   syncPolicy:
