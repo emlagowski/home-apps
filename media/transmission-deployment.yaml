@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: transmission-openvpn
+  name: transmission-transmission-openvpn
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: transmission-openvpn
+  template:
+    metadata:
+      labels:
+        app: transmission-openvpn
+    spec:
+      containers:
+        - image: 'haugene/transmission-openvpn:latest'
+          imagePullPolicy: IfNotPresent
+          name: transmission-openvpn
+          env:
+            - name: OPENVPN_PROVIDER
+              value: NORDVPN
+            - name: OPENVPN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: vpn_username
+                  name: media-secrets
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: vpn_password
+                  name: media-secrets
+            - name: NORDVPN_PROTOCOL
+              value: TCP
+            - name: NORDVPN_COUNTRY
+              value: CH
+            - name: NORDVPN_CATEGORY
+              value: P2P
+            - name: LOCAL_NETWORK
+              value: 192.168.0.0/24
+            - name: TRANSMISSION_PEER_PORT
+              value: '47444'
+            - name: TRANSMISSION_DOWNLOAD_DIR
+              value: /downloads/transmission
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+          ports:
+            - containerPort: 9091
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - mountPath: /data
+              name: media-pvc
+              subPath: configs/transmission-data
+            - mountPath: /downloads/transmission
+              name: media-pvc
+              subPath: downloads/transmission
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+          - 8.8.4.4
+      dnsPolicy: None
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      volumes:
+        - name: media-pvc
+          persistentVolumeClaim:
+            claimName: media-pvc
