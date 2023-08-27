@@ -47,6 +47,12 @@ spec:
               size: 10Gi
               accessMode: ReadWriteOnce
 
+          ingress:
+            enabled: false
+            # Ingress enabled elsewhere, but it is used to set ADVERTISE_IP
+            hosts:
+              - media.raspberrypi
+
           extraEnv:
           - name: PLEX_CLAIM
             valueFrom: 
@@ -57,9 +63,7 @@ spec:
           resources: {}
           podAnnotations: {}
           proxy:
-            enable: true
-            http: 'http://media.raspberrypi:32400'
-            https: 'https://media.raspberrypi:32400'
+            enable: false
 
   project: default
   syncPolicy:
