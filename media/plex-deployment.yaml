@@ -17,6 +17,7 @@ spec:
       labels:
         app: plex
     spec:
+      hostNetwork: true
       containers:
         - image: 'linuxserver/plex:latest'
           imagePullPolicy: IfNotPresent
