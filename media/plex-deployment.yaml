@@ -68,7 +68,8 @@ spec:
               name: media-pvc
               subPath: library
             - mountPath: /config
-              name: configs/plex
+              name: media-pvc
+              subPath: configs/plex
       volumes:
         - name: media-pvc
           persistentVolumeClaim:
