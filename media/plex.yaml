@@ -1,74 +1,76 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: plex
-#   namespace: argocd
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   destination:
-#     namespace: media
-#     server: 'https://kubernetes.default.svc'
-#   sources:
-#     - path: ''
-#       repoURL: 'https://ressu.github.io/kube-plex'
-#       targetRevision: 0.3.5
-#       chart: kube-plex
-#       helm:
-#         valueFiles:
-#           - values.yaml
-#         values: |
-#           claimToken: ""
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: plex
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: media
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - path: ''
+      repoURL: 'https://ressu.github.io/kube-plex'
+      targetRevision: 0.3.5
+      chart: kube-plex
+      helm:
+        valueFiles:
+          - values.yaml
+        values: |
+          claimToken: ""
 
-#           image:
-#             repository: linuxserver/plex
-#             tag: latest
-#             pullPolicy: IfNotPresent
+          image:
+            repository: linuxserver/plex
+            tag: latest
+            pullPolicy: IfNotPresent
 
-#           kubePlex:
-#             enabled: false # kubePlex (transcoder job) is disabled because not available on ARM. The transcoding will be performed by the main Plex instance instead of a separate Job.
+          kubePlex:
+            enabled: false # kubePlex (transcoder job) is disabled because not available on ARM. The transcoding will be performed by the main Plex instance instead of a separate Job.
 
-#           timezone: Europe/Warsaw
+          timezone: Europe/Warsaw
 
-#           service:
-#             type: ClusterIP
-#             port: 32400
+          service:
+            type: ClusterIP
+            port: 32400
 
-#           rbac:
-#             create: true
+          rbac:
+            create: true
 
-#           nodeSelector: 
-#             kubernetes.io/arch: arm64 
+          nodeSelector: 
+            kubernetes.io/arch: arm64 
 
-#           persistence:
-#             data:
-#               claimName: "media-pvc"
-#             config:
-#               size: 10Gi
-#               accessMode: ReadWriteOnce
+          persistence:
+            data:
+              claimName: "media-pvc"
+            config:
+              size: 10Gi
+              accessMode: ReadWriteOnce
 
-#           ingress:
-#             enabled: false
-#             # Ingress enabled elsewhere, but it is used to set ADVERTISE_IP
-#             hosts:
-#               - media.raspberrypi
+          # ingress:
+          #   enabled: false
+          #   # Ingress enabled elsewhere, but it is used to set ADVERTISE_IP
+          #   hosts:
+          #     - media.raspberrypi
 
-#           extraEnv:
-#           - name: PLEX_CLAIM
-#             valueFrom: 
-#               secretKeyRef:
-#                 name: "media-secrets"
-#                 key: "plex_claim_token"
+          extraEnv:
+          - name: PLEX_CLAIM
+            valueFrom: 
+              secretKeyRef:
+                name: "media-secrets"
+                key: "plex_claim_token"
+          - name: ADVERTISE_IP
+            value: https://media.raspberrypi
 
-#           resources: {}
-#           podAnnotations: {}
-#           proxy:
-#             enable: false
+          resources: {}
+          podAnnotations: {}
+          proxy:
+            enable: false
 
-#   project: default
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
