@@ -48,6 +48,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: "plex-kube-plex"
+              name: "plex"
               port: 
                 name: pms

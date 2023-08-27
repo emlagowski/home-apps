@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: plex
+  name: plex
+spec:
+  ports:
+    - name: pms
+      port: 32400
+      protocol: TCP
+      targetPort: pms
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: pms
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 32443
+  selector:
+    app: plex
+  type: ClusterIP

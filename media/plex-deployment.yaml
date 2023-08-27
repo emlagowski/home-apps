@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: plex
+  name: plex
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: plex
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+        - image: 'linuxserver/plex:latest'
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 32400
+            timeoutSeconds: 1
+          name: plex
+          env:
+            - name: TZ
+              value: Europe/Warsaw
+            - name: PLEX_CLAIM
+              valueFrom:
+                secretKeyRef:
+                  key: plex_claim_token
+                  name: media-secrets
+            - name: ADVERTISE_IP
+              value: https://media.raspberrypi
+          ports:
+            - containerPort: 32400
+              name: pms
+              protocol: TCP
+            - containerPort: 32400
+              name: http
+              protocol: TCP
+            - containerPort: 32443
+              name: https
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 32400
+            timeoutSeconds: 1
+          resources: {}
+          startupProbe:
+            failureThreshold: 30
+            periodSeconds: 5
+            successThreshold: 1
+            tcpSocket:
+              port: 32400
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: /data
+              name: media-pvc
+              subPath: library
+            - mountPath: /config
+              name: configs/plex
+      volumes:
+        - name: media-pvc
+          persistentVolumeClaim:
+            claimName: media-pvc
