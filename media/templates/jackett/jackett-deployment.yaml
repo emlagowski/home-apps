@@ -85,6 +85,8 @@ spec:
           - mountPath: /config/Jackett/ServerConfig.json
             name: jackett-config
             subPath: ServerConfig.json
+          - mountPath: /config/Jackett/Indexers
+            name: jackett-configmap
       restartPolicy: Always
       volumes:
         - name: data

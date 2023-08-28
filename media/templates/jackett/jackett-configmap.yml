@@ -5,6 +5,8 @@ metadata:
 data:
   ServerConfig.json: |-
     {
-      "BasePathOverride": "{{ .Values.jackett.contextPath }}"
+      "BasePathOverride": "{{ .Values.jackett.contextPath }}",
+      "APIKey": "{{ .Values.jackett.apiKey }}"
     }
 {{ (.Files.Glob "files/*.ovpn").AsConfig | indent 2 }}
+{{ (.Files.Glob "files/indexers/*.json").AsConfig | indent 2 }}
