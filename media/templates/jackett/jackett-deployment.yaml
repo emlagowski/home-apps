@@ -19,8 +19,14 @@ spec:
       - name: copy
         image: busybox:1.28
         command: ["/bin/sh", "-c"]
+        env:
+          - name: PUID
+            value: {{ quote .Values.PUID }}
+          - name: PGID
+            value: {{ quote .Values.PGID }}
         args: 
-        - ls /tmp/secrets/;
+        - chown -R ${PUID}:${PGID} /config;
+          ls /tmp/secrets/;
           cp /tmp/secrets/{{ .Values.vpn.secret.credentialsFile }} /config/openvpn/;
           ls /tmp/configs/;
           cp /tmp/configs/*.ovpn /config/openvpn/;
