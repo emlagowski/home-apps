@@ -25,6 +25,7 @@ spec:
           ls /tmp/configs/;
           cp /tmp/configs/*.ovpn /config/openvpn/;
           cp /tmp/configs/ServerConfig.json /config/Jackett/;
+          cp /tmp/indexers/*.json /config/Jackett/Indexers/;
         volumeMounts:
         - mountPath: /tmp/secrets
           name: openvpn-credentials
@@ -34,6 +35,10 @@ spec:
           name: jackett-configmap
         - mountPath: /config/Jackett
           name: jackett-config
+        - mountPath: /tmp/indexers
+          name: jackett-indexers-configmap
+        - mountPath: /config/Jackett/Indexers
+          name: jackett-indexers-config
       containers:
       - image: 'zfigz/docker-jackettvpn:v0.0.5'
         imagePullPolicy: IfNotPresent
@@ -86,7 +91,7 @@ spec:
             name: jackett-config
             subPath: ServerConfig.json
           - mountPath: /config/Jackett/Indexers
-            name: jackett-configmap
+            name: jackett-indexers-config
       restartPolicy: Always
       volumes:
         - name: data
@@ -100,3 +105,7 @@ spec:
           configMap:
             name: jackett-configmap
         - name: jackett-config
+        - name: jackett-indexers-configmap
+          configMap:
+            name: jackett-indexers-configmap
+        - name: jackett-indexers-config
