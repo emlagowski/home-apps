@@ -43,7 +43,7 @@ spec:
             - name: TRANSMISSION_PEER_PORT
               value: '47444'
             - name: TRANSMISSION_DOWNLOAD_DIR
-              value: "/{{ .Values.transmission.directory }}"
+              value: "/{{ .Values.transmission.dataPath }}"
             - name: PUID
               value: {{ quote .Values.PUID }}
             - name: PGID
@@ -69,7 +69,7 @@ spec:
               subPath: configs/transmission-data
             - mountPath: /downloads/transmission
               name: data
-              subPath: "{{ .Values.transmission.directory }}"
+              subPath: "{{ .Values.transmission.dataPath }}"
       dnsConfig:
         nameservers:
           - 8.8.8.8

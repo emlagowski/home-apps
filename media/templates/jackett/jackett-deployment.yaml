@@ -26,10 +26,9 @@ spec:
           cp /tmp/configs/*.ovpn /config/openvpn/;
           cp /tmp/configs/ServerConfig.json /config/Jackett/;
         volumeMounts:
-        - mountPath: /config/openvpn
-          name: openvpn-config
-        - mountPath: /config/Jackett
-          name: jackett-config
+        - mountPath: /config
+          name: data
+          subPath: {{ .Values.jackett.configPath }}
         - mountPath: /tmp/secrets
           name: openvpn-credentials
         - mountPath: /tmp/configs
@@ -77,24 +76,17 @@ spec:
             add:
               - NET_ADMIN
         volumeMounts:
-            - mountPath: /downloads
+            - mountPath: /config
               name: data
-              subPath: {{ .Values.jackett.directory }}
-            - mountPath: /config/openvpn
-              name: openvpn-config
-            - mountPath: /config/Jackett/ServerConfig.json
-              subPath: ServerConfig.json
-              name: jackett-config
+              subPath: {{ .Values.jackett.configPath }}
       restartPolicy: Always
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentVolume.claimName }}
-        - name: openvpn-config
         - name: openvpn-credentials
           secret:
             secretName: {{ .Values.vpn.secret.name }}
-        - name: jackett-config
         - name: jackett-configmap
           configMap:
             name: jackett-configmap

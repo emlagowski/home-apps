@@ -63,7 +63,7 @@ spec:
               subPath: {{ .Values.radarr.configPath }}
             - mountPath: /downloads/transmission
               name: data
-              subPath: {{ .Values.transmission.directory }}
+              subPath: {{ .Values.transmission.dataPath }}
             - mountPath: /movies
               name: data
               subPath: {{ .Values.library.movies }}

@@ -44,11 +44,11 @@ bazarr:
 
 jackett:
   contextPath: /jackett
-  directory: downloads/jackett
+  configPath: configs/jackett
 
 transmission:
   contextPath: /transmission
-  directory: downloads/transmission
+  dataPath: downloads/transmission
 
 library:
   root: library

@@ -63,7 +63,7 @@ spec:
               subPath: {{ .Values.sonarr.configPath }}
             - mountPath: /downloads/transmission
               name: data
-              subPath: {{ .Values.transmission.directory }}
+              subPath: {{ .Values.transmission.dataPath }}
             - mountPath: /tv
               name: data
               subPath: {{ .Values.library.tv }}
