@@ -21,9 +21,9 @@ spec:
         image: busybox:1.28
         env:
           - name: PUID
-            value: {{ .Values.PUID }}
+            value: {{ quote .Values.PUID }}
           - name: PGID
-            value: {{ .Values.PGID }}
+            value: {{ quote .Values.PGID }}
         command: ["/bin/sh", "-c"]
         args: 
           - ls /tmp/config/;
@@ -39,9 +39,9 @@ spec:
           name: bazarr
           env:
             - name: PUID
-              value: {{ .Values.PUID }}
+              value: {{ quote .Values.PUID }}
             - name: PGID
-              value: {{ .Values.PGID }}
+              value: {{ quote .Values.PGID }}
           ports:
             - containerPort: 6767
               name: http

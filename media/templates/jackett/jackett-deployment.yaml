@@ -56,9 +56,9 @@ spec:
           - name: CREATE_TUN_DEVICE
             value: 'true'
           - name: PUID
-            value: {{ .Values.PUID }}
+            value: {{ quote .Values.PUID }}
           - name: PGID
-            value: {{ .Values.PGID }}
+            value: {{ quote .Values.PGID }}
           - name: 'WEBUI_PORT'
             value: '9117'
         ports:

@@ -45,9 +45,9 @@ spec:
             - name: TRANSMISSION_DOWNLOAD_DIR
               value: "/{{ .Values.transmission.directory }}"
             - name: PUID
-              value: {{ .Values.PUID }}
+              value: {{ quote .Values.PUID }}
             - name: PGID
-              value: {{ .Values.PGID }}
+              value: {{ quote .Values.PGID }}
           ports:
             - containerPort: 9091
               name: http
