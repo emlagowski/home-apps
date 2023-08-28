@@ -82,9 +82,9 @@ spec:
             add:
               - NET_ADMIN
         volumeMounts:
-          - mountPath: /config
-            name: data
-            subPath: {{ .Values.jackett.configPath }}
+          # - mountPath: /config
+          #   name: data
+          #   subPath: {{ .Values.jackett.configPath }}
           - mountPath: /config/openvpn
             name: openvpn-config
           - mountPath: /config/Jackett/ServerConfig.json
@@ -94,9 +94,9 @@ spec:
             name: jackett-indexers-config
       restartPolicy: Always
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
+        # - name: data
+        #   persistentVolumeClaim:
+        #     claimName: {{ .Values.persistentVolume.claimName }}
         - name: openvpn-credentials
           secret:
             secretName: {{ .Values.vpn.secret.name }}
