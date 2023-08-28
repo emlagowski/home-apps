@@ -21,7 +21,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args: 
         - ls /tmp/secrets/;
-          cp /tmp/secrets/{{ .Values.vpn.secret.credentialsFile }} /config/openvpn/credentials.conf;
+          cp /tmp/secrets/{{ .Values.vpn.secret.credentialsFile }} /config/openvpn/;
           ls /tmp/configs/;
           cp /tmp/configs/*.ovpn /config/openvpn/;
           cp /tmp/configs/ServerConfig.json /config/Jackett/;
