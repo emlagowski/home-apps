@@ -5,5 +5,5 @@ metadata:
 data:
   config.xml: |-
     <Config>
-      <UrlBase>/sonarr</UrlBase>
+      <UrlBase>{{ .Values.sonarr.contextPath }}</UrlBase>
     </Config>

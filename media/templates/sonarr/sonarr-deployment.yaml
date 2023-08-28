@@ -21,9 +21,9 @@ spec:
         image: busybox:1.28
         env:
           - name: PUID
-            value: '1000'
+            value: {{ .Values.PUID }}
           - name: PGID
-            value: '1000'
+            value: {{ .Values.PGID }}
         command: ["/bin/sh", "-c"]
         args: 
           - ls /tmp/config/;
@@ -35,17 +35,17 @@ spec:
           - mountPath: /tmp/config
             name: sonarr-configmap
           - mountPath: /tv
-            name: media-pvc
-            subPath: library/tv
+            name: data
+            subPath: {{ .Values.library.tv }}
       containers:
         - image: 'linuxserver/sonarr:latest'
           imagePullPolicy: IfNotPresent
           name: sonarr
           env:
             - name: PUID
-              value: '1000'
+              value: {{ .Values.PUID }}
             - name: PGID
-              value: '1000'
+              value: {{ .Values.PGID }}
           ports:
             - containerPort: 8989
               name: http
@@ -59,21 +59,21 @@ spec:
               memory: 128Mi
           volumeMounts:
             - mountPath: /config
-              name: media-pvc
-              subPath: configs/sonarr
+              name: data
+              subPath: {{ .Values.sonarr.configPath }}
             - mountPath: /downloads/transmission
-              name: media-pvc
-              subPath: downloads/transmission
+              name: data
+              subPath: {{ .Values.transmission.directory }}
             - mountPath: /tv
-              name: media-pvc
-              subPath: library/tv
+              name: data
+              subPath: {{ .Values.library.tv }}
             - mountPath: /config/config.xml
               name: sonarr-config
               subPath: config.xml
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}
         - configMap:
             name: sonarr-configmap
           name: sonarr-configmap

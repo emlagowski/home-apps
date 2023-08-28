@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: transmission-openvpn
-  name: transmission-transmission-openvpn
+  name: transmission-openvpn
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -25,17 +25,17 @@ spec:
             - name: OPENVPN_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: vpn_username
-                  name: media-secrets
+                  key: {{ .Values.vpn.secret.usernameKey }}
+                  name: {{ .Values.vpn.secret.name }}
             - name: OPENVPN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: vpn_password
-                  name: media-secrets
+                  key: {{ .Values.vpn.secret.passwordKey }}
+                  name: {{ .Values.vpn.secret.name }}
             - name: NORDVPN_PROTOCOL
               value: TCP
             - name: NORDVPN_COUNTRY
-              value: CH
+              value: {{ .Values.vpn.country }}
             - name: NORDVPN_CATEGORY
               value: P2P
             - name: LOCAL_NETWORK
@@ -43,11 +43,11 @@ spec:
             - name: TRANSMISSION_PEER_PORT
               value: '47444'
             - name: TRANSMISSION_DOWNLOAD_DIR
-              value: /downloads/transmission
+              value: "/{{ .Values.transmission.directory }}"
             - name: PUID
-              value: '1000'
+              value: {{ .Values.PUID }}
             - name: PGID
-              value: '1000'
+              value: {{ .Values.PGID }}
           ports:
             - containerPort: 9091
               name: http
@@ -65,11 +65,11 @@ spec:
                 - NET_ADMIN
           volumeMounts:
             - mountPath: /data
-              name: media-pvc
+              name: data
               subPath: configs/transmission-data
             - mountPath: /downloads/transmission
-              name: media-pvc
-              subPath: downloads/transmission
+              name: data
+              subPath: "{{ .Values.transmission.directory }}"
       dnsConfig:
         nameservers:
           - 8.8.8.8
@@ -78,6 +78,6 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}

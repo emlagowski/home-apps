@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: transmission-openvpn
-  name: transmission-transmission-openvpn
+  name: transmission-openvpn
 spec:
   ports:
     - name: http

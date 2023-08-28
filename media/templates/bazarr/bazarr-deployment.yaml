@@ -21,9 +21,9 @@ spec:
         image: busybox:1.28
         env:
           - name: PUID
-            value: '1000'
+            value: {{ .Values.PUID }}
           - name: PGID
-            value: '1000'
+            value: {{ .Values.PGID }}
         command: ["/bin/sh", "-c"]
         args: 
           - ls /tmp/config/;
@@ -39,9 +39,9 @@ spec:
           name: bazarr
           env:
             - name: PUID
-              value: '1000'
+              value: {{ .Values.PUID }}
             - name: PGID
-              value: '1000'
+              value: {{ .Values.PGID }}
           ports:
             - containerPort: 6767
               name: http
@@ -55,21 +55,21 @@ spec:
               memory: 128Mi
           volumeMounts:
             - mountPath: /config
-              name: media-pvc
-              subPath: configs/bazarr
+              name: data
+              subPath: {{ .Values.bazarr.configPath }}
             - mountPath: /tv
-              name: media-pvc
-              subPath: library/tv
+              name: data
+              subPath: {{ .Values.library.tv }}
             - mountPath: /movies
-              name: media-pvc
-              subPath: library/movies
+              name: data
+              subPath: {{ .Values.library.movies }}
             - mountPath: /config/config/config.ini
               name: bazarr-config
               subPath: config.ini
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}
         - configMap:
             name: bazarr-configmap
           name: bazarr-configmap

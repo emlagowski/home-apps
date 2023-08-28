@@ -6,38 +6,38 @@ metadata:
   name: "media-ingress"
 spec:
   rules:
-  - host: media.raspberrypi
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
-        - path: "/transmission"
+        - path: {{ .Values.transmission.contextPath }}
           pathType: Prefix
           backend:
             service:
-              name: "transmission-transmission-openvpn"
+              name: "transmission-openvpn"
               port: 
                 name: http
-        - path: "/sonarr"
+        - path: {{ .Values.sonarr.contextPath }}
           pathType: Prefix
           backend:
             service:
-              name: "sonarr"
+              name: {{ .Values.sonarr.service.name }}
               port: 
                 name: http
-        - path: "/radarr"
+        - path: {{ .Values.radarr.contextPath }}
           pathType: Prefix
           backend:
             service:
-              name: "radarr"
+              name: {{ .Values.radarr.service.name }}
               port: 
                 name: http
-        - path: "/jackett"
+        - path: {{ .Values.jackett.contextPath }}
           pathType: Prefix
           backend:
             service:
               name: "jackett"
               port: 
                 name: http
-        - path: "/bazarr"
+        - path: {{ .Values.bazarr.contextPath }}
           pathType: Prefix
           backend:
             service:

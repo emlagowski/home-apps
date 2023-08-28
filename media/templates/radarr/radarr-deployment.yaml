@@ -21,9 +21,9 @@ spec:
         image: busybox:1.28
         env:
           - name: PUID
-            value: '1000'
+            value: {{ .Values.PUID }}
           - name: PGID
-            value: '1000'
+            value: {{ .Values.PGID }}
         command: ["/bin/sh", "-c"]
         args: 
           - ls /tmp/config/;
@@ -35,17 +35,17 @@ spec:
           - mountPath: /tmp/config
             name: radarr-configmap
           - mountPath: /movies
-            name: media-pvc
-            subPath: library/movies
+            name: data
+            subPath: {{ .Values.library.movies }}
       containers:
         - image: 'linuxserver/radarr:latest'
           imagePullPolicy: IfNotPresent
           name: radarr
           env:
             - name: PUID
-              value: '1000'
+              value: {{ .Values.PUID }}
             - name: PGID
-              value: '1000'
+              value: {{ .Values.PGID }}
           ports:
             - containerPort: 7878
               name: http
@@ -59,21 +59,21 @@ spec:
               memory: 128Mi
           volumeMounts:
             - mountPath: /config
-              name: media-pvc
-              subPath: configs/radarr
+              name: data
+              subPath: {{ .Values.radarr.configPath }}
             - mountPath: /downloads/transmission
-              name: media-pvc
-              subPath: downloads/transmission
+              name: data
+              subPath: {{ .Values.transmission.directory }}
             - mountPath: /movies
-              name: media-pvc
-              subPath: library/movies
+              name: data
+              subPath: {{ .Values.library.movies }}
             - mountPath: /config/config.xml
               name: radarr-config
               subPath: config.xml
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}
         - configMap:
             name: radarr-configmap
           name: radarr-configmap

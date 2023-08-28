@@ -1,0 +1,59 @@
+persistentVolume:
+  name: media-pv
+  claimName: media-pvc
+  path: /var/lib/rancher/k3s/storage/pv-media
+  size: 10Gi
+
+ingress:
+  host: media.raspberrypi
+
+vpn:
+  country: CH
+  secret:
+    name: media-secrets
+    usernameKey: vpn_username
+    passwordKey: vpn_password
+    credentialsFile: credentials.conf
+
+plex:
+  configPath: configs/plex
+  timezone: 'Europe/Warsaw'
+  secret:
+    name: media-secrets
+    claimTokenKey: plex_claim_token
+
+sonarr:
+  contextPath: /sonarr
+  configPath: configs/sonarr
+  service:
+    name: sonarr
+    port: 80
+  apiKey: cf29ec20d9e846b6a819d87472d4c0ae
+
+radarr:
+  contextPath: /radarr
+  configPath: configs/radarr
+  service:
+    name: radarr
+    port: 80
+  apiKey: fc4232ff8bc648c0a8b34667240b6be5
+
+bazarr:
+  contextPath: /bazarr
+  configPath: configs/bazarr
+
+jackett:
+  contextPath: /jackett
+  directory: downloads/jackett
+
+transmission:
+  contextPath: /transmission
+  directory: downloads/transmission
+
+library:
+  root: library
+  tv: library/tv
+  movies: library/movies
+
+PUID: 1000
+PGID: 1000

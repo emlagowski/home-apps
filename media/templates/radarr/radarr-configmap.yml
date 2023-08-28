@@ -5,5 +5,5 @@ metadata:
 data:
   config.xml: |-
     <Config>
-      <UrlBase>/radarr</UrlBase>
+      <UrlBase>{{ .Values.radarr.contextPath }}</UrlBase>
     </Config>

@@ -21,24 +21,17 @@ spec:
       containers:
         - image: 'linuxserver/plex:latest'
           imagePullPolicy: IfNotPresent
-          livenessProbe:
-            failureThreshold: 3
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: 32400
-            timeoutSeconds: 1
           name: plex
           env:
             - name: TZ
-              value: Europe/Warsaw
+              value: {{ .Values.plex.timezone }}
             - name: PLEX_CLAIM
               valueFrom:
                 secretKeyRef:
-                  key: plex_claim_token
-                  name: media-secrets
+                  key: {{ .Values.plex.secret.claimTokenKey }}
+                  name: {{ .Values.plex.secret.name }}
             - name: ADVERTISE_IP
-              value: https://media.raspberrypi
+              value: https://{{ .Values.ingress.host }}
           ports:
             - containerPort: 32400
               name: pms
@@ -50,7 +43,13 @@ spec:
             tcpSocket:
               port: 32400
             timeoutSeconds: 1
-          resources: {}
+          livenessProbe:
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 32400
+            timeoutSeconds: 1
           startupProbe:
             failureThreshold: 30
             periodSeconds: 5
@@ -58,14 +57,15 @@ spec:
             tcpSocket:
               port: 32400
             timeoutSeconds: 1
+          resources: {}
           volumeMounts:
             - mountPath: /data
-              name: media-pvc
-              subPath: library
+              name: data
+              subPath: {{ .Values.library.root }}
             - mountPath: /config
-              name: media-pvc
-              subPath: configs/plex
+              name: data
+              subPath: {{ .Values.plex.configPath }}
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}

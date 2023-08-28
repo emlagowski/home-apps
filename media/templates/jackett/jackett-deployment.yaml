@@ -21,7 +21,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args: 
         - ls /tmp/secrets/;
-          cp /tmp/secrets/credentials.conf /config/openvpn/;
+          cp /tmp/secrets/{{ .Values.vpn.secret.credentialsFile }} /config/openvpn/credentials.conf;
           ls /tmp/configs/;
           cp /tmp/configs/*.ovpn /config/openvpn/;
           cp /tmp/configs/ServerConfig.json /config/Jackett/;
@@ -44,21 +44,21 @@ spec:
           - name: VPN_USERNAME
             valueFrom:
               secretKeyRef:
-                key: vpn_username
-                name: media-secrets
+                key: {{ .Values.vpn.secret.usernameKey }}
+                name: {{ .Values.vpn.secret.name }}
           - name: VPN_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: vpn_password
-                name: media-secrets
+                key: {{ .Values.vpn.secret.passwordKey }}
+                name: {{ .Values.vpn.secret.name }}
           - name: LAN_NETWORK
             value: 192.168.0.0/24
           - name: CREATE_TUN_DEVICE
             value: 'true'
           - name: PUID
-            value: '1000'
+            value: {{ .Values.PUID }}
           - name: PGID
-            value: '1000'
+            value: {{ .Values.PGID }}
           - name: 'WEBUI_PORT'
             value: '9117'
         ports:
@@ -78,8 +78,8 @@ spec:
               - NET_ADMIN
         volumeMounts:
             - mountPath: /downloads
-              name: media-pvc
-              subPath: downloads/jackett
+              name: data
+              subPath: {{ .Values.jackett.directory }}
             - mountPath: /config/openvpn
               name: openvpn-config
             - mountPath: /config/Jackett/ServerConfig.json
@@ -87,13 +87,13 @@ spec:
               name: jackett-config
       restartPolicy: Always
       volumes:
-        - name: media-pvc
+        - name: data
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: {{ .Values.persistentVolume.claimName }}
         - name: openvpn-config
         - name: openvpn-credentials
           secret:
-            secretName: media-secrets
+            secretName: {{ .Values.vpn.secret.name }}
         - name: jackett-config
         - name: jackett-configmap
           configMap:

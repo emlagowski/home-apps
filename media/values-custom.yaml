@@ -1,0 +1,24 @@
+persistentVolume:
+  path: /var/lib/rancher/k3s/storage/pv-media
+  size: 10Gi
+
+ingress:
+  host: media.raspberrypi
+
+vpn:
+  secret:
+    name: media-secrets
+    usernameKey: vpn_username
+    passwordKey: vpn_password
+    credentialsFile: credentials.conf
+
+plex:
+  secret:
+    name: media-secrets
+    claimTokenKey: plex_claim_token
+
+sonarr:
+  apiKey: cf29ec20d9e846b6a819d87472d4c0ae
+
+radarr:
+  apiKey: fc4232ff8bc648c0a8b34667240b6be5

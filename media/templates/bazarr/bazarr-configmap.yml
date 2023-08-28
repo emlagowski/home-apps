@@ -7,23 +7,23 @@ data:
     [general]
     ip = 0.0.0.0
     port = 6767
-    base_url = /bazarr
+    base_url = {{ .Values.bazarr.contextPath }}
     use_sonarr = True
     use_radarr = True
     
     [sonarr]
-    ip = sonarr
-    port = 80
-    base_url = /sonarr
+    ip = {{ .Values.sonarr.service.name }}
+    port = {{ .Values.sonarr.service.port }}
+    base_url = {{ .Values.sonarr.contextPath }}
     ssl = False
-    apikey = cf29ec20d9e846b6a819d87472d4c0ae
+    apikey = {{ .Values.sonarr.apiKey }}
 
     [radarr]
-    ip = radarr
-    port = 80
-    base_url = /radarr
+    ip = {{ .Values.radarr.service.name }}
+    port = {{ .Values.radarr.service.port }}
+    base_url = {{ .Values.radarr.contextPath }}
     ssl = False
-    apikey = fc4232ff8bc648c0a8b34667240b6be5
+    apikey = {{ .Values.radarr.apiKey }}
 
     [opensubtitles]
     username =
