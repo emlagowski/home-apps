@@ -19,26 +19,21 @@ spec:
       - name: copy
         image: busybox:1.28
         command: ["/bin/sh", "-c"]
-        env:
-          - name: PUID
-            value: {{ quote .Values.PUID }}
-          - name: PGID
-            value: {{ quote .Values.PGID }}
         args: 
-        - chown -R ${PUID}:${PGID} /config;
-          ls /tmp/secrets/;
+        - ls /tmp/secrets/;
           cp /tmp/secrets/{{ .Values.vpn.secret.credentialsFile }} /config/openvpn/;
           ls /tmp/configs/;
           cp /tmp/configs/*.ovpn /config/openvpn/;
           cp /tmp/configs/ServerConfig.json /config/Jackett/;
         volumeMounts:
-        - mountPath: /config
-          name: data
-          subPath: {{ .Values.jackett.configPath }}
         - mountPath: /tmp/secrets
           name: openvpn-credentials
+        - mountPath: /config/openvpn
+          name: openvpn-config
         - mountPath: /tmp/configs
           name: jackett-configmap
+        - mountPath: /config/Jackett
+          name: jackett-config
       containers:
       - image: 'zfigz/docker-jackettvpn:v0.0.5'
         imagePullPolicy: IfNotPresent
@@ -82,9 +77,14 @@ spec:
             add:
               - NET_ADMIN
         volumeMounts:
-            - mountPath: /config
-              name: data
-              subPath: {{ .Values.jackett.configPath }}
+          - mountPath: /config
+            name: data
+            subPath: {{ .Values.jackett.configPath }}
+          - mountPath: /config/openvpn
+            name: openvpn-config
+          - mountPath: /config/Jackett/ServerConfig.json
+            name: jackett-config
+            subPath: ServerConfig.json
       restartPolicy: Always
       volumes:
         - name: data
@@ -93,6 +93,8 @@ spec:
         - name: openvpn-credentials
           secret:
             secretName: {{ .Values.vpn.secret.name }}
+        - name: openvpn-config
         - name: jackett-configmap
           configMap:
             name: jackett-configmap
+        - name: jackett-config
