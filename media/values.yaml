@@ -44,7 +44,6 @@ bazarr:
 
 jackett:
   contextPath: /jackett
-  configPath: configs/jackett
   apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
 
 transmission:

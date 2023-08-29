@@ -6,4 +6,5 @@ data:
   config.xml: |-
     <Config>
       <UrlBase>{{ .Values.sonarr.contextPath }}</UrlBase>
+      <ApiKey>{{ .Values.sonarr.apiKey }}</ApiKey>
     </Config>

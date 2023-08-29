@@ -6,4 +6,5 @@ data:
   config.xml: |-
     <Config>
       <UrlBase>{{ .Values.radarr.contextPath }}</UrlBase>
+      <ApiKey>{{ .Values.radarr.apiKey }}</ApiKey>
     </Config>
