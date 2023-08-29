@@ -6,7 +6,14 @@ spec:
   securityContext:
     runAsUser: 1000
     runAsGroup: 3000
-    # fsGroup: 2000
+    # runAsNonRoot
+    # seLinuxOptions
+    # seccompProfile
+    # windowsOptions
+    fsGroup: 2000
+    # fsGroupChangePolicy
+    # supplementalGroups
+    # sysctls
   volumes:
   - name: sec-ctx-vol
     emptyDir: {}
@@ -18,4 +25,14 @@ spec:
     - name: sec-ctx-vol
       mountPath: /data/demo
     securityContext:
+      # runAsUser:
+      # runAsGroup:
+      # runAsNonRoot:
+      # seLinuxOptions:
+      # seccompProfile:
+      # windowsOptions:
       allowPrivilegeEscalation: false
+      # capabilities:
+      # privileged:
+      # procMount:
+      # readOnlyRootFilesystem:
