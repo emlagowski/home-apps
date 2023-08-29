@@ -11,7 +11,7 @@ spec:
     # seccompProfile
     # windowsOptions
     fsGroup: 2000
-    # fsGroupChangePolicy
+    fsGroupChangePolicy: "OnRootMismatch"
     # supplementalGroups
     # sysctls
   volumes:
