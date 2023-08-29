@@ -6,13 +6,15 @@ spec:
   securityContext:
     runAsUser: 1000
     runAsGroup: 3000
-    # runAsNonRoot
+    # runAsNonRoot: 
     # seLinuxOptions
     # seccompProfile
     # windowsOptions
     fsGroup: 2000
     fsGroupChangePolicy: "OnRootMismatch"
-    # supplementalGroups
+    supplementalGroups:
+    - 4000
+    - 5000
     # sysctls
   volumes:
   - name: sec-ctx-vol
@@ -20,7 +22,24 @@ spec:
   containers:
   - name: sec-ctx-demo
     image: busybox:1.28
-    command: [ "sh", "-c", "sleep 1h" ]
+    command: [ "sh", "-c" ]
+    args:
+    - echo "id";
+      id;
+      echo "ls /";
+      ls -al /;
+      echo "ls /data";
+      ls -al /data;
+      echo "ls /data/demo";
+      ls -al /data/demo;
+      cd /data/demo;
+      echo "create file and dir";
+      touch x.txt;
+      mkdir xxx;
+      echo "ls /data/demo";
+      ls -al /data/demo;
+      echo "sleep 1h";
+      sleep 1h;
     volumeMounts:
     - name: sec-ctx-vol
       mountPath: /data/demo
@@ -35,4 +54,4 @@ spec:
       # capabilities:
       # privileged:
       # procMount:
-      # readOnlyRootFilesystem:
+      readOnlyRootFilesystem: false
