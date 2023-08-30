@@ -21,7 +21,7 @@ spec:
     emptyDir: {}
   - name: external-drive
     hostPath:
-      path: /mnt/external-drive/complete
+      path: /mnt/external-drive/media/complete
       type: "Directory"
   containers:
   - name: sec-ctx-demo
