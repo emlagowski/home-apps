@@ -1,6 +1,6 @@
 persistentVolume:
-  path: /var/lib/rancher/k3s/storage/pv-media
-  size: 10Gi
+  path: /mnt/external-drive/media
+  size: 1.6Ti
 
 ingress:
   host: media.raspberrypi
