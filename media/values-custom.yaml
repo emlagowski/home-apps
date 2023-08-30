@@ -13,24 +13,15 @@ vpn:
     credentialsFile: credentials.conf
 
 plex:
-  replicas: 0
   secret:
     name: media-secrets
     claimTokenKey: plex_claim_token
 
 sonarr:
-  replicas: 0
   apiKey: cf29ec20d9e846b6a819d87472d4c0ae
 
 radarr:
-  replicas: 0
   apiKey: fc4232ff8bc648c0a8b34667240b6be5
 
 jackett:
   apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
-
-bazarr:
-  replicas: 0
-
-transmission:
-  replicas: 0
