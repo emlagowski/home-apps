@@ -5,7 +5,7 @@ metadata:
     app: sonarr
   name: sonarr
 spec:
-  replicas: 1
+  replicas: {{ .Values.sonarr.replicas }}
   revisionHistoryLimit: 2
   selector:
     matchLabels:

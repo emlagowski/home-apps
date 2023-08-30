@@ -5,7 +5,7 @@ metadata:
     app: jackett
   name: jackett
 spec:
-  replicas: 1
+  replicas: {{ .Values.jackett.replicas }}
   revisionHistoryLimit: 2
   selector:
     matchLabels:

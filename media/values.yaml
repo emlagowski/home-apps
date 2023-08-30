@@ -16,6 +16,7 @@ vpn:
     credentialsFile: credentials.conf
 
 plex:
+  replicas: 1
   configPath: configs/plex
   timezone: 'Europe/Warsaw'
   secret:
@@ -23,6 +24,7 @@ plex:
     claimTokenKey: plex_claim_token
 
 sonarr:
+  replicas: 1
   contextPath: /sonarr
   configPath: configs/sonarr
   service:
@@ -31,6 +33,7 @@ sonarr:
   apiKey: cf29ec20d9e846b6a819d87472d4c0ae
 
 radarr:
+  replicas: 1
   contextPath: /radarr
   configPath: configs/radarr
   service:
@@ -39,14 +42,17 @@ radarr:
   apiKey: fc4232ff8bc648c0a8b34667240b6be5
 
 bazarr:
+  replicas: 1
   contextPath: /bazarr
   configPath: configs/bazarr
 
 jackett:
+  replicas: 1
   contextPath: /jackett
   apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
 
 transmission:
+  replicas: 1
   contextPath: /transmission
   dataPath: downloads/transmission
 

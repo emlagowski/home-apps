@@ -5,7 +5,7 @@ metadata:
     app: plex
   name: plex
 spec:
-  replicas: 1
+  replicas: {{ .Values.plex.replicas }}
   revisionHistoryLimit: 2
   selector:
     matchLabels:

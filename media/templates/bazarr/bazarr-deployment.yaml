@@ -5,7 +5,7 @@ metadata:
     app: bazarr
   name: bazarr
 spec:
-  replicas: 1
+  replicas: {{ .Values.bazarr.replicas }}
   revisionHistoryLimit: 2
   selector:
     matchLabels:
