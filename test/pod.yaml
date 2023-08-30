@@ -19,6 +19,10 @@ spec:
   volumes:
   - name: sec-ctx-vol
     emptyDir: {}
+  - name: external-drive
+    hostPath:
+      path: /mnt/external-drive/complete
+      type: "Directory"
   containers:
   - name: sec-ctx-demo
     image: busybox:1.28
@@ -43,6 +47,8 @@ spec:
     volumeMounts:
     - name: sec-ctx-vol
       mountPath: /data/demo
+    - name: external-drive
+      mountPath: /data/external-drive
     securityContext:
       # runAsUser:
       # runAsGroup:
