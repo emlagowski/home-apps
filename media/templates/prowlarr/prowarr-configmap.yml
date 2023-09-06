@@ -58,49 +58,48 @@ data:
       "configContract": "TransmissionSettings"
     }
   2.applications.json: |-
-    [
-      {
-        "syncLevel": "fullSync",
-        "name": "Radarr",
-        "fields": [
-          {
-            "name": "prowlarrUrl",
-            "value": "http://prowlarr:80/prowlarr"
-          },
-          {
-            "name": "baseUrl",
-            "value": "http://radarr:80/radarr"
-          },
-          {
-            "name": "apiKey",
-            "value": "fc4232ff8bc648c0a8b34667240b6be5"
-          }
-        ],
-        "implementation": "Radarr",
-        "configContract": "RadarrSettings"
-      },
-      {
-        "syncLevel": "fullSync",
-        "name": "Sonarr",
-        "fields": [
-          {
-            "name": "prowlarrUrl",
-            "value": "http://prowlarr:80/prowlarr"
-          },
-          {
-            "name": "baseUrl",
-            "value": "http://sonarr:80/sonarr"
-          },
-          {
-            "name": "apiKey",
-            "value": "cf29ec20d9e846b6a819d87472d4c0ae"
-          }
-        ],
-        "implementation": "Sonarr",
-        "configContract": "SonarrSettings"
-      }
-    ]
-  3.indexer.json: |-
+    {
+      "syncLevel": "fullSync",
+      "name": "Radarr",
+      "fields": [
+        {
+          "name": "prowlarrUrl",
+          "value": "http://prowlarr:80/prowlarr"
+        },
+        {
+          "name": "baseUrl",
+          "value": "http://radarr:80/radarr"
+        },
+        {
+          "name": "apiKey",
+          "value": "fc4232ff8bc648c0a8b34667240b6be5"
+        }
+      ],
+      "implementation": "Radarr",
+      "configContract": "RadarrSettings"
+    }
+  3.applications.json: |-
+    {
+      "syncLevel": "fullSync",
+      "name": "Sonarr",
+      "fields": [
+        {
+          "name": "prowlarrUrl",
+          "value": "http://prowlarr:80/prowlarr"
+        },
+        {
+          "name": "baseUrl",
+          "value": "http://sonarr:80/sonarr"
+        },
+        {
+          "name": "apiKey",
+          "value": "cf29ec20d9e846b6a819d87472d4c0ae"
+        }
+      ],
+      "implementation": "Sonarr",
+      "configContract": "SonarrSettings"
+    }
+  4.indexer.json: |-
     {
       "enable": true,
       "name": "1337x12",
