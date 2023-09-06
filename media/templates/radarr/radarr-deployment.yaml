@@ -63,9 +63,9 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            - mountPath: /config
-              name: data
-              subPath: {{ .Values.radarr.configPath }}
+            # - mountPath: /config
+            #   name: data
+            #   subPath: {{ .Values.radarr.configPath }}
             - mountPath: /downloads/transmission
               name: data
               subPath: {{ .Values.transmission.dataPath }}
