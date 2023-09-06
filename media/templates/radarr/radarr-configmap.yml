@@ -22,7 +22,7 @@ data:
     done
 
     echo "call all init curls"
-    for f in ./*.json; 
+    for f in /init-scripts/*.json; 
     do 
         z=(${f//./ })
         contextPath=${z[1]}
