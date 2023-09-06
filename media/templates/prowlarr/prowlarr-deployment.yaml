@@ -16,6 +16,18 @@ spec:
         app: prowlarr
         release: prowlarr
     spec:
+      initContainers:
+      - name: copy
+        image: busybox:1.28
+        command: ["/bin/sh", "-c"]
+        args: 
+          - ls /tmp/config/;
+            cp /tmp/config/*.xml /config/;
+        volumeMounts:
+          - mountPath: /config/
+            name: prowlarr-config
+          - mountPath: /tmp/config
+            name: prowlarr-configmap
       containers:
         - image: 'linuxserver/prowlarr:latest'
           imagePullPolicy: IfNotPresent
@@ -40,7 +52,14 @@ spec:
             - mountPath: /config
               name: data
               subPath: {{ .Values.prowlarr.configPath }}
+            - mountPath: /config/config.xml
+              name: prowlarr-config
+              subPath: config.xml
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentVolume.claimName }}
+        - configMap:
+            name: prowlarr-configmap
+          name: prowlarr-configmap
+        - name: prowlarr-config

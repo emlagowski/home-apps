@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prowlarr-configmap
+data:
+  config.xml: |-
+    <Config>
+      <UrlBase>{{ .Values.prowlarr.contextPath }}</UrlBase>
+    </Config>
