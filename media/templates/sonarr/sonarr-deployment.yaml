@@ -77,6 +77,11 @@ spec:
             - mountPath: /config/config.xml
               name: sonarr-config
               subPath: config.xml
+            - mountPath: /init-scripts/
+              name: sonarr-init
+            - mountPath: /custom-cont-init.d/custom-init.sh
+              name: sonarr-init
+              subPath: custom-init.sh
       volumes:
         - name: data
           persistentVolumeClaim:
