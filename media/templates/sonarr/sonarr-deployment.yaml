@@ -28,10 +28,15 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
+            cp /tmp/config/*.sh /init-scripts/;
+            cp /tmp/config/*.json /init-scripts/;
+            chmod 744 /init-scripts/init.sh;
             chown -R ${PUID}:${PGID} /tv;
         volumeMounts:
           - mountPath: /config/
             name: sonarr-config
+          - mountPath: /init-scripts/
+            name: sonarr-init
           - mountPath: /tmp/config
             name: sonarr-configmap
           - mountPath: /tv
@@ -58,9 +63,11 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
+            {{ if eq .Values.sonarr.persistDirectory true }}
             - mountPath: /config
               name: data
               subPath: {{ .Values.sonarr.configPath }}
+            {{ end }}
             - mountPath: /downloads/transmission
               name: data
               subPath: {{ .Values.transmission.dataPath }}
@@ -78,3 +85,4 @@ spec:
             name: sonarr-configmap
           name: sonarr-configmap
         - name: sonarr-config
+        - name: sonarr-init

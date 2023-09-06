@@ -43,15 +43,15 @@ data:
       "fields": [
         {
           "name": "host",
-          "value": "transmission-openvpn"
+          "value": "{{ .Values.transmission.service.name }}"
         },
         {
           "name": "port",
-          "value": 80
+          "value": {{ .Values.transmission.service.port }}
         },
         {
           "name": "urlBase",
-          "value": "/transmission/"
+          "value": "{{ .Values.transmission.contextPath }}"
         }
       ],
       "implementation": "Transmission",
@@ -64,15 +64,15 @@ data:
       "fields": [
         {
           "name": "prowlarrUrl",
-          "value": "http://prowlarr:80/prowlarr"
+          "value": "http://{{ .Values.prowlarr.service.name }}:{{ .Values.prowlarr.service.port }}{{ .Values.prowlarr.contextPath }}"
         },
         {
           "name": "baseUrl",
-          "value": "http://radarr:80/radarr"
+          "value": "http://{{ .Values.radarr.service.name }}:{{ .Values.radarr.service.port }}{{ .Values.radarr.contextPath }}"
         },
         {
           "name": "apiKey",
-          "value": "fc4232ff8bc648c0a8b34667240b6be5"
+          "value": "{{ .Values.radarr.apiKey }}"
         }
       ],
       "implementation": "Radarr",
@@ -85,15 +85,15 @@ data:
       "fields": [
         {
           "name": "prowlarrUrl",
-          "value": "http://prowlarr:80/prowlarr"
+          "value": "http://{{ .Values.prowlarr.service.name }}:{{ .Values.prowlarr.service.port }}{{ .Values.prowlarr.contextPath }}"
         },
         {
           "name": "baseUrl",
-          "value": "http://sonarr:80/sonarr"
+          "value": "http://{{ .Values.sonarr.service.name }}:{{ .Values.sonarr.service.port }}{{ .Values.sonarr.contextPath }}"
         },
         {
           "name": "apiKey",
-          "value": "cf29ec20d9e846b6a819d87472d4c0ae"
+          "value": "{{ .Values.sonarr.apiKey }}"
         }
       ],
       "implementation": "Sonarr",
@@ -102,7 +102,7 @@ data:
   4.indexer.json: |-
     {
       "enable": true,
-      "name": "1337x12",
+      "name": "1337x",
       "priority": 25,
       "appProfileId": 1,
       "definitionName": "1337x",

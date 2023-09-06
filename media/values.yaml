@@ -27,6 +27,7 @@ sonarr:
   replicas: 1
   contextPath: /sonarr
   configPath: configs/sonarr
+  persistDirectory: false
   service:
     name: sonarr
     port: 80
