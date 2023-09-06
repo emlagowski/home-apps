@@ -77,4 +77,4 @@ spec:
             name: prowlarr-configmap
           name: prowlarr-configmap
         - name: prowlarr-config
-        - name: radarr-init
+        - name: prowlarr-init
