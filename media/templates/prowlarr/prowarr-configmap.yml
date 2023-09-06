@@ -39,6 +39,7 @@ data:
       "enable": true,
       "protocol": "torrent",
       "name": "Transmission",
+      "categories": [],
       "fields": [
         {
           "name": "host",

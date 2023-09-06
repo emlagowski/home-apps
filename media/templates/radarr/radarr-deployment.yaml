@@ -63,7 +63,7 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            {{ if .Values.radarr.persistDirectory }}
+            {{ if eq .Values.radarr.persistDirectory true }}
             - mountPath: /config
               name: data
               subPath: {{ .Values.radarr.configPath }}

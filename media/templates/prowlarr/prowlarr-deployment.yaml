@@ -54,7 +54,7 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            {{ if .Values.prowlarr.persistDirectory }}
+            {{ if eq .Values.prowlarr.persistDirectory true }}
             - mountPath: /config
               name: data
               subPath: {{ .Values.prowlarr.configPath }}
@@ -68,7 +68,7 @@ spec:
               name: prowlarr-init
               subPath: custom-init.sh
       volumes:
-        {{ if .Values.prowlarr.persistDirectory }}
+        {{ if eq .Values.prowlarr.persistDirectory true }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentVolume.claimName }}
