@@ -28,13 +28,14 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
-            cp /tmp/config/*.sh /init/;
-            cp /tmp/config/*.json /init/;
+            cp /tmp/config/*.sh /init-scripts/;
+            cp /tmp/config/*.json /init-scripts/;
+            chmod +x /init-scripts/*.sh
             chown -R ${PUID}:${PGID} /movies;
         volumeMounts:
           - mountPath: /config/
             name: radarr-config
-          - mountPath: /init/
+          - mountPath: /init-scripts/
             name: radarr-init
           - mountPath: /tmp/config
             name: radarr-configmap
@@ -74,7 +75,7 @@ spec:
             - mountPath: /config/config.xml
               name: radarr-config
               subPath: config.xml
-            - mountPath: /init
+            - mountPath: /init-scripts/
               name: radarr-init
             - mountPath: /custom-cont-init.d/custom-init.sh
               name: radarr-init

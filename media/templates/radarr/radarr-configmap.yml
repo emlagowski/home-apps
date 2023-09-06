@@ -11,7 +11,7 @@ data:
   custom-init.sh: |-
     #!/bin/bash
     echo "running init script in background"
-    init.sh &
+    /init-scripts/init.sh &
   init.sh: |-
     #!/bin/bash
 
