@@ -37,6 +37,13 @@ spec:
               name: {{ .Values.jackett.service.name }}
               port: 
                 name: http
+        - path: {{ .Values.prowlarr.contextPath }}
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.prowlarr.service.name }}
+              port: 
+                name: http
         - path: {{ .Values.bazarr.contextPath }}
           pathType: Prefix
           backend:

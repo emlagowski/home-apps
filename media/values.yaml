@@ -54,6 +54,14 @@ jackett:
     name: jackett
     port: 80
 
+prowlarr:
+  replicas: 1
+  contextPath: /prowlarr
+  configPath: configs/prowlarr
+  service:
+    name: prowlarr
+    port: 80
+
 transmission:
   replicas: 1
   contextPath: /transmission
