@@ -48,14 +48,6 @@ bazarr:
   contextPath: /bazarr
   configPath: configs/bazarr
 
-jackett:
-  replicas: 1
-  contextPath: /jackett
-  apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
-  service:
-    name: jackett
-    port: 80
-
 prowlarr:
   replicas: 1
   configPath: configs/prowlarr

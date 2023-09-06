@@ -1,4 +1,4 @@
 apiVersion: v1
 name: media-stack
 version: 0.1.0
-description: Media Stack on RaspberryPi - Plex, Sonarr, Radarr, Bazarr, Jackett and Transmission over VPN.
+description: Media Stack on RaspberryPi - Plex, Sonarr, Radarr, Bazarr, Prowlarr and Transmission over VPN.

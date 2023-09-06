@@ -30,13 +30,6 @@ spec:
               name: {{ .Values.radarr.service.name }}
               port: 
                 name: http
-        - path: {{ .Values.jackett.contextPath }}
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ .Values.jackett.service.name }}
-              port: 
-                name: http
         - path: {{ .Values.prowlarr.contextPath }}
           pathType: Prefix
           backend:
