@@ -30,7 +30,7 @@ spec:
             cp /tmp/config/*.xml /config/;
             cp /tmp/config/*.sh /init-scripts/;
             cp /tmp/config/*.json /init-scripts/;
-            chmod 744 /init-scripts/init.sh
+            /bin/chmod 744 /init-scripts/init.sh
             chown -R ${PUID}:${PGID} /movies;
         volumeMounts:
           - mountPath: /config/
