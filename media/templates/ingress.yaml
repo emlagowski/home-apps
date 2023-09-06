@@ -13,7 +13,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: "transmission-openvpn"
+              name: {{ .Values.transmission.service.name }}
               port: 
                 name: http
         - path: {{ .Values.sonarr.contextPath }}
@@ -34,7 +34,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: "jackett"
+              name: {{ .Values.jackett.service.name }}
               port: 
                 name: http
         - path: {{ .Values.bazarr.contextPath }}

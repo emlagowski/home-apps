@@ -50,11 +50,17 @@ jackett:
   replicas: 1
   contextPath: /jackett
   apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
+  service:
+    name: jackett
+    port: 80
 
 transmission:
   replicas: 1
   contextPath: /transmission
   dataPath: downloads/transmission
+  service:
+    name: transmission-openvpn
+    port: 80
 
 library:
   root: library

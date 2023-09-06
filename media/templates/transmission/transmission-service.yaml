@@ -3,11 +3,11 @@ kind: Service
 metadata:
   labels:
     app: transmission-openvpn
-  name: transmission-openvpn
+  name: {{ .Values.transmission.service.name }}
 spec:
   ports:
     - name: http
-      port: 80
+      port: {{ .Values.transmission.service.port }}
       protocol: TCP
       targetPort: 9091
   selector:
