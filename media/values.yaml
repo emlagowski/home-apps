@@ -36,6 +36,7 @@ radarr:
   replicas: 1
   contextPath: /radarr
   configPath: configs/radarr
+  persistDirectory: false
   service:
     name: radarr
     port: 80
@@ -56,8 +57,10 @@ jackett:
 
 prowlarr:
   replicas: 1
-  contextPath: /prowlarr
   configPath: configs/prowlarr
+  contextPath: /prowlarr
+  apiKey: b85ab0e0944142dcbcb82f4b807fca32
+  persistDirectory: false
   service:
     name: prowlarr
     port: 80

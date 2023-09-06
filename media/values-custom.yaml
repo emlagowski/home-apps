@@ -25,3 +25,6 @@ radarr:
 
 jackett:
   apiKey: tpp7q7ioeopsih0g8sk96riy3yr2u2b1
+
+prowlarr:
+  apiKey: b85ab0e0944142dcbcb82f4b807fca32

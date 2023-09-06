@@ -23,9 +23,14 @@ spec:
         args: 
           - ls /tmp/config/;
             cp /tmp/config/*.xml /config/;
+            cp /tmp/config/*.sh /init-scripts/;
+            cp /tmp/config/*.json /init-scripts/;
+            chmod 744 /init-scripts/init.sh;
         volumeMounts:
           - mountPath: /config/
             name: prowlarr-config
+          - mountPath: /init-scripts/
+            name: prowlarr-init
           - mountPath: /tmp/config
             name: prowlarr-configmap
       containers:
@@ -49,17 +54,27 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
+            {{ if .Values.prowlarr.persistDirectory }}
             - mountPath: /config
               name: data
               subPath: {{ .Values.prowlarr.configPath }}
+            {{ end }} 
             - mountPath: /config/config.xml
               name: prowlarr-config
               subPath: config.xml
+            - mountPath: /init-scripts/
+              name: prowlarr-init
+            - mountPath: /custom-cont-init.d/custom-init.sh
+              name: prowlarr-init
+              subPath: custom-init.sh
       volumes:
+        {{ if .Values.prowlarr.persistDirectory }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentVolume.claimName }}
+        {{ end }}
         - configMap:
             name: prowlarr-configmap
           name: prowlarr-configmap
         - name: prowlarr-config
+        - name: radarr-init
