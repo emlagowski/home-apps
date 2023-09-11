@@ -18,6 +18,8 @@ spec:
         app: plex
     spec:
       hostNetwork: true
+      nodeSelector:
+        storage: "true"
       containers:
         - image: 'linuxserver/plex:latest'
           imagePullPolicy: IfNotPresent

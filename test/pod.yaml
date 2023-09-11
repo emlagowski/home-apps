@@ -3,6 +3,8 @@ kind: Pod
 metadata:
   name: security-context-demo
 spec:
+  nodeSelector:
+    storage: "true"
   securityContext:
     runAsUser: 1000
     runAsGroup: 3000

@@ -26,6 +26,8 @@ spec:
         persistentVolumeClaim:
           claimName: homebridge-pvc
       hostNetwork: true
+      nodeSelector:
+        storage: "true"
       containers:
         - name: homebridge
           volumeMounts:

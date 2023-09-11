@@ -77,6 +77,8 @@ spec:
       dnsPolicy: None
       restartPolicy: Always
       schedulerName: default-scheduler
+      nodeSelector:
+        storage: "true"
       volumes:
         - name: data
           persistentVolumeClaim:

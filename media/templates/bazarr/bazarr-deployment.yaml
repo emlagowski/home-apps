@@ -33,6 +33,8 @@ spec:
             name: bazarr-config
           - mountPath: /tmp/config
             name: bazarr-configmap
+      nodeSelector:
+        storage: "true"
       containers:
         - image: 'linuxserver/bazarr:latest'
           imagePullPolicy: IfNotPresent
