@@ -82,6 +82,8 @@ spec:
             - mountPath: /custom-cont-init.d/custom-init.sh
               name: radarr-init
               subPath: custom-init.sh
+      nodeSelector:
+        storage: "true"
       volumes:
         - name: data
           persistentVolumeClaim:
