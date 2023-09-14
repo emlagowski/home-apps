@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: kube-system
+    server: 'https://kubernetes.default.svc'
+  source:
+    - path: ''
+      repoURL: 'https://traefik.github.io/charts'
+      targetRevision: 21.2.1
+      chart: traefik
+      helm:
+        values: |
+          podAnnotations:
+            prometheus.io/port: "8082"
+            prometheus.io/scrape: "true"
+          providers:
+            kubernetesIngress:
+              publishedService:
+                enabled: true
+          priorityClassName: "system-cluster-critical"
+          image:
+            repository: "rancher/mirrored-library-traefik"
+            tag: "2.9.10"
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+          - key: "node-role.kubernetes.io/control-plane"
+            operator: "Exists"
+            effect: "NoSchedule"
+          - key: "node-role.kubernetes.io/master"
+            operator: "Exists"
+            effect: "NoSchedule"
+          service:
+            ipFamilyPolicy: "PreferDualStack"
+    # path: traefik
+    # repoURL: 'https://github.com/emlagowski/home-apps.git'
+    # targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
