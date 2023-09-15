@@ -58,6 +58,9 @@ spec:
               cpu: 100m
               memory: 128Mi
 
+          nodeSelector:
+            node-role.kubernetes.io/master: "true"
+
           extraEnvVars: {
             DNSMASQ_USER: "root"
           }
