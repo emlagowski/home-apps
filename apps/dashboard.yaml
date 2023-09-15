@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubernetes-dashboard
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: kubernetes-dashboard
+    server: 'https://kubernetes.default.svc'
+  sources:
+    - repoURL: 'https://kubernetes.github.io/dashboard/'
+      targetRevision: 7.0.0-alpha1
+      chart: kubernetes-dashboard
+      helm:
+        values: |
+          
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
