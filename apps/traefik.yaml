@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: kube-system
     server: 'https://kubernetes.default.svc'
-  source:
+  sources:
     - path: ''
       repoURL: 'https://traefik.github.io/charts'
       targetRevision: 21.2.1
