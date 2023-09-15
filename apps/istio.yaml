@@ -16,6 +16,9 @@ spec:
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
       targetRevision: 1.19.0
       chart: istiod
+    - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+      targetRevision: 1.19.0
+      chart: gateway
   project: default
   syncPolicy:
     automated:
