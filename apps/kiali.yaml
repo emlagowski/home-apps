@@ -11,7 +11,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   sources:
     - repoURL: 'https://kiali.org/helm-charts'
-      targetRevision: 1.73
+      targetRevision: 1.73.0
       chart: kiali-operator
       helm:
         values: |
