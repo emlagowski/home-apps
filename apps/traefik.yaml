@@ -38,9 +38,6 @@ spec:
             effect: "NoSchedule"
           service:
             ipFamilyPolicy: "PreferDualStack"
-    # path: traefik
-    # repoURL: 'https://github.com/emlagowski/home-apps.git'
-    # targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
