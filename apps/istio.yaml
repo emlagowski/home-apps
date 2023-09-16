@@ -21,7 +21,7 @@ spec:
       chart: gateway
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
       targetRevision: 1.19.0
-      chart: ingress-gateway
+      chart: istio-ingress
     - path: istio
       repoURL: 'https://github.com/emlagowski/home-apps.git'
       targetRevision: HEAD
