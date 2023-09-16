@@ -17,6 +17,8 @@ spec:
         values: |
           app:
             ingress:
+              hosts:
+                - dashboard.raspberrypi
               ingressClassName: istio
   project: default
   syncPolicy:
