@@ -15,11 +15,11 @@ spec:
       chart: kubernetes-dashboard
       helm:
         values: |
+          nginx:
+            enabled: false
+          cert-manager:
+            enabled: false
           app:
-            nginx:
-              enabled: false
-            cert-manager:
-              enabled: false
             # networkPolicy
             #   enabled: true
             ingress:
