@@ -20,6 +20,8 @@ spec:
               hosts:
                 - dashboard.raspberrypi
               ingressClassName: istio
+              annotations:
+                kubernetes.io/ingress.class: "istio"
   project: default
   syncPolicy:
     automated:
