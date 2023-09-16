@@ -22,9 +22,9 @@ spec:
     - repoURL: 'https://github.com/istio/istio.git'
       targetRevision: 1.19.0
       path: 'manifests/charts/istio-operator'
-    # - path: istio
-    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
-    #   targetRevision: HEAD
+    - path: istio
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
