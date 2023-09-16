@@ -13,15 +13,15 @@ spec:
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
       targetRevision: 1.16.0
       chart: base
-    # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    #   targetRevision: 1.16.0
-    #   chart: istiod
-    # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    #   targetRevision: 1.16.0
-    #   chart: gateway
-    # - path: istio
-    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
-    #   targetRevision: HEAD
+    - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+      targetRevision: 1.16.0
+      chart: istiod
+    - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+      targetRevision: 1.16.0
+      chart: gateway
+    - path: istio
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
