@@ -15,7 +15,9 @@ spec:
       chart: kubernetes-dashboard
       helm:
         values: |
-          
+          app:
+            ingress:
+              ingressClassName: istio
   project: default
   syncPolicy:
     automated:
