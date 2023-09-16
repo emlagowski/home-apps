@@ -8,10 +8,10 @@ metadata:
   name: argocd-ingress
 spec:
   ingressClassName: istio
-  tls:                                                                                                                                                                                                   │
-  - hosts:                                                                                                                                                                                               │
-    - argocd.raspberrypi                                                                                                                                                                              │
-    secretName: argocd-certs 
+  # tls:                                                                                                                                                                                                   │
+  # - hosts:                                                                                                                                                                                               │
+  #   - argocd.raspberrypi                                                                                                                                                                              │
+  #   secretName: argocd-certs 
   rules:
   - host: argocd.raspberrypi
     http:
