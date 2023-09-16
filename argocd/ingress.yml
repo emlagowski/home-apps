@@ -4,10 +4,14 @@ metadata:
   annotations:
     # traefik.ingress.kubernetes.io/router.entrypoints: websecure
     kubernetes.io/ingress.class: "istio"
-    cert-manager.io/cluster-issuer: ca-issuer 
+    cert-manager.io/cluster-issuer: "ca-issuer"
   name: argocd-ingress
 spec:
   ingressClassName: istio
+  tls:                                                                                                                                                                                                   │
+  - hosts:                                                                                                                                                                                               │
+    - argocd.raspberrypi                                                                                                                                                                              │
+    secretName: argocd-certs 
   rules:
   - host: argocd.raspberrypi
     http:
@@ -19,7 +23,3 @@ spec:
             name: argocd-server
             port:
               name: http
-  tls:                                                                                                                                                                                                   │
-  - hosts:                                                                                                                                                                                               │
-    - argocd.raspberrypi                                                                                                                                                                              │
-    secretName: argocd-certs 
