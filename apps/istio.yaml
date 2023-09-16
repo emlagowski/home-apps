@@ -19,12 +19,12 @@ spec:
     # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
     #   targetRevision: 1.16.7
     #   chart: gateway
-    - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-      targetRevision: 1.16.7
-      chart: istio-operator
-    - path: istio
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
+    - repoURL: 'https://github.com/istio/istio.git'
+      targetRevision: 1.19.0
+      path: 'manifests/charts/istio-operator'
+    # - path: istio
+    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
+    #   targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
