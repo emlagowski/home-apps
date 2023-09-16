@@ -18,7 +18,7 @@ spec:
           app:
             nginx:
               enabled: false
-            cert-manager
+            cert-manager:
               enabled: false
             # networkPolicy
             #   enabled: true
