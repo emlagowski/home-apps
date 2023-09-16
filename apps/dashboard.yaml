@@ -20,6 +20,7 @@ spec:
               hosts:
                 - dashboard.raspberrypi
               ingressClassName: istio
+              pathType: Prefix
               annotations:
                 kubernetes.io/ingress.class: "istio"
   project: default
