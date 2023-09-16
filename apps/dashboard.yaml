@@ -26,7 +26,7 @@ spec:
               enabled: true
               hosts:
                 - dashboard.raspberrypi
-              # ingressClassName: istio
+              ingressClassName: istio
               pathType: Prefix
               annotations:
                 kubernetes.io/ingress.class: "istio"
