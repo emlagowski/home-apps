@@ -11,13 +11,13 @@ spec:
     server: 'https://kubernetes.default.svc'
   sources:
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-      targetRevision: 1.19.0
+      targetRevision: 1.16.0
       chart: base
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-      targetRevision: 1.19.0
+      targetRevision: 1.16.0
       chart: istiod
     - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-      targetRevision: 1.19.0
+      targetRevision: 1.16.0
       chart: gateway
     - path: istio
       repoURL: 'https://github.com/emlagowski/home-apps.git'
