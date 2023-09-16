@@ -16,7 +16,14 @@ spec:
       helm:
         values: |
           app:
+            nginx:
+              enabled: false
+            cert-manager
+              enabled: false
+            # networkPolicy
+            #   enabled: true
             ingress:
+              enabled: true
               hosts:
                 - dashboard.raspberrypi
               ingressClassName: istio
