@@ -20,8 +20,6 @@ spec:
           cert-manager:
             enabled: false
           app:
-            # networkPolicy
-            #   enabled: true
             ingress:
               enabled: true
               issuer:
