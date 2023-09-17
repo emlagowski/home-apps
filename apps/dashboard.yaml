@@ -21,7 +21,7 @@ spec:
             enabled: false
           app:
             ingress:
-              enabled: true
+              enabled: false
               issuer:
                 name: ca-issuer
                 scope: cluster
