@@ -15,5 +15,3 @@ spec:
     size: 256
   dnsNames:
   - raspberrypi
-  - argocd.raspberrypi
-  - dashboard.raspberrypi
