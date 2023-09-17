@@ -16,9 +16,9 @@ spec:
       helm:
         values: |
           installCRDs: true
-    - path: cert-manager
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
+    # - path: cert-manager
+    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
+    #   targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
