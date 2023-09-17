@@ -10,8 +10,8 @@ spec:
     kind: Issuer
     group: cert-manager.io
   commonName: "raspberrypi"
-  privateKey:
-    algorithm: ECDSA
-    size: 256
+  # privateKey:
+  #   algorithm: ECDSA
+  #   size: 256
   dnsNames:
   - raspberrypi
