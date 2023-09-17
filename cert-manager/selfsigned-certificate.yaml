@@ -7,7 +7,7 @@ spec:
   isCA: true
   issuerRef:
     name: selfsigned-issuer
-    kind: Issuer
+    kind: ClusterIssuer
   commonName: "raspberrypi"
   emailAddresses:
   - "marcinlagowski92@gmail.com"
