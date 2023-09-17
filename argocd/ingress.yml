@@ -1,25 +1,25 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   annotations:
-#     # traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#     kubernetes.io/ingress.class: "istio"
-#     cert-manager.io/cluster-issuer: "ca-issuer"
-#   name: argocd-ingress
-# spec:
-#   # ingressClassName: istio
-#   tls:
-#   - hosts:
-#     - argocd.raspberrypi
-#     secretName: argocd-certs
-#   rules:
-#   - host: argocd.raspberrypi
-#     http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: argocd-server
-#             port:
-#               name: http
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    kubernetes.io/ingress.class: "istio"
+    cert-manager.io/cluster-issuer: "ca-issuer"
+  name: argocd-ingress
+spec:
+  # ingressClassName: istio
+  tls:
+  - hosts:
+    - argocd.raspberrypi
+    secretName: argocd-certs
+  rules:
+  - host: argocd.raspberrypi
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: http
