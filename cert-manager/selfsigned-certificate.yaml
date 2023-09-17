@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+ name: selfsigned-ca-certificate
+spec:
+ # name of the tls secret to store
+ # the generated certificate/key pair
+ secretName: selfsigned-ca-key-pair
+ isCA: true
+ issuerRef:
+   # issuer created in step 1
+   name: selfsigned-issuer
+   kind: Issuer
+ commonName: "raspberrypi"
+ dnsNames:
+ # one or more fully-qualified domain name
+ # can be defined here
+ - raspberrypi
