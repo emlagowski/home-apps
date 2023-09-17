@@ -1,21 +1,21 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: selfsigned-ca-certificate
-spec:
-  secretName: selfsigned-ca-key-pair
-  isCA: true
-  issuerRef:
-    name: selfsigned-issuer
-    kind: ClusterIssuer
-  commonName: "raspberrypi"
-  emailAddresses:
-  - "marcinlagowski92@gmail.com"
-  privateKey:
-    algorithm: "ECDSA"
-    size: 256
-  dnsNames:
-  - raspberrypi
-  secretTemplate:
-    annotations:
-      emlagowski.github.io/test: "true"
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: selfsigned-ca-certificate
+# spec:
+#   secretName: selfsigned-ca-key-pair
+#   isCA: true
+#   issuerRef:
+#     name: selfsigned-issuer
+#     kind: ClusterIssuer
+#   commonName: "raspberrypi"
+#   emailAddresses:
+#   - "marcinlagowski92@gmail.com"
+#   privateKey:
+#     algorithm: "ECDSA"
+#     size: 256
+#   dnsNames:
+#   - raspberrypi
+#   secretTemplate:
+#     annotations:
+#       emlagowski.github.io/test: "true"
