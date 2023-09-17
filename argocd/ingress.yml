@@ -12,6 +12,7 @@ metadata:
     cert-manager.io/subject-localities: "Warsaw"
     cert-manager.io/private-key-algorithm: "ECDSA"
     cert-manager.io/private-key-size: "256"
+    cert-manager.io/private-key-rotation-policy: "Always"
   name: argocd-ingress
 spec:
   tls:
