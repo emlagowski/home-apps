@@ -21,7 +21,7 @@ spec:
             enabled: false
           app:
             ingress:
-              enabled: false
+              enabled: true
               issuer:
                 name: ca-issuer
                 scope: cluster
@@ -29,8 +29,8 @@ spec:
                 - dashboard.raspberrypi
               ingressClassName: istio
               pathType: Prefix
-              annotations:
-                kubernetes.io/ingress.class: "istio"
+              # annotations:
+              #   kubernetes.io/ingress.class: "istio"
   project: default
   syncPolicy:
     automated:
