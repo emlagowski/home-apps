@@ -9,6 +9,11 @@ spec:
     name: selfsigned-issuer
     kind: Issuer
   commonName: "raspberrypi"
+  emailAddresses:
+  - "marcinlagowski92@gmail.com"
+  privateKey:
+    algorithm: "ECDSA"
+    size: 256
   dnsNames:
   - raspberrypi
   secretTemplate:
