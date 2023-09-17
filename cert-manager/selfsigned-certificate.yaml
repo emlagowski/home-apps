@@ -11,6 +11,10 @@ spec:
   commonName: "raspberrypi"
   emailAddresses:
   - "marcinlagowski92@gmail.com"
+  subject:
+    countries: "PL"
+    provinces: "Mazowieckie"
+    localities: "Warsaw"
   privateKey:
     algorithm: "ECDSA"
     size: 256
