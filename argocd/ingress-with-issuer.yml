@@ -1,0 +1,32 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: "istio"
+#     cert-manager.io/cluster-issuer: "ca-issuer"
+#     cert-manager.io/common-name: "argocd.raspberrypi"
+#     cert-manager.io/email-sans: "marcinlagowski92@gmail.com"
+#     cert-manager.io/subject-organizations: "emlagowski.github.io"
+#     cert-manager.io/subject-countries: "PL"
+#     cert-manager.io/subject-provinces: "Mazowieckie"
+#     cert-manager.io/subject-localities: "Warsaw"
+#     cert-manager.io/private-key-algorithm: "ECDSA"
+#     cert-manager.io/private-key-size: "256"
+#     cert-manager.io/private-key-rotation-policy: "Always"
+#   name: argocd-ingress
+# spec:
+#   tls:
+#   - hosts:
+#     - argocd.raspberrypi
+#     secretName: argocd-certs
+#   rules:
+#   - host: argocd.raspberrypi
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: argocd-server
+#             port:
+#               name: https
