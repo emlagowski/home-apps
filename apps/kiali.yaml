@@ -30,9 +30,9 @@ spec:
                     app_label: "prometheus"
                     is_core: true
                     namespace: "monitoring"
-    # - path: kiali
-    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
-    #   targetRevision: HEAD
+    - path: kiali
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
