@@ -21,16 +21,19 @@ spec:
             enabled: false
           app:
             ingress:
-              enabled: false
+              enabled: true
               issuer:
-                name: ca-issuer
-                scope: cluster
+                scope: "disabled"
               hosts:
                 - dashboard.raspberrypi
-              ingressClassName: ""
+              ingressClassName: null
               pathType: Prefix
+              secretName: dashboard-certificate-key-pair
               annotations:
                 kubernetes.io/ingress.class: "istio"
+    - path: dashboard
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
