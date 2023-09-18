@@ -10,9 +10,9 @@ spec:
     namespace: monitoring
     server: 'https://kubernetes.default.svc'
   sources:
-    # - path: monitoring
-    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
-    #   targetRevision: HEAD
+    - path: monitoring
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
     - path: ''
       repoURL: 'https://prometheus-community.github.io/helm-charts'
       targetRevision: 48.3.2
@@ -29,7 +29,12 @@ spec:
               enabled: true
               hosts:
               - grafana.raspberrypi
-
+              annotations:
+                kubernetes.io/ingress.class: "istio"
+              tls:
+              - hosts:
+                - grafana.raspberrypi
+                secretName: grafana-certificate-key-pair
   project: default
   syncPolicy:
     automated:
