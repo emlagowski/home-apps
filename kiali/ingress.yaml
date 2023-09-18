@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+  name: kiali
+spec:
+  tls:
+  - hosts:
+    - kiali.raspberrypi
+    secretName: kiali-certificate-key-pair
+  rules:
+  - host: kiali.raspberrypi
+    http:
+      paths:
+      - backend:
+          service:
+            name: kiali
+            port:
+              number: 20001
+        path: /
+        pathType: Prefix
