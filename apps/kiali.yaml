@@ -18,9 +18,10 @@ spec:
           cr:
             create: true
             namespace: istio-system
-            ingress:
-              enabled: true
             spec:
+              deployment:
+                ingress:
+                  enabled: true
               external_services:
                 prometheus:
                   custom_metrics_url: http://monitoring-prometheus.monitoring.svc.cluster.local:9090/
