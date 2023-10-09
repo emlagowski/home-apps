@@ -42,7 +42,7 @@ spec:
               kubernetes.io/ingress.class: "istio"
             tls:
             - hosts:
-              - pihole.raspberrypi
+              - pi-hole.raspberrypi
               secretName: pihole-certificate-key-pair
             hosts:
             - pi-hole.raspberrypi
