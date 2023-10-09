@@ -8,7 +8,7 @@ spec:
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
-  commonName: "pihole.raspberrypi"
+  commonName: "pi-hole.raspberrypi"
   emailAddresses:
   - "marcinlagowski92@gmail.com"
   subject:
@@ -25,7 +25,7 @@ spec:
     size: 256
     rotationPolicy: "Always"
   dnsNames:
-  - "pihole.raspberrypi"
+  - "pi-hole.raspberrypi"
   secretTemplate:
     annotations:
       kubed.appscode.com/sync: "kubernetes.io/metadata.name=istio-system"
