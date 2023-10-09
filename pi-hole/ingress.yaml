@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+  name: pi-hole-pihole
+  namespace: pi-hole
+spec:
+  rules:
+  - host: pi-hole.raspberrypi
+    http:
+      paths:
+      - backend:
+          service:
+            name: pi-hole-pihole-web
+            port:
+              name: http
+        path: /
+        # this one has wrong value when defined by chart, so defined implicitly
+        pathType: Prefix
+  tls:
+  - hosts:
+    - pi-hole.raspberrypi
+    secretName: pihole-certificate-key-pair
