@@ -65,7 +65,7 @@ data:
         "accessories": [
             {
                 "name": "Roborock S5",
-                "ip": "192.168.1.202",
+                "ip": "192.168.1.205",
                 "token": "$HOMEBRIDGE_XIAOMI_TOKEN",
                 "waterBox": false,
                 "silent": false,
