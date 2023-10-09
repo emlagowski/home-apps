@@ -6,6 +6,10 @@ metadata:
     # traefik.ingress.kubernetes.io/router.entrypoints: websecure
   name: "media-ingress"
 spec:
+  tls:
+  - hosts:
+    - media.raspberrypi
+    secretName: media-certificate-key-pair
   ingressClassName: istio
   rules:
   - host: {{ .Values.ingress.host }}
