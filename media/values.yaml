@@ -60,12 +60,14 @@ prowlarr:
 
 overseerr:
   replicas: 1
+  configPath: configs/overseerr
   timezone: 'Europe/Warsaw'
   service:
     name: overseerr
     port: 80
   ingress:
     host: overseerr.raspberrypi
+  persistDirectory: false
 
 transmission:
   replicas: 1

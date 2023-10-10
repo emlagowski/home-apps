@@ -1,3 +1,4 @@
 secrets.yml
 local.yaml
 local-*.yaml
+*.json
