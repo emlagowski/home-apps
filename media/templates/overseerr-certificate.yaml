@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: media-certificate
+  name: overseerr-certificate
 spec:
-  secretName: media-certificate-key-pair
+  secretName: overseerr-certificate-key-pair
   isCA: true
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
-  commonName: {{ .Values.ingress.host }}
+  commonName: {{ .Values.overseerr.ingress.host }}
   emailAddresses:
   - "marcinlagowski92@gmail.com"
   subject:
@@ -25,7 +25,7 @@ spec:
     size: 256
     rotationPolicy: "Always"
   dnsNames:
-  - {{ .Values.ingress.host }}
+  - {{ .Values.overseerr.ingress.host }}
   secretTemplate:
     annotations:
       kubed.appscode.com/sync: "kubernetes.io/metadata.name=istio-system"

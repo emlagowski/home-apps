@@ -58,6 +58,15 @@ prowlarr:
     name: prowlarr
     port: 80
 
+overseerr:
+  replicas: 1
+  timezone: 'Europe/Warsaw'
+  service:
+    name: overseerr
+    port: 80
+  ingress:
+    host: overseerr.raspberrypi
+
 transmission:
   replicas: 1
   contextPath: /transmission

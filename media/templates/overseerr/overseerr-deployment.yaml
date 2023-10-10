@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: overseerr
+  name: overseerr
+spec:
+  replicas: {{ .Values.overseerr.replicas }}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: overseerr
+  template:
+    metadata:
+      labels:
+        app: overseerr
+        release: overseerr
+    spec:
+      containers:
+        - image: 'sctx/overseerr:latest'
+          imagePullPolicy: IfNotPresent
+          name: overseerr
+          env:
+            - name: TZ
+              value: {{ .Values.plex.timezone }}
+          ports:
+            - containerPort: 5055
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
