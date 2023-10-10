@@ -17,7 +17,7 @@ spec:
         release: overseerr
     spec:
       initContainers:
-        - name: init config
+        - name: init-config
           image: dibi/envsubst
           env:
             - name: OVERSEERR_CLIENT_ID
