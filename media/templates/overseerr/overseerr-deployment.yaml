@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: init-config
-          image: dibi/envsubst
+          image: zamnuts/envsubst:1.0.2
           env:
             - name: OVERSEERR_CLIENT_ID
               valueFrom:
