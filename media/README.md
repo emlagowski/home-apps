@@ -2,6 +2,20 @@
 
 Goal of this chart is to get complete Media Plex Stack as Helm chart, ready to deploy on you Kubernetes instance. Another objective is to get all configuration as a code, configurable from chart level, so after installation you do not need to go to every application and set it up manually. Below you can find listed configuration available to set from chart in each application.
 
+## Architecture
+
+High level architecture diagram.
+
+![architecture-diagram](m8k-media-stack-architecture.drawio.svg)
+
+| Interface | Description |
+|-|-|
+|IT1| Mounted library directory to access Movies and TV Series |
+|IT2| x | 
+|IT3| x | 
+|IT4| x |
+| ... | |
+
 ## Configuration
 
 ### Plex
