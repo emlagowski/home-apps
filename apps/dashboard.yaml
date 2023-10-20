@@ -30,7 +30,8 @@ spec:
               pathType: Prefix
               secretName: dashboard-certificate-key-pair
               annotations:
-                kubernetes.io/ingress.class: "istio"
+                kubernetes.io/ingress.class: "traefik"
+                traefik.ingress.kubernetes.io/router.entrypoints: websecure
     - path: dashboard
       repoURL: 'https://github.com/emlagowski/home-apps.git'
       targetRevision: HEAD

@@ -1,67 +1,67 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kiali-operator
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: kiali-operator
-    server: 'https://kubernetes.default.svc'
-  sources:
-    - repoURL: 'https://kiali.org/helm-charts'
-      targetRevision: 1.73.0
-      chart: kiali-operator
-      helm:
-        values: |
-          cr:
-            create: true
-            namespace: istio-system
-            istio_namespace: istio-system
-            spec:
-              deployment:
-                ingress:
-                  enabled: false
-              external_services:
-                tracing:
-                  enabled: false
-                grafana:
-                  enabled: true
-                  auth:
-                    insecure_skip_verify: true
-                    password: "secret:kiali-grafana-secrets:grafana-password"
-                    type: "basic"
-                    username: "admin"
-                  in_cluster_url: http://monitoring-grafana.monitoring.svc.cluster.local
-                  url: https://grafana.raspberrypi
-                  dashboards:
-                  - name: "Istio Service Dashboard"
-                    variables:
-                      namespace: "var-namespace"
-                      service: "var-service"
-                  - name: "Istio Workload Dashboard"
-                    variables:
-                      namespace: "var-namespace"
-                      workload: "var-workload"
-                  - name: "Istio Mesh Dashboard"
-                  - name: "Istio Control Plane Dashboard"
-                  - name: "Istio Performance Dashboard"
-                  - name: "Istio Wasm Extension Dashboard"
-                prometheus:
-                  custom_metrics_url: http://monitoring-prometheus.monitoring.svc.cluster.local:9090/
-                  url: http://monitoring-prometheus.monitoring.svc.cluster.local:9090/
-                  component_status:
-                    app_label: "prometheus"
-                    is_core: true
-                    namespace: "monitoring"
-    - path: kiali
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: kiali-operator
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: kiali-operator
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     - repoURL: 'https://kiali.org/helm-charts'
+#       targetRevision: 1.73.0
+#       chart: kiali-operator
+#       helm:
+#         values: |
+#           cr:
+#             create: true
+#             namespace: istio-system
+#             istio_namespace: istio-system
+#             spec:
+#               deployment:
+#                 ingress:
+#                   enabled: false
+#               external_services:
+#                 tracing:
+#                   enabled: false
+#                 grafana:
+#                   enabled: true
+#                   auth:
+#                     insecure_skip_verify: true
+#                     password: "secret:kiali-grafana-secrets:grafana-password"
+#                     type: "basic"
+#                     username: "admin"
+#                   in_cluster_url: http://monitoring-grafana.monitoring.svc.cluster.local
+#                   url: https://grafana.raspberrypi
+#                   dashboards:
+#                   - name: "Istio Service Dashboard"
+#                     variables:
+#                       namespace: "var-namespace"
+#                       service: "var-service"
+#                   - name: "Istio Workload Dashboard"
+#                     variables:
+#                       namespace: "var-namespace"
+#                       workload: "var-workload"
+#                   - name: "Istio Mesh Dashboard"
+#                   - name: "Istio Control Plane Dashboard"
+#                   - name: "Istio Performance Dashboard"
+#                   - name: "Istio Wasm Extension Dashboard"
+#                 prometheus:
+#                   custom_metrics_url: http://monitoring-prometheus.monitoring.svc.cluster.local:9090/
+#                   url: http://monitoring-prometheus.monitoring.svc.cluster.local:9090/
+#                   component_status:
+#                     app_label: "prometheus"
+#                     is_core: true
+#                     namespace: "monitoring"
+#     - path: kiali
+#       repoURL: 'https://github.com/emlagowski/home-apps.git'
+#       targetRevision: HEAD
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
