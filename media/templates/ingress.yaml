@@ -10,7 +10,6 @@ spec:
   - hosts:
     - media.raspberrypi
     secretName: media-certificate-key-pair
-  ingressClassName: istio
   rules:
   - host: {{ .Values.ingress.host }}
     http:
