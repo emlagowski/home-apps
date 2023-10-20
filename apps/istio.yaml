@@ -31,4 +31,6 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
+      # https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue
+      - ServerSideApply=true
       - CreateNamespace=true
