@@ -16,10 +16,10 @@ metadata:
     # cert-manager.io/private-key-rotation-policy: "Always"
   name: argocd-ingress
 spec:
-  # tls:
-  # - hosts:
-  #   - argocd.raspberrypi
-  #   secretName: argocd-certificate-key-pair
+  tls:
+  - hosts:
+    - argocd.raspberrypi
+    secretName: argocd-certificate-key-pair
   rules:
   - host: argocd.raspberrypi
     http:
