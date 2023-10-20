@@ -20,7 +20,7 @@ spec:
     #   targetRevision: 1.16.7
     #   chart: gateway
     - repoURL: 'https://github.com/istio/istio.git'
-      targetRevision: 1.19.0
+      targetRevision: 1.16.7
       path: 'manifests/charts/istio-operator'
     - path: istio
       repoURL: 'https://github.com/emlagowski/home-apps.git'
