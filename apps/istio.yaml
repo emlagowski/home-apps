@@ -1,34 +1,34 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: istio
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: istio-system
-    server: 'https://kubernetes.default.svc'
-  sources:
-    # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    #   targetRevision: 1.16.7
-    #   chart: base
-    # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    #   targetRevision: 1.16.7
-    #   chart: istiod
-    # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-    #   targetRevision: 1.16.7
-    #   chart: gateway
-    - repoURL: 'https://github.com/istio/istio.git'
-      targetRevision: 1.19.0
-      path: 'manifests/charts/istio-operator'
-    - path: istio
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: istio
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: istio-system
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+#     #   targetRevision: 1.16.7
+#     #   chart: base
+#     # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+#     #   targetRevision: 1.16.7
+#     #   chart: istiod
+#     # - repoURL: 'https://istio-release.storage.googleapis.com/charts'
+#     #   targetRevision: 1.16.7
+#     #   chart: gateway
+#     - repoURL: 'https://github.com/istio/istio.git'
+#       targetRevision: 1.19.0
+#       path: 'manifests/charts/istio-operator'
+#     - path: istio
+#       repoURL: 'https://github.com/emlagowski/home-apps.git'
+#       targetRevision: HEAD
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
