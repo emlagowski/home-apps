@@ -23,7 +23,7 @@ spec:
             pvc:
               storageClassName: "local-path"
               accessModes:
-                - ReadWriteMany
+                - ReadWriteOnce
               size: 2Gi
           nodeSelector:
             node-role.kubernetes.io/master: "true"
