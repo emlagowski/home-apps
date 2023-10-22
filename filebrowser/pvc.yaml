@@ -7,7 +7,7 @@ spec:
     - ReadWriteMany
   storageClassName: local-path
   volumeMode: Filesystem
-  volumeName: "media-pv"
+  volumeName: "media-filebrowser-pv"
   resources:
     requests:
-      storage: 2Gi
+      storage: 1.6Ti

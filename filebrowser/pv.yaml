@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media-filebrowser-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1.6Ti
+  hostPath:
+    path: /mnt/external-drive/media
+    type: DirectoryOrCreate
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-path
+  volumeMode: Filesystem
