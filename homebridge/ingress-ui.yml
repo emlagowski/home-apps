@@ -4,12 +4,22 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "homebridge.raspberrypi"
+    cert-manager.io/email-sans: "marcinlagowski92@gmail.com"
+    cert-manager.io/subject-organizations: "emlagowski.github.io"
+    cert-manager.io/subject-countries: "PL"
+    cert-manager.io/subject-provinces: "Mazowieckie"
+    cert-manager.io/subject-localities: "Warsaw"
+    cert-manager.io/private-key-algorithm: "ECDSA"
+    cert-manager.io/private-key-size: "256"
+    cert-manager.io/private-key-rotation-policy: "Always"
   name: homebridge-ui-ingresss
 spec:
   tls:
   - hosts:
     - homebridge.raspberrypi
-    secretName: homebridge-certificate-key-pair
+    secretName: homebridge-auto-certificate-key-pair
   rules:
   - host: homebridge.raspberrypi
     http:
