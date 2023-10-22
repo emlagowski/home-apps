@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "media-filebrowser-pvc"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-path
+  volumeMode: Filesystem
+  volumeName: "media-pv"

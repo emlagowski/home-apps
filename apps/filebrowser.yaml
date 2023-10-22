@@ -10,6 +10,9 @@ spec:
     namespace: filebrowser
     server: 'https://kubernetes.default.svc'
   sources:
+    - path: filebrowser
+      repoURL: 'https://github.com/emlagowski/home-apps.git'
+      targetRevision: HEAD
     - repoURL: 'https://utkuozdemir.org/helm-charts'
       targetRevision: 1.0.0
       chart: 'filebrowser'
@@ -21,10 +24,7 @@ spec:
             type: pvc
             readOnly: false
             pvc:
-              storageClassName: "local-path"
-              accessModes:
-                - ReadWriteOnce
-              size: 2Gi
+              existingClaim: "media-filebrowser-pvc"
           nodeSelector:
             node-role.kubernetes.io/master: "true"
           ingress:
