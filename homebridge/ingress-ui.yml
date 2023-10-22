@@ -14,7 +14,7 @@ metadata:
     cert-manager.io/private-key-algorithm: "ECDSA"
     cert-manager.io/private-key-size: "256"
     cert-manager.io/private-key-rotation-policy: "Always"
-  name: homebridge-ui-ingresss
+  name: homebridge-ui-ingress
 spec:
   tls:
   - hosts:

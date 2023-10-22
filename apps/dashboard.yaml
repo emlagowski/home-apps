@@ -23,18 +23,16 @@ spec:
             ingress:
               enabled: true
               issuer:
-                scope: "disabled"
+                scope: "cluster"
+                name: "ca-issuer"
               hosts:
                 - dashboard.raspberrypi
               ingressClassName: null
               pathType: Prefix
-              secretName: dashboard-certificate-key-pair
+              secretName: dashboard-auto-certificate-key-pair
               annotations:
                 kubernetes.io/ingress.class: "traefik"
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    - path: dashboard
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
   project: default
   syncPolicy:
     automated:

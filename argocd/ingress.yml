@@ -4,22 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    # cert-manager.io/cluster-issuer: "ca-issuer"
-    # cert-manager.io/common-name: "argocd.raspberrypi"
-    # cert-manager.io/email-sans: "marcinlagowski92@gmail.com"
-    # cert-manager.io/subject-organizations: "emlagowski.github.io"
-    # cert-manager.io/subject-countries: "PL"
-    # cert-manager.io/subject-provinces: "Mazowieckie"
-    # cert-manager.io/subject-localities: "Warsaw"
-    # cert-manager.io/private-key-algorithm: "ECDSA"
-    # cert-manager.io/private-key-size: "256"
-    # cert-manager.io/private-key-rotation-policy: "Always"
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "argocd.raspberrypi"
   name: argocd-ingress
 spec:
   tls:
   - hosts:
     - argocd.raspberrypi
-    secretName: argocd-certificate-key-pair
+    secretName: argocd-auto-certificate-key-pair
   rules:
   - host: argocd.raspberrypi
     http:

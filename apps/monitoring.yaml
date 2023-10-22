@@ -10,9 +10,6 @@ spec:
     namespace: monitoring
     server: 'https://kubernetes.default.svc'
   sources:
-    - path: monitoring
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
     - path: ''
       repoURL: 'https://prometheus-community.github.io/helm-charts'
       targetRevision: 48.3.2
@@ -32,10 +29,12 @@ spec:
               annotations:
                 kubernetes.io/ingress.class: "traefik"
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
+                cert-manager.io/cluster-issuer: "ca-issuer"
+                cert-manager.io/common-name: "grafana.raspberrypi"
               tls:
               - hosts:
                 - grafana.raspberrypi
-                secretName: grafana-certificate-key-pair
+                secretName: grafana-auto-certificate-key-pair
   project: default
   syncPolicy:
     automated:

@@ -4,13 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "media.raspberrypi"
   name: "media-ingress"
 spec:
   tls:
   - hosts:
     - media.raspberrypi
-    secretName: media-certificate-key-pair
+    secretName: media-auto-certificate-key-pair
   rules:
   - host: {{ .Values.ingress.host }}
     http:

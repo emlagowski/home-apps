@@ -4,12 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "overseerr.raspberrypi"
   name: "overseerr-ingress"
 spec:
   tls:
   - hosts:
     - overseerr.raspberrypi
-    secretName: overseerr-certificate-key-pair
+    secretName: overseerr-auto-certificate-key-pair
   rules:
   - host: {{ .Values.overseerr.ingress.host }}
     http:

@@ -4,6 +4,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "pi-hole.raspberrypi"
   name: pi-hole-pihole
   namespace: pi-hole
 spec:
@@ -22,4 +24,4 @@ spec:
   tls:
   - hosts:
     - pi-hole.raspberrypi
-    secretName: pihole-certificate-key-pair
+    secretName: pihole-auto-certificate-key-pair
