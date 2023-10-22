@@ -8,3 +8,6 @@ spec:
   storageClassName: local-path
   volumeMode: Filesystem
   volumeName: "media-pv"
+  resources:
+    requests:
+      storage: 2Gi
