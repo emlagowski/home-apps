@@ -1,44 +1,44 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: longhorn
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: longhorn-system
-    server: 'https://kubernetes.default.svc'
-  sources:
-    # - path: longhorn
-    #   repoURL: 'https://github.com/emlagowski/home-apps.git'
-    #   targetRevision: HEAD
-    - repoURL: 'https://charts.longhorn.io'
-      targetRevision: 1.5.1
-      chart: 'longhorn'
-      helm:
-        valueFiles:
-          - values.yaml
-        values: |
-          networkPolicies:
-            enabled: true
-            type: "k3s"
-          ingress:
-            enabled: true
-            host: longhorn.raspberrypi
-            tls: true
-            tlsSecret: longhorn-auto-certificate-key-pair
-            path: /
-            annotations:
-              kubernetes.io/ingress.class: traefik
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              cert-manager.io/cluster-issuer: "ca-issuer"
-              cert-manager.io/common-name: "longhorn.raspberrypi"
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: longhorn
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: longhorn-system
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     # - path: longhorn
+#     #   repoURL: 'https://github.com/emlagowski/home-apps.git'
+#     #   targetRevision: HEAD
+#     - repoURL: 'https://charts.longhorn.io'
+#       targetRevision: 1.5.1
+#       chart: 'longhorn'
+#       helm:
+#         valueFiles:
+#           - values.yaml
+#         values: |
+#           networkPolicies:
+#             enabled: true
+#             type: "k3s"
+#           ingress:
+#             enabled: true
+#             host: longhorn.raspberrypi
+#             tls: true
+#             tlsSecret: longhorn-auto-certificate-key-pair
+#             path: /
+#             annotations:
+#               kubernetes.io/ingress.class: traefik
+#               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#               cert-manager.io/cluster-issuer: "ca-issuer"
+#               cert-manager.io/common-name: "longhorn.raspberrypi"
 
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
