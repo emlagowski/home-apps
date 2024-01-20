@@ -42,7 +42,7 @@ spec:
             - name: homebridge-config
               mountPath: /homebridge/startup.sh
               subPath: startup.sh
-          image: oznu/homebridge:2023-01-08
+          image: oznu/homebridge:2024-01-08
           securityContext:
             readOnlyRootFilesystem: false
             runAsNonRoot: false
