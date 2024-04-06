@@ -10,7 +10,7 @@ spec:
     namespace: sonos-api
     server: 'https://kubernetes.default.svc'
   sources:
-    - path: sonos-api
+    - path: sonos
       repoURL: 'https://github.com/emlagowski/home-apps.git'
       targetRevision: HEAD
   project: default
