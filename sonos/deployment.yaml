@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sonos-api
+  name: sonos-api
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: sonos-api
+  template:
+    metadata:
+      labels:
+        app: sonos-api
+        release: sonos-api
+    spec:
+      hostNetwork: true
+      containers:
+        - image: 'chrisns/docker-node-sonos-http-api:sha-d3b5d3b8514eb61e1054ba8e86ec7eb9fc524599'
+          imagePullPolicy: IfNotPresent
+          name: sonos-api
+          ports:
+            - containerPort: 5005
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+      #     volumeMounts:
+      #       - mountPath: /app/cache
+      #         name: cache
+      #       - mountPath: /app/settings.json
+      #         name: settings
+      #         subPath: settings.json
+      # volumes:
+      #   - name: cache
+      #   - name: settings
