@@ -18,6 +18,8 @@ spec:
           installCRDs: true
           enableCertificateOwnerRef: true
     - path: cert-manager
+      directory:
+        recurse: true
       repoURL: 'https://github.com/emlagowski/home-apps.git'
       targetRevision: HEAD
   project: default
