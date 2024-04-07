@@ -35,6 +35,7 @@ spec:
           dnsmasq:
             customDnsEntries: 
             - address=/raspberrypi/192.168.1.39
+            - address=/sonos.mlagowski.com/192.168.1.39
 
           ingress:
             enabled: false
