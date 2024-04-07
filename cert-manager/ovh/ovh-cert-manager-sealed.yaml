@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+  name: ovh-credentials
+  namespace: cert-manager
+spec:
+  encryptedData:
+    applicationSecret: AgCbR9A6m2+9vwm1Sog0YpmWm+jbEUfhlPNqEbXDUMK7YFj9L6PsZWLtzmdCLU1ObKmt4wwLSIb6GhiUr3koWBsDoRZ/JcOfBwZLdKLenmKZJLskn87tAWt+oBhx5Mh8MwUdWCSNwPzhNGCeVh6RPgXOlZgrlklMPGGhiJH5ONA+oKrgUxRuZSyMVF6B/U2AdcaBwr8MZhWttZp+EMj095xXeVAr2sL5YhCRk4ko5k3JdMzHkz6eUhO1Ha4GScB0IhlfDbqISiMMOq+3QPjo5dcFkykEJP5mgceuf9Kr8b0ufV75NFCQXI/5RKOKoTjNDauW0jvPwGPRD2OMS4j6xnTvEqBlVmxpvAZGoUk7PRWlU5MHZPvd2tRCuy2NkOuOz2ztlAlDgzBv+jTvrRmUXtrYZftirVuRqqDJvwcVzbRi5xJpmsDHJL/6Ht9eSG4hJlIGINH33pbAwccfnBjfGyv9wpQReDiVfgGCNRas200caUpSoZiYAr8pJPGr1+mxdqFRSCkkWndqiCzpht2ZNkAwDH/JbA3JopwrzTF810Ev2gYwiJWsMtsXVULxRCcn48MHX97OP4UoYur87PU48+KnL3o7JezODw4Mnn01W4Ve2xqcKy7DQje8E1ewcpNf6fJMTf2gv1q1DDzoJOdpmwIew+0XTODQ3H6FRiuFtdtPrx7NoWOf85+IxPP42vbqnHcD/AdzXZZD94eEE6nQThA93yiBDGx55rAhpVq+xOVvJw==
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/namespace-wide: "true"
+      name: ovh-credentials
+      namespace: cert-manager
