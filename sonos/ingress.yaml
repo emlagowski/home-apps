@@ -5,7 +5,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "letsencrypt"
-    cert-manager.io/common-name: "sonos.mlagowski.com"
+    cert-manager.io/common-name: "*.mlagowski.com"
   name: "sonos-ingress"
   namespace: sonos-api
 spec:
