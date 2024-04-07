@@ -4,13 +4,13 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "sonos.raspberrypi"
+    cert-manager.io/cluster-issuer: "letsencrypt"
+    cert-manager.io/common-name: "sonos.mlagowski.com"
   name: "sonos-ingress"
   namespace: sonos-api
 spec:
   rules:
-  - host: sonos.raspberrypi
+  - host: sonos.mlagowski.com
     http:
       paths:
       - backend:
@@ -22,5 +22,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - sonos.raspberrypi
+    - "*.mlagowski.com"
     secretName: sonos-auto-certificate-key-pair
