@@ -38,7 +38,7 @@ data:
                 "devices": [
                     {
                         "name": "Samsung TV 65",
-                        "ip": "192.168.1.140",
+                        "ip": "192.168.1.141",
                         "mac": "$HOMEBRIDGE_TV_MAC",
                         "inputs": [
                             {
@@ -60,6 +60,57 @@ data:
                     }
                 ],
                 "platform": "SamsungTizen"
+            },
+            {
+                "zones": [
+                    {
+                        "name": "Salon TV Audio",
+                        "priorities": [
+                            "Gabinet 2x1",
+                            "Sypialnia Five",
+                            "Łazienka Sypialnia",
+                            "Kuchnia"
+                        ]
+                    },
+                    {
+                        "name": "Sypialnia Five",
+                        "priorities": [
+                            "Salon TV Audio",
+                            "Gabinet 2x1",
+                            "Łazienka Sypialnia",
+                            "Kuchnia"
+                        ]
+                    },
+                    {
+                        "name": "Gabinet 2x1",
+                        "priorities": [
+                            "Salon TV Audio",
+                            "Sypialnia Five",
+                            "Łazienka Sypialnia",
+                            "Kuchnia"
+                        ]
+                    },
+                    {
+                        "name": "Kuchnia",
+                        "priorities": [
+                            "Salon TV Audio",
+                            "Gabinet 2x1",
+                            "Sypialnia Five",
+                            "Łazienka Sypialnia"
+                        ]
+                    },
+                    {
+                        "name": "Łazienka Sypialnia",
+                        "priorities": [
+                            "Salon TV Audio",
+                            "Gabinet 2x1",
+                            "Sypialnia Five",
+                            "Kuchnia"
+                        ]
+                    }
+                ],
+                "isApiEnabled": false,
+                "platform": "SonosMultiroomPlatform"
             }
         ],
         "accessories": [
@@ -99,6 +150,7 @@ data:
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-midea-air 1.7.3 /var/lib/homebridge/node_modules
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-xiaomi-roborock-vacuum 0.31.1 /var/lib/homebridge/node_modules
     /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-samsung-tizen 5.2.7 /var/lib/homebridge/node_modules
+    /opt/homebridge/lib/node_modules/homebridge-config-ui-x/plugin-upgrade-install.sh homebridge-sonos-multiroom 0.6.0 /var/lib/homebridge/node_modules
 
     # install envsubst
     apt-get update
