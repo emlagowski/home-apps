@@ -1,24 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: test
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    name: ''
-    namespace: test
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: test
-    repoURL: 'https://github.com/emlagowski/home-apps.git'
-    targetRevision: HEAD
-  sources: []
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: test
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     name: ''
+#     namespace: test
+#     server: 'https://kubernetes.default.svc'
+#   source:
+#     path: test
+#     repoURL: 'https://github.com/emlagowski/home-apps.git'
+#     targetRevision: HEAD
+#   sources: []
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

@@ -1,46 +1,46 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: monitoring
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: monitoring
-    server: 'https://kubernetes.default.svc'
-  sources:
-    - path: ''
-      repoURL: 'https://prometheus-community.github.io/helm-charts'
-      targetRevision: 48.3.2
-      chart: kube-prometheus-stack
-      helm:
-        valueFiles:
-          - values.yaml
-        values: |
-          nameOverride: monitoring
-          namespaceOverride: monitoring
-          kubeTargetVersionOverride: 1.22.3
-          grafana:
-            ingress:
-              enabled: true
-              hosts:
-              - grafana.raspberrypi
-              annotations:
-                kubernetes.io/ingress.class: "traefik"
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
-                cert-manager.io/cluster-issuer: "ca-issuer"
-                cert-manager.io/common-name: "grafana.raspberrypi"
-              tls:
-              - hosts:
-                - grafana.raspberrypi
-                secretName: grafana-auto-certificate-key-pair
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      # https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue
-      - ServerSideApply=true
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: monitoring
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     - path: ''
+#       repoURL: 'https://prometheus-community.github.io/helm-charts'
+#       targetRevision: 48.3.2
+#       chart: kube-prometheus-stack
+#       helm:
+#         valueFiles:
+#           - values.yaml
+#         values: |
+#           nameOverride: monitoring
+#           namespaceOverride: monitoring
+#           kubeTargetVersionOverride: 1.22.3
+#           grafana:
+#             ingress:
+#               enabled: true
+#               hosts:
+#               - grafana.raspberrypi
+#               annotations:
+#                 kubernetes.io/ingress.class: "traefik"
+#                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#                 cert-manager.io/cluster-issuer: "ca-issuer"
+#                 cert-manager.io/common-name: "grafana.raspberrypi"
+#               tls:
+#               - hosts:
+#                 - grafana.raspberrypi
+#                 secretName: grafana-auto-certificate-key-pair
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       # https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue
+#       - ServerSideApply=true
+#       - CreateNamespace=true
