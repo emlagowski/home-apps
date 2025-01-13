@@ -1,42 +1,42 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kubernetes-dashboard
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: kubernetes-dashboard
-    server: 'https://kubernetes.default.svc'
-  sources:
-    - repoURL: 'https://kubernetes.github.io/dashboard/'
-      targetRevision: 7.0.0-alpha1
-      chart: kubernetes-dashboard
-      helm:
-        values: |
-          nginx:
-            enabled: false
-          cert-manager:
-            enabled: false
-          app:
-            ingress:
-              enabled: true
-              issuer:
-                scope: "cluster"
-                name: "ca-issuer"
-              hosts:
-                - dashboard.raspberrypi
-              ingressClassName: null
-              pathType: Prefix
-              secretName: dashboard-auto-certificate-key-pair
-              annotations:
-                kubernetes.io/ingress.class: "traefik"
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: kubernetes-dashboard
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: kubernetes-dashboard
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     - repoURL: 'https://kubernetes.github.io/dashboard/'
+#       targetRevision: 7.0.0-alpha1
+#       chart: kubernetes-dashboard
+#       helm:
+#         values: |
+#           nginx:
+#             enabled: false
+#           cert-manager:
+#             enabled: false
+#           app:
+#             ingress:
+#               enabled: true
+#               issuer:
+#                 scope: "cluster"
+#                 name: "ca-issuer"
+#               hosts:
+#                 - dashboard.raspberrypi
+#               ingressClassName: null
+#               pathType: Prefix
+#               secretName: dashboard-auto-certificate-key-pair
+#               annotations:
+#                 kubernetes.io/ingress.class: "traefik"
+#                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
