@@ -31,7 +31,7 @@ spec:
             cp /tmp/config/*.sh /init-scripts/;
             cp /tmp/config/*.json /init-scripts/;
             chmod 744 /init-scripts/init.sh;
-            chown -R ${PUID}:${PGID} /tv;
+            # chown -R ${PUID}:${PGID} /tv;
         volumeMounts:
           - mountPath: /config/
             name: sonarr-config
