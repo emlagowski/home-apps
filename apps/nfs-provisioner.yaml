@@ -9,18 +9,20 @@ spec:
   destination:
     namespace: nfs-provisioner
     server: 'https://kubernetes.default.svc'
-  sources:
-    - repoURL: 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner'
-      targetRevision: 4.0.18
-      chart: 'nfs-subdir-external-provisioner'
-      helm:
-        storageClass.name: nfs
-        values: |
-          nfs:
-            server: 192.168.1.156
-            path: "/volume1/Media Server"
-            mountOptions:
-            - nfsvers=4.1
+  source:
+    chart: 'nfs-subdir-external-provisioner'
+    repoURL: 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner'
+    targetRevision: 4.0.18
+    helm:
+      parameters:
+      - name: "storageClass.name"
+        value: nfs
+      valuesObject:
+        nfs:
+          server: 192.168.1.156
+          path: "/volume1/Media Server"
+          mountOptions:
+          - nfsvers=4.1
   project: default
   syncPolicy:
     automated:
