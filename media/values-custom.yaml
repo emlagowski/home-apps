@@ -13,6 +13,7 @@ vpn:
     credentialsFile: credentials.conf
 
 plex:
+  enabled: false
   secret:
     name: media-secrets
     claimTokenKey: plex_claim_token

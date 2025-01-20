@@ -16,6 +16,7 @@ vpn:
     credentialsFile: credentials.conf
 
 plex:
+  enabled: true
   replicas: 1
   configPath: configs/plex
   timezone: 'Europe/Warsaw'

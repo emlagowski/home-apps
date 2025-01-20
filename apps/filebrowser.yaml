@@ -1,52 +1,52 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: filebrowser
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: filebrowser
-    server: 'https://kubernetes.default.svc'
-  sources:
-    - path: filebrowser
-      repoURL: 'https://github.com/emlagowski/home-apps.git'
-      targetRevision: HEAD
-    - repoURL: 'https://utkuozdemir.org/helm-charts'
-      targetRevision: 1.0.0
-      chart: 'filebrowser'
-      helm:
-        valueFiles:
-          - values.yaml
-        values: |
-          rootDir:
-            type: pvc
-            readOnly: false
-            pvc:
-              existingClaim: "media-filebrowser-pvc"
-          nodeSelector:
-            node-role.kubernetes.io/master: "true"
-          ingress:
-            enabled: true
-            annotations: 
-              kubernetes.io/ingress.class: "traefik"
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              cert-manager.io/cluster-issuer: "ca-issuer"
-              cert-manager.io/common-name: "media-filebrowser.raspberrypi"
-            hosts:
-              - host: media-filebrowser.raspberrypi
-                paths:
-                  - path: /
-                    pathType: Prefix
-            tls: 
-              - secretName: media-filebrowser-auto-certificate-key-pair
-                hosts:
-                  - media-filebrowser.raspberrypi
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: filebrowser
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: filebrowser
+#     server: 'https://kubernetes.default.svc'
+#   sources:
+#     - path: filebrowser
+#       repoURL: 'https://github.com/emlagowski/home-apps.git'
+#       targetRevision: HEAD
+#     - repoURL: 'https://utkuozdemir.org/helm-charts'
+#       targetRevision: 1.0.0
+#       chart: 'filebrowser'
+#       helm:
+#         valueFiles:
+#           - values.yaml
+#         values: |
+#           rootDir:
+#             type: pvc
+#             readOnly: false
+#             pvc:
+#               existingClaim: "media-filebrowser-pvc"
+#           nodeSelector:
+#             node-role.kubernetes.io/master: "true"
+#           ingress:
+#             enabled: true
+#             annotations: 
+#               kubernetes.io/ingress.class: "traefik"
+#               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#               cert-manager.io/cluster-issuer: "ca-issuer"
+#               cert-manager.io/common-name: "media-filebrowser.raspberrypi"
+#             hosts:
+#               - host: media-filebrowser.raspberrypi
+#                 paths:
+#                   - path: /
+#                     pathType: Prefix
+#             tls: 
+#               - secretName: media-filebrowser-auto-certificate-key-pair
+#                 hosts:
+#                   - media-filebrowser.raspberrypi
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

@@ -1,3 +1,4 @@
+{{ if .Values.plex.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -71,3 +72,4 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistentVolume.claimName }}
+{{ end }}
