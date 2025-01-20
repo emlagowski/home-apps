@@ -6,9 +6,9 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: local-path
-  volumeMode: Filesystem
-  volumeName: {{ .Values.persistentVolume.name }}
+  storageClassName: nfs
+  # volumeMode: Filesystem
+  # volumeName: {{ .Values.persistentVolume.name }}
   resources:
     requests:
       storage: {{ .Values.persistentVolume.size }}
