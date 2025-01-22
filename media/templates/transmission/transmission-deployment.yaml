@@ -67,9 +67,9 @@ spec:
             - mountPath: /config/transmission-home
               name: transmission-config
             - mountPath: /downloads/transmission
-              name: transmission-downloaded-pvc
+              name: transmission-downloaded
             - mountPath: /data/incomplete
-              name: transmission-incomplete-pvc
+              name: transmission-incomplete
       dnsConfig:
         nameservers:
           - 8.8.8.8
@@ -81,9 +81,9 @@ spec:
         - name: transmission-config
           persistentVolumeClaim:
             claimName: transmission-config-pvc
-        - name: transmission-config
+        - name: transmission-downloaded
           persistentVolumeClaim:
             claimName: transmission-downloaded-pvc
-        - name: transmission-config
+        - name: transmission-incomplete
           persistentVolumeClaim:
             claimName: transmission-incomplete-pvc
