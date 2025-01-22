@@ -20,14 +20,14 @@ spec:
         - image: 'linuxserver/bazarr:latest'
           imagePullPolicy: IfNotPresent
           name: bazarr
-          env:
-            - name: PUID
-              value: {{ quote .Values.PUID }}
-            - name: PGID
-              value: {{ quote .Values.PGID }}
-          securityContext:
-            runAsUser: {{ .Values.PUID }}
-            runAsGroup: {{ .Values.PGID }}
+          # env:
+          #   - name: PUID
+          #     value: {{ quote .Values.PUID }}
+          #   - name: PGID
+          #     value: {{ quote .Values.PGID }}
+          # securityContext:
+          #   runAsUser: {{ .Values.PUID }}
+          #   runAsGroup: {{ .Values.PGID }}
           ports:
             - containerPort: 6767
               name: http
