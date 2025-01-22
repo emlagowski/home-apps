@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media-server-nfs-pv
+  labels:
+    volume-type: media-server-nfs-pv
+spec:
+  capacity:
+    storage: 5Ti
+  accessModes:
+    - ReadWriteMany 
+  nfs:
+    path: /volume1/Media Server 
+    server: 192.168.1.156 
+  persistentVolumeReclaimPolicy: Retain

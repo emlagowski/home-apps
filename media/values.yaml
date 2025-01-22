@@ -1,12 +1,3 @@
-persistentVolume:
-  name: media-pv
-  claimName: media-pvc
-  path: /var/lib/rancher/k3s/storage/pv-media
-  size: 10Gi
-
-ingress:
-  host: media.raspberrypi
-
 vpn:
   country: CH
   secret:
@@ -14,74 +5,6 @@ vpn:
     usernameKey: vpn_username
     passwordKey: vpn_password
     credentialsFile: credentials.conf
-
-plex:
-  enabled: true
-  replicas: 1
-  configPath: configs/plex
-  timezone: 'Europe/Warsaw'
-  secret:
-    name: media-secrets
-    claimTokenKey: plex_claim_token
-
-sonarr:
-  replicas: 1
-  contextPath: /sonarr
-  configPath: configs/sonarr
-  persistDirectory: false
-  service:
-    name: sonarr
-    port: 80
-  apiKey: cf29ec20d9e846b6a819d87472d4c0ae
-
-radarr:
-  replicas: 1
-  contextPath: /radarr
-  configPath: configs/radarr
-  persistDirectory: false
-  service:
-    name: radarr
-    port: 80
-  apiKey: fc4232ff8bc648c0a8b34667240b6be5
-
-bazarr:
-  replicas: 1
-  contextPath: /bazarr
-  configPath: configs/bazarr
-
-prowlarr:
-  replicas: 1
-  configPath: configs/prowlarr
-  contextPath: /prowlarr
-  apiKey: b85ab0e0944142dcbcb82f4b807fca32
-  persistDirectory: false
-  service:
-    name: prowlarr
-    port: 80
-
-overseerr:
-  replicas: 1
-  configPath: configs/overseerr
-  timezone: 'Europe/Warsaw'
-  service:
-    name: overseerr
-    port: 80
-  ingress:
-    host: overseerr.raspberrypi
-  persistDirectory: false
-
-transmission:
-  replicas: 1
-  contextPath: /transmission
-  dataPath: downloads/transmission
-  service:
-    name: transmission-openvpn
-    port: 80
-
-library:
-  root: library
-  tv: library/tv
-  movies: library/movies
 
 PUID: 1000
 PGID: 1000

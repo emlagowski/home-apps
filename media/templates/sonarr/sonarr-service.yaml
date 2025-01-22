@@ -3,11 +3,11 @@ kind: Service
 metadata:
   labels:
     app: sonarr
-  name: {{ .Values.sonarr.service.name }}
+  name: sonarr
 spec:
   ports:
     - name: http
-      port: {{ .Values.sonarr.service.port }}
+      port: 80
       protocol: TCP
       targetPort: 8989
   selector:

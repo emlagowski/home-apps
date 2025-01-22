@@ -3,11 +3,11 @@ kind: Service
 metadata:
   labels:
     app: prowlarr
-  name: {{ .Values.prowlarr.service.name }}
+  name: prowlarr
 spec:
   ports:
     - name: http
-      port: {{ .Values.prowlarr.service.port }}
+      port: 80
       protocol: TCP
       targetPort: 9696
   selector:

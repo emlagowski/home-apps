@@ -5,7 +5,7 @@ metadata:
     app: bazarr
   name: bazarr
 spec:
-  replicas: {{ .Values.bazarr.replicas }}
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -16,25 +16,6 @@ spec:
         app: bazarr
         release: bazarr
     spec:
-      initContainers:
-      - name: copy
-        image: busybox:1.28
-        env:
-          - name: PUID
-            value: {{ quote .Values.PUID }}
-          - name: PGID
-            value: {{ quote .Values.PGID }}
-        command: ["/bin/sh", "-c"]
-        args: 
-          - ls /tmp/config/;
-            cp /tmp/config/*.ini /config/;
-        volumeMounts:
-          - mountPath: /config/
-            name: bazarr-config
-          - mountPath: /tmp/config
-            name: bazarr-configmap
-      nodeSelector:
-        storage: "true"
       containers:
         - image: 'linuxserver/bazarr:latest'
           imagePullPolicy: IfNotPresent
@@ -57,22 +38,17 @@ spec:
               memory: 128Mi
           volumeMounts:
             - mountPath: /config
-              name: data
-              subPath: {{ .Values.bazarr.configPath }}
-            - mountPath: /tv
-              name: data
-              subPath: {{ .Values.library.tv }}
-            - mountPath: /movies
-              name: data
-              subPath: {{ .Values.library.movies }}
-            - mountPath: /config/config/config.ini
               name: bazarr-config
-              subPath: config.ini
+            - mountPath: /tv
+              name: media
+              subPath: /tv
+            - mountPath: /movies
+              name: media
+              subPath: /movies
       volumes:
-        - name: data
+        - name: media
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
-        - configMap:
-            name: bazarr-configmap
-          name: bazarr-configmap
+            claimName: media-server-nfs-pvc
         - name: bazarr-config
+          persistentVolumeClaim:
+            claimName: bazarr-config-pvc

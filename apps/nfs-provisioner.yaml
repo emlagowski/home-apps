@@ -20,7 +20,7 @@ spec:
       valuesObject:
         nfs:
           server: 192.168.1.156
-          path: "/volume1/Media Server"
+          path: "/volume1/k8s-pv"
           mountOptions:
           - nfsvers=4.1
   project: default

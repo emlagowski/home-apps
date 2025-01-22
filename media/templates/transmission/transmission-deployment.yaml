@@ -5,7 +5,7 @@ metadata:
     app: transmission-openvpn
   name: transmission-openvpn
 spec:
-  replicas: {{ .Values.transmission.replicas }}
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -43,7 +43,7 @@ spec:
             - name: TRANSMISSION_PEER_PORT
               value: '47444'
             - name: TRANSMISSION_DOWNLOAD_DIR
-              value: "/{{ .Values.transmission.dataPath }}"
+              value: "downloads/transmission"
             - name: PUID
               value: {{ quote .Values.PUID }}
             - name: PGID
@@ -64,12 +64,12 @@ spec:
               add:
                 - NET_ADMIN
           volumeMounts:
-            - mountPath: /data
-              name: data
-              subPath: configs/transmission-data
+            - mountPath: /config/transmission-home
+              name: transmission-config
             - mountPath: /downloads/transmission
-              name: data
-              subPath: "{{ .Values.transmission.dataPath }}"
+              name: transmission-downloaded-pvc
+            - mountPath: /data/incomplete
+              name: transmission-incomplete-pvc
       dnsConfig:
         nameservers:
           - 8.8.8.8
@@ -77,9 +77,13 @@ spec:
       dnsPolicy: None
       restartPolicy: Always
       schedulerName: default-scheduler
-      nodeSelector:
-        storage: "true"
       volumes:
-        - name: data
+        - name: transmission-config
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
+            claimName: transmission-config-pvc
+        - name: transmission-config
+          persistentVolumeClaim:
+            claimName: transmission-downloaded-pvc
+        - name: transmission-config
+          persistentVolumeClaim:
+            claimName: transmission-incomplete-pvc

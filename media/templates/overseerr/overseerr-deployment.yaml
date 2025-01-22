@@ -5,7 +5,7 @@ metadata:
     app: overseerr
   name: overseerr
 spec:
-  replicas: {{ .Values.overseerr.replicas }}
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -16,62 +16,10 @@ spec:
         app: overseerr
         release: overseerr
     spec:
-      initContainers:
-        - name: init-config
-          image: zamnuts/envsubst:1.0.2
-          env:
-            - name: OVERSEERR_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrClientId
-            - name: OVERSEERR_VAPID_PRIVATE
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrVapidPrivate
-            - name: OVERSEERR_VAPID_PUBLIC
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrVapidPublic
-            - name: OVERSEERR_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrApiKey
-            - name: OVERSEERR_PLEX_MACHINE_ID
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrPlexMachineId
-            - name: OVERSEERR_LUNASEA_WEBHOOK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: media-secrets
-                  key: overSeerrLunaseaWebhookUrl
-          volumeMounts:
-            - mountPath: /processed
-              name: overseerr-config
-            - mountPath: /workdir
-              name: overseerr-configmap
-      volumes:
-        {{ if eq .Values.overseerr.persistDirectory true }}
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
-        {{ end }}
-        - configMap:
-            name: overseerr-configmap
-          name: overseerr-configmap
-        - name: overseerr-config
       containers:
         - image: 'sctx/overseerr:latest'
           imagePullPolicy: IfNotPresent
           name: overseerr
-          env:
-            - name: TZ
-              value: {{ .Values.overseerr.timezone }}
           ports:
             - containerPort: 5055
               name: http
@@ -84,11 +32,9 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            {{ if eq .Values.overseerr.persistDirectory true }}
             - mountPath: /app/config
-              name: data
-              subPath: {{ .Values.overseerr.configPath }}
-            {{ end }} 
-            - mountPath: /app/config/settings.json
               name: overseerr-config
-              subPath: settings.json
+      volumes:
+        - name: overseerr-config
+          persistentVolumeClaim:
+            claimName: overseerr-config-pvc

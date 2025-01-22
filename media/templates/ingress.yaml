@@ -13,48 +13,41 @@ spec:
     - media.raspberrypi
     secretName: media-auto-certificate-key-pair
   rules:
-  - host: {{ .Values.ingress.host }}
+  - host: media.raspberrypi
     http:
       paths:
-        - path: {{ .Values.transmission.contextPath }}
+        - path: /transmission
           pathType: Prefix
           backend:
             service:
-              name: {{ .Values.transmission.service.name }}
+              name: transmission-openvpn
               port: 
                 name: http
-        - path: {{ .Values.sonarr.contextPath }}
+        - path: /sonarr
           pathType: Prefix
           backend:
             service:
-              name: {{ .Values.sonarr.service.name }}
+              name: sonarr
               port: 
                 name: http
-        - path: {{ .Values.radarr.contextPath }}
+        - path: /radarr
           pathType: Prefix
           backend:
             service:
-              name: {{ .Values.radarr.service.name }}
+              name: radarr
               port: 
                 name: http
-        - path: {{ .Values.prowlarr.contextPath }}
+        - path: /prowlarr
           pathType: Prefix
           backend:
             service:
-              name: {{ .Values.prowlarr.service.name }}
+              name: prowlarr
               port: 
                 name: http
-        - path: {{ .Values.bazarr.contextPath }}
+        - path: /bazarr
           pathType: Prefix
           backend:
             service:
-              name: "bazarr"
+              name: bazarr
               port: 
                 name: http
-        - path: "/"
-          pathType: Prefix
-          backend:
-            service:
-              name: "plex"
-              port: 
-                name: pms

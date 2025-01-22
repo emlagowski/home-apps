@@ -13,13 +13,13 @@ spec:
     - overseerr.raspberrypi
     secretName: overseerr-auto-certificate-key-pair
   rules:
-  - host: {{ .Values.overseerr.ingress.host }}
+  - host: overseerr.raspberrypi
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.overseerr.service.name }}
+            name: overseerr
             port:
               name: http

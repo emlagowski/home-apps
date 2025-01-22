@@ -5,7 +5,7 @@ metadata:
     app: radarr
   name: radarr
 spec:
-  replicas: {{ .Values.radarr.replicas }}
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -16,32 +16,6 @@ spec:
         app: radarr
         release: radarr
     spec:
-      initContainers:
-      - name: copy
-        image: busybox:1.28
-        env:
-          - name: PUID
-            value: {{ quote .Values.PUID }}
-          - name: PGID
-            value: {{ quote .Values.PGID }}
-        command: ["/bin/sh", "-c"]
-        args: 
-          - ls /tmp/config/;
-            cp /tmp/config/*.xml /config/;
-            cp /tmp/config/*.sh /init-scripts/;
-            cp /tmp/config/*.json /init-scripts/;
-            chmod 744 /init-scripts/init.sh;
-            # chown -R ${PUID}:${PGID} /movies;
-        volumeMounts:
-          - mountPath: /config/
-            name: radarr-config
-          - mountPath: /init-scripts/
-            name: radarr-init
-          - mountPath: /tmp/config
-            name: radarr-configmap
-          - mountPath: /movies
-            name: data
-            subPath: {{ .Values.library.movies }}
       containers:
         - image: 'linuxserver/radarr:latest'
           imagePullPolicy: IfNotPresent
@@ -63,33 +37,21 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            {{ if eq .Values.radarr.persistDirectory true }}
             - mountPath: /config
-              name: data
-              subPath: {{ .Values.radarr.configPath }}
-            {{ end }}
-            - mountPath: /downloads/transmission
-              name: data
-              subPath: {{ .Values.transmission.dataPath }}
-            - mountPath: /movies
-              name: data
-              subPath: {{ .Values.library.movies }}
-            - mountPath: /config/config.xml
               name: radarr-config
-              subPath: config.xml
-            - mountPath: /init-scripts/
-              name: radarr-init
-            - mountPath: /custom-cont-init.d/custom-init.sh
-              name: radarr-init
-              subPath: custom-init.sh
-      nodeSelector:
-        storage: "true"
+            - mountPath: /downloads/transmission
+              name: transmission
+              subPath: /radarr
+            - mountPath: /movies
+              name: media
+              subPath: /movies
       volumes:
-        - name: data
+        - name: media
           persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
-        - configMap:
-            name: radarr-configmap
-          name: radarr-configmap
+            claimName: media-server-nfs-pvc
+        - name: transmission
+          persistentVolumeClaim:
+            claimName: transmission-downloaded-pvc
         - name: radarr-config
-        - name: radarr-init
+          persistentVolumeClaim:
+            claimName: radarr-config-pvc

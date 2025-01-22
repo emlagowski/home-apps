@@ -3,11 +3,11 @@ kind: Service
 metadata:
   labels:
     app: radarr
-  name: {{ .Values.radarr.service.name }}
+  name: radarr
 spec:
   ports:
     - name: http
-      port: {{ .Values.radarr.service.port }}
+      port: 80
       protocol: TCP
       targetPort: 7878
   selector:

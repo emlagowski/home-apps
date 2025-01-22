@@ -5,7 +5,7 @@ metadata:
     app: prowlarr
   name: prowlarr
 spec:
-  replicas: {{ .Values.prowlarr.replicas }}
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -16,32 +16,10 @@ spec:
         app: prowlarr
         release: prowlarr
     spec:
-      initContainers:
-      - name: copy
-        image: busybox:1.28
-        command: ["/bin/sh", "-c"]
-        args: 
-          - ls /tmp/config/;
-            cp /tmp/config/*.xml /config/;
-            cp /tmp/config/*.sh /init-scripts/;
-            cp /tmp/config/*.json /init-scripts/;
-            chmod 744 /init-scripts/init.sh;
-        volumeMounts:
-          - mountPath: /config/
-            name: prowlarr-config
-          - mountPath: /init-scripts/
-            name: prowlarr-init
-          - mountPath: /tmp/config
-            name: prowlarr-configmap
       containers:
         - image: 'linuxserver/prowlarr:latest'
           imagePullPolicy: IfNotPresent
           name: prowlarr
-          env:
-            - name: PUID
-              value: {{ quote .Values.PUID }}
-            - name: PGID
-              value: {{ quote .Values.PGID }}
           ports:
             - containerPort: 9696
               name: http
@@ -54,27 +32,9 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            {{ if eq .Values.prowlarr.persistDirectory true }}
             - mountPath: /config
-              name: data
-              subPath: {{ .Values.prowlarr.configPath }}
-            {{ end }} 
-            - mountPath: /config/config.xml
               name: prowlarr-config
-              subPath: config.xml
-            - mountPath: /init-scripts/
-              name: prowlarr-init
-            - mountPath: /custom-cont-init.d/custom-init.sh
-              name: prowlarr-init
-              subPath: custom-init.sh
       volumes:
-        {{ if eq .Values.prowlarr.persistDirectory true }}
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistentVolume.claimName }}
-        {{ end }}
-        - configMap:
-            name: prowlarr-configmap
-          name: prowlarr-configmap
         - name: prowlarr-config
-        - name: prowlarr-init
+          persistentVolumeClaim:
+            claimName: prowlarr-config-pvc

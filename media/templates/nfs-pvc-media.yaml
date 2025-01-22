@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: media-server-nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteMany 
+  resources:
+    requests:
+      storage: 5Ti 
+  selector:
+    matchLabels:
+      volume-type: media-server-nfs-pv
+  storageClassName: "" # its important to not get local-path by default
