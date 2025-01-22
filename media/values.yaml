@@ -6,5 +6,5 @@ vpn:
     passwordKey: vpn_password
     credentialsFile: credentials.conf
 
-PUID: 1000
-PGID: 1000
+PUID: 1026
+PGID: 100
