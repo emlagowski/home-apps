@@ -41,10 +41,10 @@ spec:
               name: sonarr-config
             - mountPath: /downloads/transmission
               name: transmission
-              subPath: /sonarr
+              subPath: sonarr
             - mountPath: /tv
               name: media
-              subPath: /tv
+              subPath: tv
       volumes:
         - name: media
           persistentVolumeClaim:

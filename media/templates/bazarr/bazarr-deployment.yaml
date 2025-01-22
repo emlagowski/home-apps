@@ -39,12 +39,12 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: bazarr-config
-            - mountPath: /tv
+            - mountPath: tv
               name: media
-              subPath: /tv
-            - mountPath: /movies
+              subPath: tv
+            - mountPath: movies
               name: media
-              subPath: /movies
+              subPath: movies
       volumes:
         - name: media
           persistentVolumeClaim:

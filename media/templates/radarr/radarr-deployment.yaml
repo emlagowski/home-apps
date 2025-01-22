@@ -41,10 +41,10 @@ spec:
               name: radarr-config
             - mountPath: /downloads/transmission
               name: transmission
-              subPath: /radarr
+              subPath: radarr
             - mountPath: /movies
               name: media
-              subPath: /movies
+              subPath: movies
       volumes:
         - name: media
           persistentVolumeClaim:
