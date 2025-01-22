@@ -16,14 +16,14 @@ spec:
         app: radarr
         release: radarr
     spec:
-      initContainers:
-        - name: init-permissions
-          image: busybox
-          command: ["sh", "-c", "chown -R {{ .Values.PUID }}:{{ .Values.PGID }} /movies && chmod -R 755 /movies"]
-          volumeMounts:
-            - mountPath: /movies
-              name: media
-              subPath: movies
+      # initContainers:
+      #   - name: init-permissions
+      #     image: busybox
+      #     command: ["sh", "-c", "chown -R {{ .Values.PUID }}:{{ .Values.PGID }} /movies && chmod -R 755 /movies"]
+      #     volumeMounts:
+      #       - mountPath: /movies
+      #         name: media
+      #         subPath: movies
       containers:
         - image: 'linuxserver/radarr:latest'
           imagePullPolicy: IfNotPresent
