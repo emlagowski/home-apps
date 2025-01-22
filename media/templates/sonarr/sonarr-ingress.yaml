@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "ca-issuer"
+    cert-manager.io/common-name: "sonarr.raspberrypi"
+  name: "sonarr-ingress"
+spec:
+  tls:
+  - hosts:
+    - sonarr.raspberrypi
+    secretName: sonarr-auto-certificate-key-pair
+  rules:
+  - host: sonarr.raspberrypi
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sonarr
+            port:
+              name: http
