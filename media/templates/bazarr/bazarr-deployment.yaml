@@ -26,8 +26,8 @@ spec:
             - name: PGID
               value: {{ quote .Values.PGID }}
           securityContext:
-            runAsUser: {{ quote .Values.PUID }}
-            runAsGroup: {{ quote .Values.PGID }}
+            runAsUser: {{ .Values.PUID }}
+            runAsGroup: {{ .Values.PGID }}
           ports:
             - containerPort: 6767
               name: http
