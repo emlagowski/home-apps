@@ -7,4 +7,4 @@ vpn:
     credentialsFile: credentials.conf
 
 PUID: 1026
-PGID: 1026
+PGID: 100
