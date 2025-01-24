@@ -1,25 +1,25 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "overseerr.raspberrypi"
-  name: "overseerr-ingress"
-spec:
-  tls:
-  - hosts:
-    - overseerr.raspberrypi
-    secretName: overseerr-auto-certificate-key-pair
-  rules:
-  - host: overseerr.raspberrypi
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: overseerr
-            port:
-              name: http
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#     cert-manager.io/cluster-issuer: "ca-issuer"
+#     cert-manager.io/common-name: "overseerr.raspberrypi"
+#   name: "overseerr-ingress"
+# spec:
+#   tls:
+#   - hosts:
+#     - overseerr.raspberrypi
+#     secretName: overseerr-auto-certificate-key-pair
+#   rules:
+#   - host: overseerr.raspberrypi
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: overseerr
+#             port:
+#               name: http
