@@ -16,14 +16,6 @@ spec:
         app: radarr
         release: radarr
     spec:
-      # initContainers:
-      #   - name: init-permissions
-      #     image: busybox
-      #     command: ["sh", "-c", "chown -R {{ .Values.PUID }}:{{ .Values.PGID }} /movies && chmod -R 755 /movies"]
-      #     volumeMounts:
-      #       - mountPath: /movies
-      #         name: media
-      #         subPath: movies
       containers:
         - image: 'linuxserver/radarr:latest'
           imagePullPolicy: IfNotPresent
@@ -33,9 +25,6 @@ spec:
               value: {{ quote .Values.PUID }}
             - name: PGID
               value: {{ quote .Values.PGID }}
-          securityContext:
-            runAsUser: {{ .Values.PUID }}
-            runAsGroup: {{ .Values.PGID }}
           ports:
             - containerPort: 7878
               name: http
