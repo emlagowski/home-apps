@@ -36,10 +36,10 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-          volumeMounts:
-            - mountPath: /app/config
-              name: overseerr-config
-      volumes:
-        - name: overseerr-config
-          persistentVolumeClaim:
-            claimName: overseerr-config-pvc
+      #     volumeMounts:
+      #       - mountPath: /app/config
+      #         name: overseerr-config
+      # volumes:
+      #   - name: overseerr-config
+      #     persistentVolumeClaim:
+      #       claimName: overseerr-config-pvc
