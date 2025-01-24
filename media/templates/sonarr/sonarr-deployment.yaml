@@ -41,7 +41,6 @@ spec:
               name: sonarr-config
             - mountPath: /downloads/transmission
               name: transmission
-              subPath: sonarr
             - mountPath: /tv
               name: media
               subPath: tv

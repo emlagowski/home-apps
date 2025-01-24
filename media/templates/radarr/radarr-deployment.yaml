@@ -41,7 +41,6 @@ spec:
               name: radarr-config
             - mountPath: /downloads/transmission
               name: transmission
-              subPath: radarr
             - mountPath: /movies
               name: media
               subPath: movies
