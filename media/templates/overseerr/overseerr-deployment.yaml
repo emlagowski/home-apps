@@ -20,11 +20,11 @@ spec:
         - image: 'linuxserver/overseerr'
           imagePullPolicy: IfNotPresent
           name: overseerr
-          env:
-            - name: PUID
-              value: {{ quote .Values.PUID }}
-            - name: PGID
-              value: {{ quote .Values.PGID }}
+          # env:
+          #   - name: PUID
+          #     value: {{ quote .Values.PUID }}
+          #   - name: PGID
+          #     value: {{ quote .Values.PGID }}
           ports:
             - containerPort: 5055
               name: http
