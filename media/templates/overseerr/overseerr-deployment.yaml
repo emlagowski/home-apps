@@ -20,11 +20,11 @@ spec:
         - image: 'linuxserver/overseerr'
           imagePullPolicy: IfNotPresent
           name: overseerr
-          env:
-            - name: PUID
-              value: {{ quote .Values.PUID }}
-            - name: PGID
-              value: {{ quote .Values.PGID }}
+          # env:
+          #   - name: PUID
+          #     value: {{ quote .Values.PUID }}
+          #   - name: PGID
+          #     value: {{ quote .Values.PGID }}
           ports:
             - containerPort: 5055
               name: http
@@ -36,10 +36,10 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-          volumeMounts:
-            - mountPath: /config
-              name: overseerr-config
-      volumes:
-        - name: overseerr-config
-          persistentVolumeClaim:
-            claimName: overseerr-config-pvc
+      #     volumeMounts:
+      #       - mountPath: /config
+      #         name: overseerr-config
+      # volumes:
+      #   - name: overseerr-config
+      #     persistentVolumeClaim:
+      #       claimName: overseerr-config-pvc
