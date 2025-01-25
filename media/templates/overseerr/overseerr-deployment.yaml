@@ -17,7 +17,7 @@ spec:
         release: overseerr
     spec:
       containers:
-        - image: 'sctx/overseerr:latest'
+        - image: 'linuxserver/overseerr'
           imagePullPolicy: IfNotPresent
           name: overseerr
           # env:

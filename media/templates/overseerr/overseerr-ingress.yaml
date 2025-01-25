@@ -5,15 +5,15 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "overseerr.raspberrypi"
-  name: "overseerr-ingress"
+    cert-manager.io/common-name: "overseerr-bis.raspberrypi"
+  name: "overseerr-bis-ingress"
 spec:
   tls:
   - hosts:
-    - overseerr.raspberrypi
-    secretName: overseerr-auto-certificate-key-pair
+    - overseerr-bis.raspberrypi
+    secretName: overseerr-bis-auto-certificate-key-pair
   rules:
-  - host: overseerr.raspberrypi
+  - host: overseerr-bis.raspberrypi
     http:
       paths:
       - path: /
