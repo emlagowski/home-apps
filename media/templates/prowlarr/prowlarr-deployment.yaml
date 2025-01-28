@@ -17,7 +17,7 @@ spec:
         release: prowlarr
     spec:
       containers:
-        - image: 'linuxserver/prowlarr:latest'
+        - image: 'linuxserver/prowlarr:1.30.2'
           imagePullPolicy: IfNotPresent
           name: prowlarr
           env:
