@@ -37,8 +37,8 @@ spec:
               cpu: 200m
               memory: 512Mi
           volumeMounts:
-            - mountPath: /config
-              name: sonarr-config
+            # - mountPath: /config
+            #   name: sonarr-config
             - mountPath: /downloads/transmission
               name: transmission
             - mountPath: /tv
@@ -51,6 +51,6 @@ spec:
         - name: transmission
           persistentVolumeClaim:
             claimName: transmission-downloaded-pvc
-        - name: sonarr-config
-          persistentVolumeClaim:
-            claimName: sonarr-config-pvc
+        # - name: sonarr-config
+        #   persistentVolumeClaim:
+        #     claimName: sonarr-config-pvc

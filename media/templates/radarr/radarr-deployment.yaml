@@ -37,8 +37,8 @@ spec:
               cpu: 200m
               memory: 512Mi
           volumeMounts:
-            - mountPath: /config
-              name: radarr-config
+            # - mountPath: /config
+            #   name: radarr-config
             - mountPath: /downloads/transmission
               name: transmission
             - mountPath: /movies
@@ -51,6 +51,6 @@ spec:
         - name: transmission
           persistentVolumeClaim:
             claimName: transmission-downloaded-pvc
-        - name: radarr-config
-          persistentVolumeClaim:
-            claimName: radarr-config-pvc
+        # - name: radarr-config
+        #   persistentVolumeClaim:
+        #     claimName: radarr-config-pvc

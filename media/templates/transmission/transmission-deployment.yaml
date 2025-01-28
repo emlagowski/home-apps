@@ -66,8 +66,8 @@ spec:
               add:
                 - NET_ADMIN
           volumeMounts:
-            - mountPath: /config/transmission-home
-              name: transmission-config
+            # - mountPath: /config/transmission-home
+            #   name: transmission-config
             - mountPath: /downloads/transmission
               name: transmission-downloaded
             - mountPath: /data/incomplete
@@ -80,9 +80,9 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       volumes:
-        - name: transmission-config
-          persistentVolumeClaim:
-            claimName: transmission-config-pvc
+        # - name: transmission-config
+        #   persistentVolumeClaim:
+        #     claimName: transmission-config-pvc
         - name: transmission-downloaded
           persistentVolumeClaim:
             claimName: transmission-downloaded-pvc
