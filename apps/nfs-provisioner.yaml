@@ -17,6 +17,8 @@ spec:
       parameters:
       - name: "storageClass.name"
         value: nfs
+      - name: "storageClass.accessModes"
+        value: "ReadWriteOnce"
       valuesObject:
         nfs:
           server: 192.168.1.156
