@@ -36,10 +36,10 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-          volumeMounts:
-            - mountPath: /config
-              name: prowlarr-config
-      volumes:
-        - name: prowlarr-config
-          persistentVolumeClaim:
-            claimName: prowlarr-config-pvc
+      #     volumeMounts:
+      #       - mountPath: /config
+      #         name: prowlarr-config
+      # volumes:
+      #   - name: prowlarr-config
+      #     persistentVolumeClaim:
+      #       claimName: prowlarr-config-pvc

@@ -37,8 +37,8 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            - mountPath: /config
-              name: bazarr-config
+            # - mountPath: /config
+            #   name: bazarr-config
             - mountPath: tv
               name: media
               subPath: tv
@@ -49,6 +49,6 @@ spec:
         - name: media
           persistentVolumeClaim:
             claimName: media-server-nfs-pvc
-        - name: bazarr-config
-          persistentVolumeClaim:
-            claimName: bazarr-config-pvc
+        # - name: bazarr-config
+        #   persistentVolumeClaim:
+        #     claimName: bazarr-config-pvc
