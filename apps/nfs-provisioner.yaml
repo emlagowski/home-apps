@@ -22,7 +22,27 @@ spec:
           server: 192.168.1.156
           path: "/volume1/k8s-pv"
           mountOptions:
-          - nfsvers=4.1
+          # Purpose: Specifies NFS version 4 for improved performance and compatibility.
+          - nfsvers=4.1     
+          # Purpose: Allows NFS operations to fail gracefully after a timeout.
+          - soft            
+          # Purpose: Allows NFS operations to be interrupted if the process is killed.
+          - intr            
+          # Purpose: Disables file locking to avoid issues with SQLite or similar applications.
+          - nolock          
+          # Purpose: Sets read buffer size to optimize I/O performance.
+          - rsize=8192      
+          # Purpose: Sets write buffer size to optimize I/O performance.
+          - wsize=8192      
+          # Purpose: Reduces the timeout for retrying NFS operations (in tenths of a second).
+          - timeo=14        
+          # Purpose: Limits the number of retries for failed NFS requests to avoid long hangs.
+          - retrans=3       
+          # Purpose: Prevents updates to file access times, reducing unnecessary writes and improving read performance.
+          - noatime         
+          # Purpose: Enables asynchronous writes for better performance by reducing network latency.
+          - async           
+  
   project: default
   syncPolicy:
     automated:
