@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: flaresolverr
+  name: flaresolverr
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8191
+  selector:
+    app: flaresolverr
+  type: ClusterIP

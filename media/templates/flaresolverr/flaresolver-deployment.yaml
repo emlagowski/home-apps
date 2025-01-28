@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: flaresolverr
+  name: flaresolverr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: flaresolverr
+  template:
+    metadata:
+      labels:
+        app: flaresolverr
+        release: flaresolverr
+    spec:
+      containers:
+        - image: 'ghcr.io/flaresolverr/flaresolverr:latest'
+          imagePullPolicy: IfNotPresent
+          name: flaresolverr
+          env:
+            - name: PUID
+              value: {{ quote .Values.PUID }}
+            - name: PGID
+              value: {{ quote .Values.PGID }}
+          ports:
+            - containerPort: 8191
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2048Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
