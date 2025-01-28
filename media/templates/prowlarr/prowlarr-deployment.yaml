@@ -1,45 +1,45 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   labels:
-#     app: prowlarr
-#   name: prowlarr
-# spec:
-#   replicas: 1
-#   revisionHistoryLimit: 2
-#   selector:
-#     matchLabels:
-#       app: prowlarr
-#   template:
-#     metadata:
-#       labels:
-#         app: prowlarr
-#         release: prowlarr
-#     spec:
-#       containers:
-#         - image: 'linuxserver/prowlarr:latest'
-#           imagePullPolicy: IfNotPresent
-#           name: prowlarr
-#           env:
-#             - name: PUID
-#               value: {{ quote .Values.PUID }}
-#             - name: PGID
-#               value: {{ quote .Values.PGID }}
-#           ports:
-#             - containerPort: 9696
-#               name: http
-#               protocol: TCP
-#           resources:
-#             limits:
-#               cpu: 1000m
-#               memory: 2048Mi
-#             requests:
-#               cpu: 100m
-#               memory: 128Mi
-#       #     volumeMounts:
-#       #       - mountPath: /config
-#       #         name: prowlarr-config
-#       # volumes:
-#       #   - name: prowlarr-config
-#       #     persistentVolumeClaim:
-#       #       claimName: prowlarr-config-pvc
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prowlarr
+  name: prowlarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+        release: prowlarr
+    spec:
+      containers:
+        - image: 'linuxserver/prowlarr:latest'
+          imagePullPolicy: IfNotPresent
+          name: prowlarr
+          env:
+            - name: PUID
+              value: {{ quote .Values.PUID }}
+            - name: PGID
+              value: {{ quote .Values.PGID }}
+          ports:
+            - containerPort: 9696
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2048Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+      #     volumeMounts:
+      #       - mountPath: /config
+      #         name: prowlarr-config
+      # volumes:
+      #   - name: prowlarr-config
+      #     persistentVolumeClaim:
+      #       claimName: prowlarr-config-pvc
