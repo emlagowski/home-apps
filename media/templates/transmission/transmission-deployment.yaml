@@ -16,7 +16,7 @@ spec:
         app: transmission-openvpn
     spec:
       containers:
-        - image: 'haugene/transmission-openvpn:latest'
+        - image: 'haugene/transmission-openvpn:dev'
           imagePullPolicy: IfNotPresent
           name: transmission-openvpn
           env:
