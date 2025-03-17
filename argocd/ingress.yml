@@ -5,15 +5,15 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "argocd.raspberrypi"
+    cert-manager.io/common-name: "argocd.homelab"
   name: argocd-ingress
 spec:
   tls:
   - hosts:
-    - argocd.raspberrypi
+    - argocd.homelab
     secretName: argocd-auto-certificate-key-pair
   rules:
-  - host: argocd.raspberrypi
+  - host: argocd.homelab
     http:
       paths:
       - path: /

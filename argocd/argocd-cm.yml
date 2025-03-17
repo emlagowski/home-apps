@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://argocd.raspberrypi
+  url: https://argocd.homelab
   admin.enabled: "true"
   dex.config: |
     connectors:
