@@ -31,10 +31,10 @@ spec:
             - containerPort: 9981
             - containerPort: 9982
           volumeMounts:
-            - name: config-volume
-              mountPath: /config
-            - name: recordings-volume
-              mountPath: /recordings
+            # - name: config-volume
+            #   mountPath: /config
+            # - name: recordings-volume
+            #   mountPath: /recordings
             - name: dri-device
               mountPath: /dev/dri
             - name: dvb-device
