@@ -27,6 +27,8 @@ spec:
               value: "Europe/Warsaw"
             - name: RUN_OPTS
               value: ""
+          securityContext:
+            privileged: true  # Needed for /dev access
           ports:
             - containerPort: 9981
             - containerPort: 9982
