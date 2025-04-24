@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tvheadend
+  labels:
+    app: tvheadend
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: tvheadend
+  template:
+    metadata:
+      labels:
+        app: tvheadend
+    spec:
+      containers:
+        - name: tvheadend
+          image: lscr.io/linuxserver/tvheadend:latest
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Warsaw"
+            - name: RUN_OPTS
+              value: ""
+          ports:
+            - containerPort: 9981
+            - containerPort: 9982
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: recordings-volume
+              mountPath: /recordings
+            - name: dri-device
+              mountPath: /dev/dri
+            - name: dvb-device
+              mountPath: /dev/dvb
+      volumes:
+        # - name: config-volume
+        #   hostPath:
+        #     path: /path/to/tvheadend/data
+        #     type: Directory
+        # - name: recordings-volume
+        #   hostPath:
+        #     path: /path/to/recordings
+        #     type: Directory
+        - name: dri-device
+          hostPath:
+            path: /dev/dri
+            type: Directory
+        - name: dvb-device
+          hostPath:
+            path: /dev/dvb
+            type: Directory
+      restartPolicy: Always
