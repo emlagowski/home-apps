@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xteve
+  labels:
+    app: xteve
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: xteve
+  template:
+    metadata:
+      labels:
+        app: xteve
+    spec:
+      hostNetwork: true
+      containers:
+        - name: xteve
+          image: alturismo/xteve
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: "Europe/Warsaw"
+          ports:
+            - containerPort: 34400
+          # volumeMounts:
+          #   - name: appdata
+          #     mountPath: /root/.xteve
+          #     subPath: xteve
+          #   - name: config
+          #     mountPath: /config
+          #   - name: tmp
+          #     mountPath: /tmp/xteve
+          #   - name: tvh
+          #     mountPath: /TVH
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+      # volumes:
+      #   - name: appdata
+      #     hostPath:
+      #       path: /mnt/user/appdata/xteve
+      #   - name: config
+      #     hostPath:
+      #       path: /mnt/user/appdata/xteve/_config
+      #   - name: tmp
+      #     hostPath:
+      #       path: /tmp/xteve
+      #   - name: tvh
+      #     hostPath:
+      #       path: /mnt/user/appdata/tvheadend/data

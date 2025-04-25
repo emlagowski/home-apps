@@ -25,8 +25,8 @@ spec:
               value: "1000"
             - name: TZ
               value: "Europe/Warsaw"
-            - name: RUN_OPTS
-              value: ""
+            # - name: RUN_OPTS
+            #   value: ""
           securityContext:
             privileged: true  # Needed for /dev access
           ports:
