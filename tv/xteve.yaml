@@ -18,7 +18,7 @@ spec:
       hostNetwork: true
       containers:
         - name: xteve
-          image: alturismo/xteve
+          image: dnsforge/xteve:latest
           imagePullPolicy: Always
           env:
             - name: TZ
