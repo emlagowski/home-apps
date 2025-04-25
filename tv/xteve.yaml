@@ -16,6 +16,7 @@ spec:
         app: xteve
     spec:
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: xteve
           image: dmcallejo/xteve:latest
