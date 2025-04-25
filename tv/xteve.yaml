@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: xteve
-          image: dnsforge/xteve:latest
+          image: dmcallejo/xteve:latest
           imagePullPolicy: Always
           env:
             - name: TZ
