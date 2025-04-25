@@ -15,6 +15,7 @@ spec:
       labels:
         app: xteve
     spec:
+      hostNetwork: true
       containers:
         - name: xteve
           image: dmcallejo/xteve:latest

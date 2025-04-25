@@ -5,15 +5,15 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "xteve.homelab"
+    cert-manager.io/common-name: "xteve.raspberrypi"
   name: "xteve-ingress"
 spec:
   tls:
   - hosts:
-    - xteve.homelab
+    - xteve.raspberrypi
     secretName: xteve-auto-certificate-key-pair
   rules:
-  - host: xteve.homelab
+  - host: xteve.raspberrypi
     http:
       paths:
       - path: /

@@ -5,15 +5,15 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "ca-issuer"
-    cert-manager.io/common-name: "tvheadend.homelab"
+    cert-manager.io/common-name: "tvheadend.raspberrypi"
   name: "tvheadend-ingress"
 spec:
   tls:
   - hosts:
-    - tvheadend.homelab
+    - tvheadend.raspberrypi
     secretName: tvheadend-auto-certificate-key-pair
   rules:
-  - host: tvheadend.homelab
+  - host: tvheadend.raspberrypi
     http:
       paths:
       - path: /
