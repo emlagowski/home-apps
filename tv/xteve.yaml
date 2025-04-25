@@ -15,7 +15,6 @@ spec:
       labels:
         app: xteve
     spec:
-      hostNetwork: true
       containers:
         - name: xteve
           image: dnsforge/xteve:latest
