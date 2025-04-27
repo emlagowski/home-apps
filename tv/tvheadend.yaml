@@ -34,6 +34,7 @@ spec:
           ports:
             - containerPort: 9981
             - containerPort: 9982
+            - containerPort: 9983
           volumeMounts:
             - name: config-volume
               mountPath: /config

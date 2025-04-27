@@ -14,4 +14,7 @@ spec:
     - name: htsp
       port: 9982
       targetPort: 9982
+    - name: satip
+      port: 9983
+      targetPort: 9983
   type: ClusterIP 
