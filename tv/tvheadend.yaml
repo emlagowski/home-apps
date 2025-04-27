@@ -15,6 +15,8 @@ spec:
       labels:
         app: tvheadend
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: tvheadend
           image: lscr.io/linuxserver/tvheadend:latest
@@ -33,8 +35,8 @@ spec:
             - containerPort: 9981
             - containerPort: 9982
           volumeMounts:
-            # - name: config-volume
-            #   mountPath: /config
+            - name: config-volume
+              mountPath: /config
             # - name: recordings-volume
             #   mountPath: /recordings
             - name: dri-device
@@ -42,10 +44,10 @@ spec:
             - name: dvb-device
               mountPath: /dev/dvb
       volumes:
-        # - name: config-volume
-        #   hostPath:
-        #     path: /path/to/tvheadend/data
-        #     type: Directory
+        - name: config-volume
+          hostPath:
+            path: /mnt/tv/tvheadend
+            type: Directory
         # - name: recordings-volume
         #   hostPath:
         #     path: /path/to/recordings

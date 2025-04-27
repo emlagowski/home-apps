@@ -26,12 +26,12 @@ spec:
               value: "Europe/Warsaw"
           ports:
             - containerPort: 34400
-          # volumeMounts:
-          #   - name: appdata
-          #     mountPath: /root/.xteve
-          #     subPath: xteve
-          #   - name: config
-          #     mountPath: /config
+          volumeMounts:
+            - name: appdata
+              mountPath: /root/.xteve
+              subPath: xteve
+            - name: config
+              mountPath: /config
           #   - name: tmp
           #     mountPath: /tmp/xteve
           #   - name: tvh
@@ -43,13 +43,13 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "100m"
-      # volumes:
-      #   - name: appdata
-      #     hostPath:
-      #       path: /mnt/user/appdata/xteve
-      #   - name: config
-      #     hostPath:
-      #       path: /mnt/user/appdata/xteve/_config
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /mnt/tv/xteve/appdata
+        - name: config
+          hostPath:
+            path: /mnt/tv/xteve/config
       #   - name: tmp
       #     hostPath:
       #       path: /tmp/xteve
