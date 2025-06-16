@@ -37,6 +37,7 @@ spec:
             - address=/raspberrypi/192.168.1.39
             - address=/synology/192.168.1.156
             - address=/homelab/192.168.1.156
+            - address=/lab.mlagowski.com/192.168.1.156
             - address=/sonos.mlagowski.com/192.168.1.39
 
           ingress:
